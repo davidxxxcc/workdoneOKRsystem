@@ -28,7 +28,8 @@ var url_jumptoOthersProfile = Now_url + "/othersOKRs/get_requData_viewOtherOKRs"
 
 
 // loadRandomOKRs >> loadDeptsOKRs >> loadRecentOKRs >> afterLoading
-loadRandomOKRs();
+ajaxRequNotifications();
+// loadRandomOKRs();
 
 //程式載入起始點 load noficiations data
 function ajaxRequNotifications(season) {
@@ -51,6 +52,8 @@ function ajaxRequNotifications(season) {
       var template = Handlebars.compile(notiInfo);
       var notiData = template(data);
       $('.noti-message').append(notiData);
+      headerAfterLoading();
+      loadRandomOKRs();
     },
     error: function (jqXHR, textStatus, errorThrown) {
       //console.log('jqXHR: ' + JSON.stringify(jqXHR) + ',\ntextStatus: ' + textStatus + '\nerrorThrown: ' + errorThrown);
@@ -241,10 +244,10 @@ function loadMoreOKRs() {
 
 /* ------ After loading OKRs... ------ */
 function afterLoading() {
-  ajaxRequNotifications();
+  // ajaxRequNotifications();
   setTab();
 	setupEventListener();
-  headerAfterLoading();
+  // headerAfterLoading();
 	activateProgressAnimation();
 }
 

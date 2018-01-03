@@ -139,6 +139,7 @@ function ajaxRequNotifications(season) {
       var template = Handlebars.compile(notiInfo);
       var notiData = template(data);
       $('.noti-message').append(notiData);
+      headerAfterLoading();
     },
     error: function (jqXHR, textStatus, errorThrown) {
       //console.log('jqXHR: ' + JSON.stringify(jqXHR) + ',\ntextStatus: ' + textStatus + '\nerrorThrown: ' + errorThrown);
@@ -155,8 +156,8 @@ function ajaxRequNotifications(season) {
 
 /* ------ After loading... ------ */
 function afterLoading() {
-  headerAfterLoading();
-  ajaxRequNotifications();
+  // headerAfterLoading();
+  // ajaxRequNotifications();
   activateProgressAnimation();
 }
 
