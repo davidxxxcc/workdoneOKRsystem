@@ -1303,7 +1303,7 @@ router.get('/get_provData_addObjectiveComment', function (req, res, next) {
             } else {
                 //add notification
                 var notiText = "對你的目標留言";
-                // console.log('start add in notification');
+                console.log('start add in notification img : ' + img);
                 req.db_con.query('INSERT INTO `notification` (`NF_ID`, `Emp_UUID`, `Obj_ID`, `Emp_Name`, `Img_URL`, `Is_Read`, `NF_Text`, `NF_Link`, `CreatTime`, `Disable`) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [notiID, json_pkg_comment.friendID, json_pkg_comment.obj_ID, userName, img, 0, notiText, url, json_pkg_comment.cmt_time, 0], function (err, rows) {
                     // console.log("err for add notification : " + err);
                     next(err, back);
