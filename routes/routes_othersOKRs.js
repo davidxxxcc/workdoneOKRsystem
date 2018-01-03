@@ -27,17 +27,17 @@ router.get('/get_requPage_viewOtherOKRs', function (req, res, next) {
         res.render('error', { message: '403 - forbidden. 禁止使用', error: errorTemp });
         return;
     }
-    
+
     // ADD recent watch
-    req.db_con.query('INSERT INTO `recent` (`Emp_UUID`, `Rec_Emp_UUID`, `CreatTime`) VALUES (? ,? ,?)',[req.session.Emp_UUID,req.query.others_UUID,req.query.time],function(err,rows){
-        if(err){
+    req.db_con.query('INSERT INTO `recent` (`Emp_UUID`, `Rec_Emp_UUID`, `CreatTime`, `Disable`) VALUES (? ,? ,?, ?)', [req.session.Emp_UUID, req.query.others_UUID, req.query.time, 0], function (err, rows) {
+        if (err) {
             console.log('add recent fail! \n' + err);
             res.render('profileOthers', { others_UUID: req.query.others_UUID, season: req.query.season });
-        }else{
+        } else {
             // console.log('add recent success!');
-            res.render('profileOthers', { others_UUID: req.query.others_UUID, season: req.query.season });  
+            res.render('profileOthers', { others_UUID: req.query.others_UUID, season: req.query.season });
         }
-    });    
+    });
 });
 
 // router.get('/get_requData_notification', function (req, res, next) {
@@ -164,7 +164,7 @@ router.get('/get_requData_OKRs', function (req, res, next) {
 
     // console.log('UUID: ' + req.query.UUID);
     // console.log('season: ' + req.query.season);
-    
+
     var peopleID = JSON.parse(req.query.test).data.others_UUID;
     var seasonName = JSON.parse(req.query.test).data.season;
     console.log(seasonName);
@@ -219,7 +219,7 @@ router.get('/get_requData_OKRs', function (req, res, next) {
                     var edit = false;
                     var del = false;
                     var url = '/othersOKRs/get_requPage_viewOtherOKRs/?others_UUID=' + rows[i].Emp_UUID;
-                    if(rows[i].Emp_UUID == req.session.Emp_UUID){
+                    if (rows[i].Emp_UUID == req.session.Emp_UUID) {
                         edit = true;
                         del = true;
                         url = '/profile';
@@ -274,7 +274,7 @@ router.get('/get_requData_OKRs', function (req, res, next) {
                     for (var j = 0; j < json_pkg.objectives.length; j++) {
                         if (json_pkg.objectives[j].obj_ID == rows[i].Obj_ID) {
                             json_pkg.objectives[j].obj_likeUsers.push(likeUsers);
-                            if(likeUsers.like_userID == req.session.Emp_UUID){
+                            if (likeUsers.like_userID == req.session.Emp_UUID) {
                                 json_pkg.objectives[j].isLike = true;
                             }
                         }

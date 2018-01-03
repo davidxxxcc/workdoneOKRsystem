@@ -38,7 +38,7 @@ router.get('/', function (req, res, next) {
             res.status(503).json(errJSON);
         } else {
             if (JSON.stringify(rows) == "[]") {
-                res.render('personalSetting', { img_URL: 'test' });
+                res.render('personalSetting', { img_URL: 'https://vignette.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138' });
             } else {
                 res.render('personalSetting', { img_URL: rows[0].Img_URL });
             }

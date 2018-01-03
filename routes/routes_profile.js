@@ -863,7 +863,7 @@ router.post('/pos_provData_editKRProgress', function (req, res, next) {
         return;
     }
     var UpdateKeyResultProgress = JSON.parse(req.body.test).UpdateKeyResultProgress;
-    console.log("UpdateKeyResultProgress : \n" + JSON.stringify(UpdateKeyResultProgress));
+    // console.log("UpdateKeyResultProgress : \n" + JSON.stringify(UpdateKeyResultProgress));
     // var UpdateKeyResultProgress = {
     //     kr_ID: "81c48152-d009-11e7-8c9e-a861ec7dace5^p^C001^p^2017Q4O2^p^KR0",
     //     kr_userID: "81c48152-d009-11e7-8c9e-a861ec7dace5",
