@@ -427,12 +427,12 @@ router.post('/get_provData_addOBJ', function (req, res, next) {
                     for (var i = 0; i < rows.length; i++) {
                         total += rows[i].Reaching_Rate;
                     }
-                    if(rows.length == 0){
+                    if (rows.length == 0) {
                         var avg_progress = 0;
-                    }else{
+                    } else {
                         var avg_progress = total / rows.length;
                     }
-                    
+
                     // console.log("new avg : " + avg_progress);
                     next(err, obj_ID, avg_progress);
                 });
@@ -606,9 +606,9 @@ router.post('/pos_requActi_deleOBJ', function (req, res, next) {
                     for (var i = 0; i < rows.length; i++) {
                         total += rows[i].Reaching_Rate;
                     }
-                    if(rows.length == 0){
+                    if (rows.length == 0) {
                         var avg_progress = 0;
-                    }else{
+                    } else {
                         var avg_progress = total / rows.length;
                     }
                     // console.log("new avg : " + avg_progress);
@@ -1304,7 +1304,7 @@ router.get('/get_provData_addObjectiveComment', function (req, res, next) {
                 //add notification
                 var notiText = "對你的目標留言";
                 console.log('start add in notification img : ' + img);
-                req.db_con.query('INSERT INTO `notification` (`NF_ID`, `Emp_UUID`, `Obj_ID`, `Emp_Name`, `Img_URL`, `Is_Read`, `NF_Text`, `NF_Link`, `CreatTime`, `Disable`) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [notiID, json_pkg_comment.friendID, json_pkg_comment.obj_ID, userName, img, 0, notiText, url, json_pkg_comment.cmt_time, 0], function (err, rows) {
+                req.db_con.query('INSERT INTO `notification` (`NF_ID`, `Emp_UUID`,`Sourse_UUID`, `Obj_ID`, `Emp_Name`, `Img_URL`, `Is_Read`, `NF_Text`, `NF_Link`, `CreatTime`, `Disable`) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [notiID, json_pkg_comment.friendID, req.session.Emp_UUID, json_pkg_comment.obj_ID, userName, img, 0, notiText, url, json_pkg_comment.cmt_time, 0], function (err, rows) {
                     // console.log("err for add notification : " + err);
                     next(err, back);
                 });
@@ -1570,7 +1570,7 @@ router.get('/get_requActi_pressLike', function (req, res, next) {//
             } else {
                 //add notification
                 var notiText = "對你的目標按讚";
-                req.db_con.query('INSERT INTO `notification` (`NF_ID`, `Emp_UUID`, `Obj_ID`, `Emp_Name`, `Img_URL`, `Is_Read`, `NF_Text`, `NF_Link`, `CreatTime`, `Disable`) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [notiID, like.friendID, like.obj_ID, name, img, 0, notiText, url, like.time, 0], function (err, rows) {
+                req.db_con.query('INSERT INTO `notification` (`NF_ID`, `Emp_UUID`, `Sourse_UUID`, `Obj_ID`, `Emp_Name`, `Img_URL`, `Is_Read`, `NF_Text`, `NF_Link`, `CreatTime`, `Disable`) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [notiID, like.friendID, req.session.Emp_UUID, like.obj_ID, name, img, 0, notiText, url, like.time, 0], function (err, rows) {
                     next(err);
                 });
             }

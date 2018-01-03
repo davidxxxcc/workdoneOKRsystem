@@ -126,7 +126,7 @@ router.post('/pos_provData_editProfilePic', service_gcs.multer.single('profilePi
             });
         },
         function (next) {
-            req.db_con.query('UPDATE `notification` SET `Img_URL` = ? WHERE `Emp_UUID` = ?', [newPic_URL, req.session.Emp_UUID], function (err, rows) {
+            req.db_con.query('UPDATE `notification` SET `Img_URL` = ? WHERE `Sourse_UUID` = ?', [newPic_URL, req.session.Emp_UUID], function (err, rows) {
                 next(err);
             });
         },
