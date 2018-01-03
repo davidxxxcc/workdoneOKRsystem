@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script>
+      function checkSession(){
+        // check session is log-in?
+        
+        // true, 
+        // ---> /profile
+
+        // false
+        // ---> /login
+        window.location.href = '/login';
+      }
+    </script>
+  </head>
+  <body onload="checkSession();">
+    <h1><%= title %></h1>
+    <p>Now is <%= title %></p>
+  </body>
+</html>

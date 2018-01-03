@@ -1,0 +1,211 @@
+  @media screen and (min-width: 0px) and (max-width: 1000px) {
+    .row {
+      margin: 0vw 0 !important;
+    }
+    .okr{
+      width: 100% !important;
+    }
+
+    .cmt{
+      margin: 3vw auto;
+
+    }
+
+    .cmt-user {
+      width: 100px !important;
+    }
+    #cmt-user-name {
+      font-size: 15px !important;
+    }
+    #cmt-user-time {
+      font-size: 10px !important;
+    }
+    .cmt-text {
+      width: 350px !important;
+      font-size: 15px !important;
+    }
+    .cmt-more {
+      width: 50px !important;
+    }
+    .cmt-more a {
+      width: 50px !important;
+      height: 20px !important;
+      font-size: 20px !important;
+    }
+    .cmt-inputbox {
+      width: 65vw !important;
+    }
+    #cmt-message {
+      height: 40px !important;
+      width: 100% !important;
+    }
+    .cmt-send {
+      width: 50px !important;
+    }
+    .cmt-send a {
+      width: 20px !important;
+      height: 20px !important;
+      font-size: 20px !important;
+      line-height: 20px !important;
+    }
+    .objective {
+      width: 100% !important;
+    }
+    #user {
+      width: 100% !important;
+    }
+    .thumbs {
+      top: 0px !important;
+      right: 0 !important;
+      width: 40px !important;
+      height: 50px !important;
+      border: none !important;
+    }
+    .thumbs .like-icon {
+      height: 30px !important;
+      font-size: 50% !important;
+      line-height: 30px !important;
+    }
+    .thumbs .fa-thumbs-o-up {
+      font-size: 20px !important;
+      line-height: 20px !important;
+    }
+    .thumbs .like-number {
+      line-height: 15px !important;
+      height: 15px !important;
+      font-size: 7px !important;
+    }
+    .more-option {
+      right: 0vw !important;
+      top: 50px!important;
+    }
+
+
+    .key-result {
+      float: none !important;
+      width: 100% !important;
+      margin-bottom: 1vw !important;
+    }
+    .kr-content {
+      padding: 1vw 5vw !important;
+    }
+    .kr-title {
+      width: 100% !important;
+      height: 3vw !important;
+      line-height: 3vw !important;
+      margin-top: -1.5vw !important;
+    }
+    .comment {
+      float: none !important;
+      width: 100% !important;
+      position: relative !important;
+    }
+    .comment-title {
+      width: 100% !important;
+      height: 3vw !important;
+      line-height: 3vw !important;
+      margin-top: -1.5vw !important;
+    }
+    .comment-content {
+      padding: 1vw 5vw !important;
+    }
+
+    .kr-add{
+      padding: .5vw 5vw!important;
+    }
+  }
+
+  @media screen and (min-width: 0px) and (max-width: 800px) {
+    .brand {
+      float: left !important;
+    }
+    .options-cell {
+      float: none !important;
+    }
+    .options-more {
+      width: 30px !important;
+    }
+    .options-more #options-fa-more {
+      display: none !important;
+    }
+    .options-more #options-fa-more-mobile {
+      display: block !important;
+      width: 30px !important;
+    }
+    div.options-noti {
+      float: right !important;
+    }
+    #drop-down-options-notification {
+      width: 320px !important;
+      left: -250px !important;
+    }
+    #drop-down-options-more {
+      left: -150px !important;
+    }
+    #noti-menu>li{
+      font-size: 14px !important;
+    }
+    #noti-menu a{
+      padding: 5px 10px !important;
+
+    }
+    .noti-title{
+      padding: 0 10px !important;
+    }
+    .noti-content {
+      width: 200px !important;
+    }
+    .noti-text {
+    }
+    .noti-check{
+      left: 270px !important;
+    }
+    div.options-home {
+      display: none !important;
+    }
+    .searchBar {
+      display: none !important;
+    }
+    .season {
+      padding: 0vw !important;
+      width: 100px!important;
+      height: 30px !important;
+      font-size: .9rem !important;
+    }
+    #drop-down-season {
+      top: 30px !important;
+      left: 0px !important;
+    }
+    #drop-down-season>#drop-down-triangle {
+      left: 78px !important;
+    }
+    #drop-down-season>ul {
+      width: 110px !important;
+    }
+
+    #add-okr {
+      right: 1vw !important;
+      bottom: 1vw !important;
+      width: 10vw !important;
+      height: 10vw !important;
+      border-radius: 50% !important;
+    }
+    #add-okr>a{
+      line-height: 8vw !important;
+      font-size: 8vw !important;
+    }
+
+    .card{
+      min-height: 100px !important;
+    }
+
+    .cmt-text {
+      width: 30vw !important;
+      font-size: 15px !important;
+    }
+
+    /*.objective-content {
+      font-size: 15px !important;
+    }*/
+
+  }

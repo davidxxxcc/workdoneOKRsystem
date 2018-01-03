@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="zh-tw">
+  <meta charset="utf-8">
+  <title>WORKDONE</title>
+  <link rel="stylesheet" href="/stylesheets/viewothers/viewothers.min.css">
+  <link rel="stylesheet" href="/stylesheets/common/font-awesome.min.css">
+</head>
+
+<body>
+  <header>
+    <div class="searchBar">
+      <input id="searchInput" type="text" placeholder=" Search...">
+      <button id="seatchButton" class="fa fa-search" type="button"></button>
+      <div id="search-prompt"></div>
+    </div>
+    <div class="brand">
+      <a href="#" id="brand-name"><img src="https://storage.googleapis.com/okrs-sys-emp-img/designevo-transparent-hori.png"></a>
+    </div>
+    <div class="options-cell options-more">
+      <a class="fa fa-ellipsis-h" id="options-fa-more"></a>
+      <a class="fa fa-sort-desc" id="options-fa-more-mobile"></a>
+      <div id="drop-down-options-more">
+        <div id="drop-down-more-triangle">
+          <div id="inner-more-triangle"></div>
+        </div>
+        <ul id="more-menu">
+          <li>
+            <a id="viewOthers" href="">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              <span>查看OKR</span>
+            </a>
+          </li>
+          <li>
+            <a id="setting" href="">
+              <i class="fa fa-cog" aria-hidden="true"></i>
+              <span>個人設定</span>
+            </a>
+          </li>
+          <li>
+            <a id="singout" href="">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+              <span>登出系統</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="options-cell options-home">
+      <a href="" class="fa fa-home" id="options-fa-home" data-user-id=""></a>
+    </div>
+    <div class="options-cell options-noti">
+      <a class="fa fa-bell" id="options-fa-bell">
+        <span id="noti-circle"></span></a>
+      <div id="drop-down-options-notification">
+        <div id="drop-down-noti-triangle">
+          <div id="inner-noti-triangle">
+          </div>
+        </div>
+        <ul id="noti-menu">
+          <li class="noti-title">通知</li>
+          <li class="noti-prompt">沒有通知</li>
+          <div class="noti-message"></div>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <section>
+
+    <div class="filter_tab">
+      <ul class="tabs">
+        <li><a href="#tab_random">隨機排序</a></li>
+        <li><a href="#tab_depts">部門排序</a></li>
+        <li><a href="#tab_recent">最近瀏覽</a></li>
+      </ul>
+    </div>
+
+    <div class="tab-container">
+
+      <div id="tab_random" class="tab_content">
+        <div class="block-name">
+          <p>隨機排序</p>
+
+          <script id="random_template" type="text/x-handlebars-template">
+            <div class="people-block" id="people_block_random" data-id="{{Emp_UUID}}">
+              {{#each viewOthers_random20}}
+              <a href="#" class="other-prof-btn" data-id="{{person_userID}}">
+                <div class="person">
+
+                  <div class="progress-container">
+                    <div class="progress-triangle"></div>
+                    <div class="progress-num">
+                      <span class="percent-num">{{person_progress}}</span>
+                      <span class="percent-symbol">%</span>
+                    </div>
+
+                    <div class="progress-circle">
+                      <div class="chart">
+                        <div class="mask-outer left">
+                          <div class="mask-inner">
+                            <div class="body"></div>
+                          </div>
+                        </div>
+                        <div class="mask-outer right">
+                          <div class="mask-inner">
+                            <div class="body"></div>
+                          </div>
+                        </div>
+                        <div class="img-circle">
+                          <img id="user_img" src="{{person_userImg}}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="user-name">{{person_userName}}</div>
+                  <div class="user-job">{{person_position}}</div>
+                </div>
+              </a>
+              {{/each}}
+            </div>
+          </script>
+
+          <script id="loadMore_template" type="text/x-handlebars-template">
+            {{#each viewOthers_loadMore}}
+            <a href="#" class="other-prof-btn" data-id="{{person_userID}}">
+              <div class="person">
+
+                <div class="progress-container">
+                  <div class="progress-triangle"></div>
+                  <div class="progress-num">
+                    <span class="percent-num">{{person_progress}}</span>
+                    <span class="percent-symbol">%</span>
+                  </div>
+
+                  <div class="progress-circle">
+                    <div class="chart">
+                      <div class="mask-outer left">
+                        <div class="mask-inner">
+                          <div class="body"></div>
+                        </div>
+                      </div>
+                      <div class="mask-outer right">
+                        <div class="mask-inner">
+                          <div class="body"></div>
+                        </div>
+                      </div>
+                      <div class="img-circle">
+                        <img id="user_img" src="{{person_userImg}}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="user-name">{{person_userName}}</div>
+                <div class="user-job">{{person_position}}</div>
+              </div>
+            </a>
+            {{/each}}
+          </script>
+
+          <!-- <div class="load-more-btn">
+            <button id="load_more_btn">載入更多...</button>
+          </div> -->
+
+        </div>
+      </div>
+
+      <div id="tab_depts" class="tab_content" style="display=none;">
+        <script id="depts_template" type="text/x-handlebars-template">
+          {{#each viewOthers_depts}}
+          <div class="block-name">
+            <p data-id="{{dept_ID}}">{{dept_name}}</p>
+
+            <div class="people-block">
+              {{#each people}}
+              <a href="#" class="other-prof-btn" data-id="{{person_userID}}">
+                <div class="person" data-id="{{person_userID}}">
+
+                  <div class="progress-container">
+                    <div class="progress-triangle"></div>
+                    <div class="progress-num">
+                      <span class="percent-num">{{person_progress}}</span>
+                      <span class="percent-symbol">%</span>
+                    </div>
+
+                    <div class="progress-circle">
+                      <div class="chart">
+                        <div class="mask-outer left">
+                          <div class="mask-inner">
+                            <div class="body"></div>
+                          </div>
+                        </div>
+                        <div class="mask-outer right">
+                          <div class="mask-inner">
+                            <div class="body"></div>
+                          </div>
+                        </div>
+                        <div class="img-circle">
+                          <img id="user_img" src="{{person_userImg}}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="user-name">{{person_userName}}</div>
+                  <div class="user-job">{{person_position}}</div>
+                </div>
+              </a>
+              {{/each}}
+            </div>
+          </div>
+          {{/each}}
+        </script>
+      </div>
+
+      <div id="tab_recent" class="tab_content" style="display=none;">
+        <div class="block-name">
+          <p>最近瀏覽</p>
+
+          <div class="people-block" id="people_block_empty">
+					  <div class="empty-mes">
+						  <span>您尚未瀏覽其他人的OKR</span>
+					  </div>
+				  </div>
+
+          <script id="recent_template" type="text/x-handlebars-template">
+            <div class="people-block" id="people_block_recent">
+              {{#each viewOthers_recent}}
+              <a href="#" class="other-prof-btn" data-id="{{person_userID}}">
+                <div class="person" data-id="{{person_userID}}">
+
+                  <div class="progress-container">
+                    <div class="progress-triangle"></div>
+                    <div class="progress-num">
+                      <span class="percent-num">{{person_progress}}</span>
+                      <span class="percent-symbol">%</span>
+                    </div>
+
+                    <div class="progress-circle">
+                      <div class="chart">
+                        <div class="mask-outer left">
+                          <div class="mask-inner">
+                            <div class="body"></div>
+                          </div>
+                        </div>
+                        <div class="mask-outer right">
+                          <div class="mask-inner">
+                            <div class="body"></div>
+                          </div>
+                        </div>
+                        <div class="img-circle">
+                          <img id="user_img" src="{{person_userImg}}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="user-name">{{person_userName}}</div>
+                  <div class="user-job">{{person_position}}</div>
+                </div>
+              </a>
+              {{/each}}
+            </div>
+          </script>
+
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <script id="noti-template" type="text/x-handlebars-template">
+    {{#each notifications}}
+    <li class="noti-li" data-o-id="{{noti_obj_id}}" data-noti-time="{{noti_time}}" data-noti-read={{noti_isRead}} data-noti-id="{{noti_ID}}">
+      <a href="{{noti_link}}">
+        <div class="noti-user-img">
+          <div class="noti-img">
+            <img src="{{noti_user_img}}" class="user-img" alt="{{noti_user_name}}" data-user-id="{{noti_user_id}}">
+          </div>
+        </div>
+        <div class="noti-content">
+          <div class="noti-text">
+            <p><span class="noti-name" data-user-id="{{noti_user_id}}">{{noti_user_name}}</span>{{noti_text}}</P>
+          </div>
+          <div class="noti-time">
+            <p>{{formatDateToNow noti_time}}</p>
+          </div>
+        </div>
+        <div class="noti-check">
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </div>
+      </a>
+    </li>
+    {{/each}}
+  </script>
+  <script id="search-template" type="text/x-handlebars-template">
+
+      <div id="search-prompt-triangle">
+        <div id="search-prompt-triangle-inner">
+        </div>
+      </div>
+      <ul id="search-prompt-menu">
+        <li class="search-main-li search-title">搜尋結果</li>
+        {{#if departments}}
+        <li class="search-main-li search-type">
+          <ul class="search-sub-ul">
+            <li class="search-sub-li type-title">
+              <div class="type-title-name">
+                部門
+              </div>
+            </li>
+            {{#departments}}
+            <li class="search-sub-li search-dept">
+              <a class="search-sub-li-wrapper" href="{{dep_URL}}">
+                <div class="search-content">
+                  <div class="dept-name" data-dept-id="{{dep_ID}}">{{dep_name}}</div>
+                </div>
+                <div class="search-img">
+                  <div class="img-circle-container">
+                    <p class="dept-char">{{deptChar dep_name}}</p>
+                  </div>
+                </div>
+                <div class="cleared" style="clear: both;"></div>
+              </a>
+            {{/departments}}
+          </ul>
+        </li>
+        {{/if}}
+
+        {{#if people}}
+        <li class="search-main-li search-type">
+          <ul class="search-sub-ul">
+            <li class="search-sub-li type-title">
+              <div class="type-title-name">
+                人員
+              </div>
+            </li>
+            {{#people}}
+            <li class="search-sub-li search-user">
+              <a class="search-sub-li-wrapper" href="{{formatPersonURL person_URL}}">
+                <div class="search-content search-user-table">
+                  <div class="search-user-name">{{person_userName}}</div>
+                  <div class="search-user-position">{{person_position}}</div>
+                </div>
+                <div class="search-img">
+                  <div class="img-circle-container">
+                    <img class="user-img" src="{{person_userImg}}" alt="{{person_userName}}" data-user-id="{{person_userID}}">
+                  </div>
+                </div>
+                <div class="cleared" style="clear: both;"></div>
+              </a>
+            {{/people}}
+          </ul>
+        </li>
+        {{/if}}
+
+        {{#if objectives}}
+        <li class="search-main-li search-type">
+          <ul class="search-sub-ul">
+            <li class="search-sub-li type-title">
+              <div class="type-title-name">
+                目標
+              </div>
+            </li>
+            {{#objectives}}
+            <li class="search-sub-li search-user">
+              <a class="search-sub-li-wrapper" href="{{formatObjURL obj_URL obj_season}}">
+                <div class="search-content search-obj-table">
+                  <div class="search-obj-user"><label class="search-obj-user-name" style="color:#000;">{{userName}}</label>於<label class="search-obj-user-season" style="color:#000;">{{formatSeason obj_season}}</label>的目標
+                  </div>
+                  <div class="search-obj-text">
+                    {{formatObj obj_text}}
+                  </div>
+                </div>
+                <div class="search-img">
+                  <div class="img-circle-container">
+                    <img class="user-img" src="{{userImg}}" alt="{{userName}}" data-user-id="{{userID}}">
+                  </div>
+                </div>
+                <div class="cleared" style="clear: both;"></div>
+              </a>
+            {{/objectives}}
+          </ul>
+        </li>
+        {{/if}}
+        {{checkData departments people objectives}}
+
+      </ul>
+
+  </script>
+
+  <script src="/javascripts/common/jquery-3.2.1.js"></script>
+  <!--************** 控制 JS 的顏色動畫*************** -->
+  <script src="/javascripts/common/jquery.color.js"></script>
+  <script src="/javascripts/common/handlebars-v4.0.11.js"></script>
+  <script src="/javascripts/viewothers/viewothers.js"></script>
+  <script src="/javascripts/common/header.js"></script>
+
+</body>
+
+</html>

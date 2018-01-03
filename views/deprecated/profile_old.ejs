@@ -1,0 +1,123 @@
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <title>
+            <%= title %>
+        </title>
+        <link rel="stylesheet" href="/stylesheets/scss/login.min.css">
+        <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+        <!-- jQuery lib -->
+        <script src="/javascripts/profileAjax.js"></script>
+        <!-- ajax.js -->
+        <style>
+            td,
+            th {
+                border: 1px solid gray;
+                padding: 4px;
+                text-align: center;
+                vertical-align: bottom;
+            }
+        </style>
+    
+        <script>
+            // get data
+            function profileGetData() {
+                req_Ajax_JSON_Test('ajax_JSON_Test');
+                // req_Ajax_JSON_Notification('');
+                // req_Ajax_JSON_ProfileData('');
+                req_Ajax_JSON_OKR('ajax_JSON_OKRAndSeason');
+            }
+    
+            //btn-edit onclick:
+            function Edit(id) {
+                // window.location.href = "/userEdit?id=" + id;
+            }
+    
+            // btn-delete onclick:
+            function Delete(id) {
+                // var rs = confirm('Confirm to delete?');
+                // if (rs) {
+                //     window.location.href = "/userDelete?id=" + id;
+                // }
+    
+            }
+                    // btn-back onclick:
+        </script>
+    </head>
+    
+    <body onload="profileGetData();">
+        <div class="back-button">
+            <!-- <span class="back" onclick="javascript: window.history.back();">回上一頁</span> -->
+            <span class="back" onclick="javascript: window.location.href ='/';">回上一頁</span>
+        </div>
+        <table class="table">
+            <thead>
+                <tr style="border:1pt solid black;">
+                    <th>Emp_Account</th>
+                    <th>Password</th>
+                    <th>Act_Permission</th>
+                    <th>Emp_Name</th>
+                    <th>Act_Setting</th>
+                    <th>Act_AnotherData</th>
+                    <th>Company</th>
+                    <th>Department</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ##### search back-up.ejs -->
+                <% for ( var i = 0 ; i < data.length ; i++){ %>
+                    <tr style="border:1pt solid black;">
+                        <td>
+                            <%= data[i].Emp_Account  %>
+                        </td>
+                        <td>
+                            <%= data[i].Password  %>
+                        </td>
+                        <td>
+                            <%= data[i].Act_Permission  %>
+                        </td>
+                        <td>
+                            <%= data[i].Emp_Name  %>
+                        </td>
+                        <td>
+                            <%= data[i].Act_Setting  %>
+                        </td>
+                        <td>
+                            <%= data[i].Act_AnotherData  %>
+                        </td>
+                        <td>
+                            <%= data[i].Company  %>
+                        </td>
+                        <td>
+                            <%= data[i].Department  %>
+                        </td>
+    
+                        <td>
+                            <input type="button" name="edit" value="Edit" class="btn" onclick="Edit('<%= data[i].id  %>');" />
+                            <input type="button" name="delete" value="Delete" class="btn" onclick="Delete('<%= data[i].id  %>');" />
+                        </td>
+                    </tr>
+                    <% } %>
+            </tbody>
+        </table>
+    
+        <div id="list_tab_emp">
+            <p id="pjl0">0</p>
+            <p id="pjl1">1</p>
+            <p id="pjl2">2</p>
+            <p id="pjl3">3</p>
+            <p id="pjl4">4</p>
+            <p id="pjl5">5</p>
+            <p id="pjl6">6</p>
+            <p id="pjl7">7</p>
+            <p id="pjl8">8</p>
+            <p id="pjl9">9</p>
+        </div>
+        <div id="list_JSONFormat">
+                <p id="ljf0">ljf0</p>
+            </div>
+    
+    </body>
+    
+    </html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <!-- Logo icon-->
+  <link rel="icon" href="../public/stylesheets/common/favicon.ico">
+  <title>OKR</title>
+  <!-- Bootstrap core CSS -->
+  <link href="../public/stylesheets/common/bootstrap.min.css" rel="stylesheet">
+  <!-- Icon resource -->
+  <link href="../public/stylesheets/common/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom styles for this template -->
+  <link href="../public/stylesheets/profile/main.min.css" rel="stylesheet">
+  <!-- Responsive Web Design -->
+  <link href="../public/stylesheets/profile/rwd.css" rel="stylesheet">
+  <!-- Dynamically html content generation -->
+  <script src="../public/javascripts/common/handlebars-v4.0.11.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="searchBar">
+      <input id="searchInput" type="text" placeholder=" Search...">
+      <button id="seatchButton" class="fa fa-search" type="button" onclick="postData()"></button>
+    </div>
+    <div class="brand">
+      <a href="#" id="brand-name">WORKDONE</a>
+    </div>
+    <div class="options-cell options-more">
+      <a href="#" class="fa fa-ellipsis-h" id="options-fa-more"></a>
+      <a href="#" class="fa fa-sort-desc" id="options-fa-more-mobile"></a>
+      <div id="drop-down-options-more">
+        <div id="drop-down-more-triangle">
+          <div id="inner-more-triangle"></div>
+        </div>
+        <ul id="more-menu">
+          <li>
+            <a href="#">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              <span>查看OKR</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-cog" aria-hidden="true"></i>
+              <span>個人設定</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+              <span>登出系統</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="options-cell options-home">
+      <a class="fa fa-home" id="options-fa-home"></a>
+    </div>
+    <div class="options-cell options-noti">
+      <a class="fa fa-bell" id="options-fa-bell">
+        <span id="noti-circle"></span></a>
+      <div id="drop-down-options-notification">
+        <div id="drop-down-noti-triangle">
+          <div id="inner-noti-triangle">
+          </div>
+        </div>
+        <ul id="noti-menu">
+          <li class="noti-title">通知</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="section-profile">
+    </div>
+    <div class="section-okr">
+      <div class="prompt-no-okr">
+        尚未新增目標
+      </div>
+    </div>
+  </section>
+  <div class="section-modal">
+    <div id="okr-modal">
+      <div id="modal-steps">
+        <div id="steps-line">
+          <div id="line"></div>
+        </div>
+        <div class="stepDot step-1">1</div>
+        <div class="stepDot step-2">2</div>
+        <div class="stepDot step-3">3</div>
+      </div>
+      <div id="modal-content">
+        <div id="modal-slide">
+          <div id="modal-obj">
+            <h1 id="obj-prompt">輸入您的目標</h1>
+            <textarea id="obj-input" name="obj-input" cols="40" rows="5" cols="30" rows="5" onchange="this.rows=this.value.split(':\n').length-1"></textarea>
+          </div>
+          <div id="modal-kr">
+            <h1 id="obj-text"></h1>
+            <h3 id="obj-title">目標</h3>
+            <div id="kr-input-container">
+
+            </div>
+            <button id="add-kr" type="button">+新增您的關鍵成果</button>
+            <h5 id="kr-hint">最多五項</h5>
+
+            <div id="kr-input-module">
+              <h1 id="kr-prompt">輸入您的關鍵成果</h1>
+              <h1 id="kr-prompt-options">建議選項</h1>
+              <textarea id="kr-input" name="obj-input" cols="40" rows="5" cols="30" rows="5" onchange="this.rows=this.value.split(':\n').length-1"></textarea>
+              <div class="input-btns inner">
+                <button class="input-btn" id="kr-input-cancel" type="button" name="button">取消</button>
+                <button class="input-btn" id="kr-input-ok" type="button" name="button">儲存</button>
+                <span id="kr-input-hint">內容不能為空白!</span>
+
+              </div>
+              <div id="kr-input-options">
+                <h1 id="main-menu-title">職務類別</h1>
+                <ul class="main-menu">
+                  <li class="job-category">
+                    <div class="sub-menu-title">
+                      人力資源
+                      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </div>
+                    <ul class="sub-menu">
+                      <li class="kr-line"></li>
+                      <li class="kr-item"><span class="kr-item-text">平均職缺人員遞補天數45天</span></li>
+                      <li class="kr-item"><span class="kr-item-text">關鍵人才培育計畫的執行率</span></li>
+                      <li class="kr-item"><span class="kr-item-text">建置完成儲備幹部計畫進度</span></li>
+                    </ul>
+                  </li>
+                  <li class="job-category">
+                    <div class="sub-menu-title">
+                      行銷企劃
+                      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </div>
+                    <ul class="sub-menu">
+                      <li class="kr-line"></li>
+                      <li class="kr-item"><span class="kr-item-text">網路廣告點閱人次達五十萬次</span></li>
+                      <li class="kr-item"><span class="kr-item-text">廣告預算執行率達九成</span></li>
+                      <li class="kr-item"><span class="kr-item-text">客戶對廣告平均滿意度達80分以上</span></li>
+                    </ul>
+                  </li>
+                  <li class="job-category">
+                    <div class="sub-menu-title">
+                      財會金融
+                      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </div>
+                    <ul class="sub-menu">
+                      <li class="kr-line"></li>
+                      <li class="kr-item"><span class="kr-item-text">財務結構分析達成率</span></li>
+                      <li class="kr-item"><span class="kr-item-text">財務結構分析達成率</span></li>
+                      <li class="kr-item"><span class="kr-item-text">現金流量分析達成率</span></li>
+                    </ul>
+                  </li>
+                  <li class="job-category">
+                    <div class="sub-menu-title">
+                      工程研發
+                      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </div>
+                    <ul class="sub-menu">
+                      <li class="kr-line"></li>
+                      <li class="kr-item"><span class="kr-item-text">無效的研發成本與總研發成本發生率</span></li>
+                      <li class="kr-item"><span class="kr-item-text">加快關鍵子系統效能達成率</span></li>
+                      <li class="kr-item"><span class="kr-item-text">提升伺服器可靠性</span></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div id="modal-confirm">
+            <div id="update-text">
+              資料更新中
+            </div>
+            <div id="update-progress">
+              <div class="ball b1">
+              </div>
+              <div class="ball b2">
+              </div>
+              <div class="ball b3">
+              </div>
+              <div class="ball b4">
+              </div>
+              <div class="ball b5">
+              </div>
+              <div class="ball b6">
+              </div>
+              <div class="ball b7">
+              </div>
+              <div class="ball b8">
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="input-btns outer">
+          <button class="input-btn" id="obj-input-save" type="button" name="button">儲存</button>
+          <button class="input-btn" id="obj-input-next" type="button" name="button">下一步</button>
+          <button class="input-btn" id="obj-input-discard" type="button" name="button">捨棄</button>
+          <button class="input-btn" id="obj-input-prev" type="button" name="button">上一步</button>
+        </div>
+        <div class="check-box">
+          <h3 id="check-text">要捨棄此次內容嗎?</h3>
+          <div class="input-btns check">
+            <button class="input-btn" id="check-box-discard" type="button" name="button">捨棄</button>
+            <button class="input-btn" id="check-box-cancel" type="button" name="button">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-popup-delete">
+    <div id="delete-popup"></div>
+    <div id="delete-check-box">
+      <h3 class="delete-check-title del-prompt">您確認要刪除此<label class="delete-type">目標</label>?</h3>
+      <h3 class="delete-check-title del-process"><label class="delete-type">目標</label>刪除中...</h3>
+      <p id="delete-check-text"></p>
+      <div id="delete-input-btns">
+        <button class="input-btn" id="delete-check-box-confirm" type="button" name="button">刪除</button>
+        <button class="input-btn" id="delete-check-box-cancel" type="button" name="button">取消</button>
+      </div>
+    </div>
+  </div>
+    <!-- Bootstrap core JavaScript
+
+  <!-- Placed at the end of the document so the pages load faster -->
+
+  <script id="profile-template" type="text/x-handlebars-template">
+    <div id="user" data-user-id="{{profile.profile_user_id}}">
+      <a id="profile-img" href="#aboutModal">
+        <div class="img-circle">
+          <img id="user-img" src="{{profile.profile_user_img}}" data-user-id="{{profile.profile_user_id}}">
+        </div>
+        <strong>更換大頭照</strong><span></span>
+      </a>
+      <h3 id="user-name">{{profile.profile_user_name}}</h3>
+      <p id="user-position">{{profile.profile_user_position}}</p>
+      <div class="season">
+        <span id="selected-season" data-season="{{profile.seasons.[1]}}">{{formatSeason profile.seasons.[1]}}</span>
+        <a href="#" id="fa-drop-down" class="fa fa-chevron-down"></a>
+        <div id="drop-down-season">
+          <div id="drop-down-triangle">
+            <div id="drop-down-triangle-inner"></div>
+          </div>
+          <ul>
+            {{#profile.seasons}}
+            <li><a href="#" data-season="">{{formatSeason this}}</a></li>
+            {{/profile.seasons}}
+          </ul>
+        </div>
+      </div>
+      <button id="add-okr" type="button">+新增您的OKR</button>
+    </div>
+  </script>
+  <script id="noti-template" type="text/x-handlebars-template">
+    {{#each notifications}}
+    <li data-o-id="{{noti_obj_id}}">
+      <a href="{{noti_link}}">
+        <div class="noti-user-img">
+          <div class="noti-img">
+            <img src="{{noti_user_img}}" class="user-img" alt="{{noti_user_name}}" data-user-id="{{noti_user_id}}">
+          </div>
+        </div>
+        <div class="noti-content">
+          <div class="noti-text">
+            <p><span class="noti-name" data-user-id="{{noti_user_id}}">{{noti_user_name}}</span>{{noti_text}}</P>
+          </div>
+          <div class="noti-time">
+            <p>{{noti_time}}</p>
+          </div>
+        </div>
+        <div class="noti-check">
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </div>
+      </a>
+    </li>
+    {{/each}}
+  </script>
+  <script id="okr-template" type="text/x-handlebars-template">
+    {{#each objectives}}
+    <div class="okr" data-obj-id="{{obj_ID}}">
+      <div class="card objective" data-obj-id="{{obj_ID}}">
+        <div class="obj-upper" data-obj-id="{{obj_ID}}">
+          <div class="okr-progress" data-obj-id="{{obj_ID}}">
+            <div class="chart">
+              <div class="circle-mask-outer left">
+                <div class="circle-mask-inner">
+                  <div class="circle-body"></div>
+                </div>
+              </div>
+              <div class="circle-mask-outer right">
+                <div class="circle-mask-inner">
+                  <div class="circle-body"></div>
+                </div>
+              </div>
+              <div class="chart-content">
+                <p class="text">
+                  <span class="percent-number" data-obj-id="{{obj_ID}}">{{obj_progress}}</span>
+                  <span class="percent-symbol" data-obj-id="{{obj_ID}}">%</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="thumbs" data-obj-id="{{obj_ID}}">
+            <div class="like-icon" data-obj-id="{{obj_ID}}">
+              <a href="#" class="fa fa-thumbs-o-up" data-obj-id="{{obj_ID}}"></a>
+            </div>
+            <div class="like-number" data-obj-id="{{obj_ID}}">{{obj_likeNumber}}</div>
+          </div>
+          <div class="more-option" data-obj-id="{{obj_ID}}">
+            <a class="fa fa-ellipsis-h" data-obj-id="{{obj_ID}}"></a>
+            <div class="drop-down-obj" data-obj-id="{{obj_ID}}">
+              <ul class="obj-menu" data-obj-id="{{obj_ID}}">
+                <li class="obj-menu-li" data-obj-id="{{obj_ID}}">
+                  <a class="fa fa-pencil" data-obj-id="{{obj_ID}}">
+                    <span data-obj-id="{{obj_ID}}"> 修改你的目標</span>
+                  </a>
+                </li>
+                <li class="obj-menu-li" data-obj-id="{{obj_ID}}">
+                  <a class="fa fa-trash" data-obj-id="{{obj_ID}}">
+                    <span data-obj-id="{{obj_ID}}"> 刪除你的目標</span>
+                  </a>
+                </li>
+                <li class="obj-menu-li obj-history" data-obj-id="{{obj_ID}}">
+                  <a class="fa fa-eye" data-obj-id="{{obj_ID}}">
+                    <span data-obj-id="{{obj_ID}}"> 檢視歷史紀錄</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <h1 class="objective-content" data-obj-id="{{obj_ID}}">{{obj_text}}</h1>
+      </div>
+      <div class="row" data-obj-id="{{obj_ID}}">
+        <div class="card key-result" data-obj-id="{{obj_ID}}">
+          <div class="kr-upper" data-obj-id="{{obj_ID}}">
+            <div class="kr-title" data-obj-id="{{obj_ID}}">
+              <h4 data-obj-id="{{obj_ID}}">關鍵成果 Key Results</h4>
+            </div>
+          </div>
+          <div class="kr-content" data-obj-id="{{obj_ID}}">
+            {{#keyResults}}
+            <div class="kr" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">
+              <div class="kr-text" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">{{kr_text}}</div>
+              <div class="kr-progress" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">
+                <div class="progress" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">
+                  <div class="progress-bar bg-success" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}" role="progressbar" aria-valuenow="{{kr_now}}" aria-valuemin="0" aria-valuemax="100" style="width: {{kr_progress}}%">
+                    <label class="kr-progress-number" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">{{kr_progress}}</label> %
+                  </div>
+                </div>
+              </div>
+              <div class="kr-options" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">
+                <!-- <div class="kr-number" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">
+                  <div class="base-number" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">/ <span class="denominator" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">{{kr_max}}</span></div>
+                  <div class="input-number" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">
+                    <input class="numerator" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}" type="number" value="{{kr_now}}" min="0" max "{{kr_max}}" readonly>
+                  </div>
+                </div>
+                <a class="fa fa-refresh" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}" aria-hidden="true"></a> -->
+                <button type="button" class="kr-cancel" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">
+                  <i class="fa fa-times" aria-hidden="true" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}"></i>
+                </button>
+                <button type="button" class="kr-confirm" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">
+                  <i class="fa fa-check" aria-hidden="true" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}"></i>
+                </button>
+                <a class="fa fa-pencil kr-edit" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}"></a>
+                <a class="fa fa-trash kr-delete" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}"></a>
+              </div>
+            </div>
+            {{/keyResults}}
+            <div class="prompt-no-kr">
+              尚未新增關鍵成果
+            </div>
+            <div class="kr-add" data-obj-id="{{obj_ID}}">
+              <a class="kr-add-icon" data-obj-id="{{obj_ID}}">+</a>
+            </div>
+          </div>
+        </div>
+        <div class="card comment" data-obj-id="{{obj_ID}}">
+          <div class="cmt-upper" data-obj-id="{{obj_ID}}">
+            <div class="comment-title" data-obj-id="{{obj_ID}}">
+              <h4 data-obj-id="{{obj_ID}}">留言 Comments</h4>
+            </div>
+          </div>
+          <div class="comment-content" data-obj-id="{{obj_ID}}">
+            {{#comments}}
+            <div class="cmt" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+              <div class="cmt-img" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                <img class="user-img" src="{{cmt_userImg}}" alt="{{cmt_userName}}" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+              </div>
+              <div class="cmt-user" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                <a class="cmt-user-name" href="#" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">{{cmt_userName}}</a>
+                <p class="cmt-user-time" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">{{cmt_time}}</p>
+              </div>
+              <div class="cmt-text" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                <p data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">{{cmt_text}}</p>
+              </div>
+              <div class="cmt-more" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                <a class="fa fa-ellipsis-h cmt-more-icon" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}"></a>
+                <div class="drop-down-cmt" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                  <ul class="cmt-menu" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                    <li class="cmt-menu-li" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                      <a class="fa fa-trash" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                        <span data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}"> 刪除留言</span>
+                      </a>
+                    </li>
+                    <li class="cmt-menu-li" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                      <a class="fa fa-pencil" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                        <span data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}"> 編輯留言</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            {{/comments}}
+            <div class="leave-cmt" data-obj-id="{{obj_ID}}" data-cmt-id="">
+              <div class="cmt-inputbox" data-obj-id="{{obj_ID}}" data-cmt-id="">
+                <input id="cmt-message" type="text" placeholder="  對此則OKR留言" data-obj-id="{{obj_ID}}" data-cmt-id="">
+              </div>
+              <div class="cmt-send" data-obj-id="{{obj_ID}}" data-cmt-id="">
+                <a href="#" id="cmt-send" class="fa fa-paper-plane-o" aria-hidden="true" data-obj-id="{{obj_ID}}" data-cmt-id=""></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+      <div class="history-slide" data-obj-id="{{obj_ID}}">
+        <div class="hisBtn" data-obj-id="{{obj_ID}}">
+          <button type="button" name="button" class="historyBTN" data-obj-id="{{obj_ID}}">
+            <i class="fa fa-times" aria-hidden="true" data-obj-id="{{obj_ID}}"></i>
+          </button>
+        </div>
+        <div class="history-upper" data-obj-id="{{obj_ID}}">
+          <div class="history-title" data-obj-id="{{obj_ID}}">
+            <h1 data-obj-id="{{obj_ID}}">歷史紀錄 Activity</h1>
+          </div>
+        </div>
+        <div class="history-lower" data-obj-id="{{obj_ID}}">
+          <ul class="history-content" data-obj-id="{{obj_ID}}">
+            {{#activities}}
+            <li class="history-li" data-history="{{@index}}" data-obj-id="{{obj_ID}}" data-history-date="{{activity_date}}">
+              <div class="history-date" data-history="{{@index}}" data-history-date="{{act_time}}">
+                <p data-history="{{@index}}" data-history-date="{{activity_date}}">{{formatDate act_time}}</p>
+              </div>
+              <div class="history-graph" data-history="{{@index}}" data-history-date="{{act_time}}">
+                <div class="hollow-dot">
+                </div>
+                <div class="solid-dot">
+                </div>
+                <div class="line">
+                </div>
+              </div>
+              <!-- <div class="history-user" data-history="{{@index}}" data-history-date="{{act_time}}">
+                <div class="history-img" data-history="{{@index}}" data-history-date="{{act_time}}">
+                  <img src="" class="user-img" alt="img" data-user-id="">
+                </div>
+              </div> -->
+              <div class="history-text" data-history="{{@index}}" data-history-date="{{act_time}}">
+                {{act_text}}
+                <br><span class="history-time" data-history="{{@index}}" data-history-date="{{act_time}}">{{act_time}}</span>
+              </div>
+            </li>
+            {{/activities}}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </script>
+  <script id="kr-template" type="text/x-handlebars-template">
+    {{#keyResults}}
+    <div class="kr" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">
+      <div class="kr-text" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">{{kr_text}}</div>
+      <div class="kr-progress" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">
+        <div class="progress" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">
+          <div class="progress-bar bg-success" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}" role="progressbar" aria-valuenow="{{kr_now}}" aria-valuemin="0" aria-valuemax="100" style="width: {{kr_progress}}%">
+            <label class="kr-progress-number" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">{{kr_progress}}</label> %
+          </div>
+        </div>
+      </div>
+      <div class="kr-options" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">
+        <button type="button" class="kr-cancel" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">
+          <i class="fa fa-times" aria-hidden="true" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}"></i>
+        </button>
+        <button type="button" class="kr-confirm" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}">
+          <i class="fa fa-check" aria-hidden="true" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}"></i>
+        </button>
+        <a href="#" class="fa fa-pencil kr-edit" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}"></a>
+        <a href="#" class="fa fa-trash kr-delete" data-obj-id="{{../obj_id}}" data-kr-id="{{kr_ID}}"></a>
+      </div>
+    </div>
+    {{/keyResults}}
+  </script>
+  <script id="act-template" type="text/x-handlebars-template">>
+    {{#activities}}
+    <li class="history-li" data-history="{{@index}}" data-obj-id="{{obj_ID}}" data-history-date="{{activity_date}}">
+      <div class="history-date" data-history="{{@index}}" data-history-date="{{act_time}}">
+        <p data-history="{{@index}}" data-history-date="{{activity_date}}">{{formatDate act_time}}</p>
+      </div>
+      <div class="history-graph" data-history="{{@index}}" data-history-date="{{act_time}}">
+        <div class="hollow-dot">
+        </div>
+        <div class="solid-dot">
+        </div>
+        <div class="line">
+        </div>
+      </div>
+      <div class="history-user" data-history="{{@index}}" data-history-date="{{act_time}}">
+        <div class="history-img" data-history="{{@index}}" data-history-date="{{act_time}}">
+          <img src="" class="user-img" alt="img" data-user-id="">
+        </div>
+      </div>
+      <div class="history-text" data-history="{{@index}}" data-history-date="{{act_time}}">
+        {{act_text}}
+        <br><span class="history-time" data-history="{{@index}}" data-history-date="{{act_time}}">{{act_time}}</span>
+      </div>
+    </li>
+    {{/activities}}
+  </script>
+
+  <!-- Bootstrap core JavaScript
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="../public/javascripts/common/jquery.min.js"></script>
+  <script src="../public/javascripts/common/jquery.color.js"></script>
+  <script src="../public/javascripts/common/popper.min.js"></script>
+  <script src="../public/javascripts/common/bootstrap.min.js"></script>
+  <script src="../public/javascripts/common/holder.min.js"></script>
+  <script src="../public/javascripts/profile/load_FE.js"></script>
+  <!-- <script src="../public/javascripts/profile/load.js"></script> -->
+</body>
+
+</html>

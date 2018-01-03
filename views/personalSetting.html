@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>WORKDONE</title>
+  <link rel="stylesheet" href="../public/stylesheets/personalSetting/personalSetting.min.css">
+  <link rel="stylesheet" href="../public/stylesheets/common/font-awesome.min.css">
+</head>
+
+<body>
+  <header>
+    <div class="searchBar">
+      <input id="searchInput" type="text" placeholder="搜尋">
+      <button id="seatchButton" class="fa fa-search" type="button" onclick="postData()"></button>
+    </div>
+
+    <div class="brand">
+      <a href="#" id="brand-name"><img src="/images/designevo-transparent-hori.png"></a>
+    </div>
+
+    <div class="options-cell options-more">
+      <a href="#" class="fa fa-ellipsis-h" id="options-fa-more"></a>
+      <a href="#" class="fa fa-sort-desc" id="options-fa-more-mobile"></a>
+      <div id="drop-down-options-more">
+        <div id="drop-down-more-triangle">
+          <div id="inner-more-triangle"></div>
+        </div>
+        <ul id="more-menu">
+          <li>
+            <a href="" id="viewOthers">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              <span>查看OKR</span>
+            </a>
+          </li>
+          <li>
+            <a href="" id="setting">
+              <i class="fa fa-cog" aria-hidden="true"></i>
+              <span>個人設定</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+              <span>登出系統</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="options-cell options-home">
+      <a href="" class="fa fa-home" id="options-fa-home"></a>
+    </div>
+    <div class="options-cell options-noti">
+      <a class="fa fa-bell" id="options-fa-bell">
+        <span id="noti-circle"></span></a>
+      <div id="drop-down-options-notification">
+        <div id="drop-down-noti-triangle">
+          <div id="inner-noti-triangle">
+          </div>
+        </div>
+        <ul id="noti-menu">
+          <li class="noti-title">通知</li>
+        </ul>
+      </div>
+    </div>
+
+  </header>
+
+  <section>
+    <div class="setting-block">
+      <div class="personal-title">
+        <p>個人化設定</p>
+        <hr>
+      </div>
+
+      <div class="change-prof-block">
+        <div id="user_img">
+          <div id="img_circle">
+            <img class="user-img" src="https://vignette.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138">
+          </div>
+
+          <!-- <div id="change_profPic_btn">
+            <div class="fa fa-camera"></div>
+            <strong class="change-text">更換大頭貼照</strong>
+          </div> -->
+
+          <div id="change_profPic_btn">
+
+            <!-- <button class="fa fa-plus-circle"></button> -->
+            <!-- <input accept="image/*" id="uploadImage" type="file" class="fa fa-plus-circle"> -->
+            <input accept="image/*" id="uploadImage" type="file">
+
+            <!-- <span class="btn btn-success fileinput-button">
+              <i class="fa fa-plus-circle"></i> -->
+              <!-- <span>Select files...</span> -->
+              <!-- The file input field used as target for the file upload widget -->
+              <!-- <input id="fileupload" type="file" name="files[]" multiple>
+            </span>
+            <br>
+            <br> -->
+            <!-- The global progress bar -->
+            <!-- <div id="progress" class="progress">
+              <div class="progress-bar progress-bar-success"></div>
+            </div> -->
+            <!-- The container for the uploaded files -->
+            <!-- <div id="files" class="files"></div>
+            <br> -->
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="privacy-title">
+        <p class="title">隱私設定</p>
+        <hr>
+      </div>
+        <div class="change-pwd-block">
+          <div class="old-pwd">
+            <p class="input">輸入舊密碼</p>
+            <!--暗文密码输入框-->
+            <input type="password" id="input_old_pwd_invisible" autocomplete="off">
+            <div id="icon_old_visible" class="fa fa-eye"></div>
+
+            <!--明文密码输入框-->
+            <input type="text" id="input_old_pwd_visible" style="display: none;" autocomplete="off">
+            <div id="icon_old_invisible" class="fa fa-eye-slash" style="display: none;"></div>
+
+            <div class="error-mes-block" id="wrong_mes" style="display: none;">
+              <div class="dialog-triangle"></div>
+              <p class="error-mes">舊密碼輸入錯誤！</p>
+            </div>
+
+            <div class="error-mes-block" id="incomplete_old" style="display: none;">
+              <div class="dialog-triangle"></div>
+              <p class="error-mes">未輸入</p>
+            </div>
+          </div>
+
+          <div class="new-pwd">
+            <p class="input">輸入新密碼</p>
+            <!--暗文密码输入框-->
+            <input type="password" id="input_new_pwd_invisible" autocomplete="off">
+            <div id="icon_new_visible" class="fa fa-eye"></div>
+
+            <!--明文密码输入框-->
+            <input type="text" id="input_new_pwd_visible" style="display: none;" autocomplete="off">
+            <div id="icon_new_invisible" class="fa fa-eye-slash" style="display: none;"></div>
+
+            <div class="error-mes-block" id="incomplete_new" style="display: none;">
+              <div class="dialog-triangle"></div>
+              <p class="error-mes">未輸入</p>
+            </div>
+          </div>
+
+          <div class="confirm-pwd">
+            <p class="input">確認新密碼</p>
+            <!--暗文密码输入框-->
+            <input type="password" id="input_conf_pwd_invisible" autocomplete="off">
+            <div id="icon_conf_visible" class="fa fa-eye"></div>
+
+            <!--明文密码输入框-->
+            <input type="text" id="input_conf_pwd_visible" style="display: none;" autocomplete="off">
+            <div id="icon_conf_invisible" class="fa fa-eye-slash" style="display: none;"></div>
+
+            <div class="error-mes-block" id="dismatch_mes" style="display: none;">
+              <div class="dialog-triangle" ></div>
+              <p class="error-mes">確認密碼不相符！</p>
+            </div>
+
+            <div class="error-mes-block" id="incomplete_confirm" style="display: none;">
+              <div class="dialog-triangle"></div>
+              <p class="error-mes">未輸入</p>
+            </div>
+          </div>
+
+          <div class="btns">
+            <button type="button" id="confirm_btn">送出</button>
+            <button type="button" id="cancel_btn">取消</button>
+            <p class="error-mes" id="success_mes" style="display: none;">密碼更新成功！</p>
+            <p class="error-mes" id="again_mes" style="display: none;">密碼更新失敗，請重試</p>
+          </div>
+
+        </div>
+
+    </div>
+  </section>
+
+  <script id="noti-template" type="text/x-handlebars-template">
+    {{#each notifications}}
+    <li class="noti-li" data-o-id="{{noti_obj_id}}" data-noti-time="{{noti_time}}" data-noti-read={{noti_isRead}} data-noti-id="{{noti_ID}}">
+      <a href="{{noti_link}}">
+        <div class="noti-user-img">
+          <div class="noti-img">
+            <img src="{{noti_user_img}}" class="user-img" alt="{{noti_user_name}}" data-user-id="{{noti_user_id}}">
+          </div>
+        </div>
+        <div class="noti-content">
+          <div class="noti-text">
+            <p><span class="noti-name" data-user-id="{{noti_user_id}}">{{noti_user_name}}</span>{{noti_text}}</P>
+          </div>
+          <div class="noti-time">
+            <p>{{formatDateToNow noti_time}}</p>
+          </div>
+        </div>
+        <div class="noti-check">
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </div>
+      </a>
+    </li>
+    {{/each}}
+  </script>
+  <script id="search-template" type="text/x-handlebars-template">
+
+      <div id="search-prompt-triangle">
+        <div id="search-prompt-triangle-inner">
+        </div>
+      </div>
+      <ul id="search-prompt-menu">
+        <li class="search-main-li search-title">搜尋結果</li>
+        {{#if departments}}
+        <li class="search-main-li search-type">
+          <ul class="search-sub-ul">
+            <li class="search-sub-li type-title">
+              <div class="type-title-name">
+                部門
+              </div>
+            </li>
+            {{#departments}}
+            <li class="search-sub-li search-dept">
+              <a class="search-sub-li-wrapper" href="{{dep_URL}}">
+                <div class="search-content">
+                  <div class="dept-name" data-dept-id="{{dep_ID}}">{{dep_name}}</div>
+                </div>
+                <div class="search-img">
+                  <div class="img-circle-container">
+                    <p class="dept-char">{{deptChar dep_name}}</p>
+                  </div>
+                </div>
+                <div class="cleared" style="clear: both;"></div>
+              </a>
+            {{/departments}}
+          </ul>
+        </li>
+        {{/if}}
+
+        {{#if people}}
+        <li class="search-main-li search-type">
+          <ul class="search-sub-ul">
+            <li class="search-sub-li type-title">
+              <div class="type-title-name">
+                人員
+              </div>
+            </li>
+            {{#people}}
+            <li class="search-sub-li search-user">
+              <a class="search-sub-li-wrapper" href="{{formatPersonURL person_URL}}">
+                <div class="search-content search-user-table">
+                  <div class="search-user-name">{{person_userName}}</div>
+                  <div class="search-user-position">{{person_position}}</div>
+                </div>
+                <div class="search-img">
+                  <div class="img-circle-container">
+                    <img class="user-img" src="{{person_userImg}}" alt="{{person_userName}}" data-user-id="{{person_userID}}">
+                  </div>
+                </div>
+                <div class="cleared" style="clear: both;"></div>
+              </a>
+            {{/people}}
+          </ul>
+        </li>
+        {{/if}}
+
+        {{#if objectives}}
+        <li class="search-main-li search-type">
+          <ul class="search-sub-ul">
+            <li class="search-sub-li type-title">
+              <div class="type-title-name">
+                目標
+              </div>
+            </li>
+            {{#objectives}}
+            <li class="search-sub-li search-user">
+              <a class="search-sub-li-wrapper" href="{{formatObjURL obj_URL obj_season}}">
+                <div class="search-content search-obj-table">
+                  <div class="search-obj-user"><label class="search-obj-user-name" style="color:#000;">{{userName}}</label>於<label class="search-obj-user-season" style="color:#000;">{{formatSeason obj_season}}</label>的目標
+                  </div>
+                  <div class="search-obj-text">
+                    {{formatObj obj_text}}
+                  </div>
+                </div>
+                <div class="search-img">
+                  <div class="img-circle-container">
+                    <img class="user-img" src="{{userImg}}" alt="{{userName}}" data-user-id="{{userID}}">
+                  </div>
+                </div>
+                <div class="cleared" style="clear: both;"></div>
+              </a>
+            {{/objectives}}
+          </ul>
+        </li>
+        {{/if}}
+        {{checkData departments people objectives}}
+
+      </ul>
+
+  </script>
+
+  <script src="../public/javascripts/common/jquery-3.2.1.js"></script>
+  <!--************** 控制 JS 的顏色動畫*************** -->
+  <script src="../public/javascripts/common/jquery.color.js"></script>
+  <script src="../public/javascripts/common/handlebars-v4.0.11.js"></script>
+  <script src="../public/javascripts/personalSetting/personalSetting.js"></script>
+  <script src="../public/javascripts/common/header.js"></script>
+  <script src="../public/javascripts/personalSetting/jquery.ajaxfileupload.js"></script>
+  <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+  <!-- <script src="..public/javascripts/personalSetting/jquery.ui.widget.js"></script> -->
+  <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+  <!-- <script src="..public/javascripts/personalSetting/jquery.iframe-transport.js"></script> -->
+  <!-- The basic File Upload plugin -->
+  <!-- <script src="..public/javascripts/personalSetting/jquery.fileupload.js"></script> -->
+
+</body>
+
+</html>

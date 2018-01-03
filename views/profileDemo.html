@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <!-- Logo icon-->
+  <link rel="icon" href="../public/stylesheets/common/favicon.ico">
+  <title>OKR</title>
+  <!-- Bootstrap core CSS -->
+  <!-- <link href="../public/stylesheets/common/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- Icon resource -->
+  <link href="../public/stylesheets/common/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom styles for this template -->
+  <link href="../public/stylesheets/profile/main.min.css" rel="stylesheet">
+  <!-- Responsive Web Design -->
+  <link href="../public/stylesheets/profile/rwd.css" rel="stylesheet">
+  <!-- Dynamically html content generation -->
+  <script src="../public/javascripts/common/handlebars-v4.0.11.js"></script>
+  <!-- jQuery-ui plug-in -->
+  <link rel="stylesheet" href="../public/stylesheets/common/jquery-ui.css">
+
+
+</head>
+
+<body>
+  <header>
+    <div class="searchBar">
+      <input id="searchInput" type="text" placeholder=" Search...">
+      <button id="seatchButton" class="fa fa-search" type="button" onclick="postData()"></button>
+      <div id="search-prompt">
+        <div id="search-prompt-triangle">
+          <div id="search-prompt-triangle-inner">
+          </div>
+        </div>
+        <ul id="search-prompt-menu">
+          <li class="search-main-li search-title">搜尋結果</li>
+          <li class="search-main-li search-type">
+            <ul class="search-sub-ul">
+              <li class="search-sub-li type-title">
+                <div class="type-title-name">
+                  部門
+                </div>
+              </li>
+              <li class="search-sub-li search-dept">
+                <a class="search-sub-li-wrapper" href="#">
+                  <div class="search-content">
+                    <div class="dept-name" data-dept-id="{{dep_ID}}">行銷部門</div>
+                  </div>
+                  <div class="search-img">
+                    <div class="img-circle-container">
+                      <p class="dept-char">行</p>
+                    </div>
+                  </div>
+                  <div class="cleared" style="clear: both;"></div>
+                </a>
+              <li class="search-sub-li search-dept">
+                <a class="search-sub-li-wrapper" href="#">
+                  <div class="search-content">
+                    <div class="dept-name">行銷部門</div>
+                  </div>
+                  <div class="search-img">
+                    <div class="img-circle-container">
+                      <p class="dept-char">行</p>
+                    </div>
+                  </div>
+                  <div class="cleared" style="clear: both;"></div>
+                </a>
+            </ul>
+          </li>
+          <li class="search-main-li search-type">
+            <ul class="search-sub-ul">
+              <li class="search-sub-li type-title">
+                <div class="type-title-name">
+                  人員
+                </div>
+              </li>
+              <li class="search-sub-li search-user">
+                <a class="search-sub-li-wrapper" href="#">
+                  <div class="search-content search-user-table">
+                    <div class="search-user-name">廖行筑</div>
+                    <div class="search-user-position">工程部門/後端工程師</div>
+                  </div>
+                  <div class="search-img">
+                    <div class="img-circle-container">
+                      <img class="user-img" src="../public/images/anvis.PNG" alt="Anvis.png" data-user-id="456">
+                    </div>
+                  </div>
+                  <div class="cleared" style="clear: both;"></div>
+                </a>
+              <li class="search-sub-li search-user">
+                <a class="search-sub-li-wrapper" href="#">
+                  <div class="search-content search-user-table">
+                    <div class="search-user-name">張行</div>
+                    <div class="search-user-position">工程部門/後端工程師</div>
+                  </div>
+                  <div class="search-img">
+                    <div class="img-circle-container">
+                      <img class="user-img" src="../public/images/frank.png" alt="frank.png"  data-user-id="123">
+                    </div>
+                  </div>
+                  <div class="cleared" style="clear: both;"></div>
+                </a>
+            </ul>
+          </li>
+          <li class="search-main-li search-type">
+            <ul class="search-sub-ul">
+              <li class="search-sub-li type-title">
+                <div class="type-title-name">
+                  目標
+                </div>
+              </li>
+              <li class="search-sub-li search-user">
+                <a class="search-sub-li-wrapper" href="#">
+                  <div class="search-content search-obj-table">
+                    <div class="search-obj-user"><label class="search-obj-user-name" style="color:#000;">張行</label>於<label class="search-obj-user-season" style="color:#000;">2017年Q4</label>的目標
+                    </div>
+                    <div class="search-obj-text">
+                      ...實作，最後執行銷推廣，讓公司...
+                      ...實作，最後執行銷推廣，讓公司...
+                      ...實作，最後執行銷推廣，讓公司...
+                    </div>
+                  </div>
+                  <div class="search-img">
+                    <div class="img-circle-container">
+                      <img class="user-img" src="../public/images/frank.PNG" alt="frank.png" data-user-id="456">
+                    </div>
+                  </div>
+                  <div class="cleared" style="clear: both;"></div>
+                </a>
+
+            </ul>
+          </li>
+          <li class="search-main-li search-prompt">查無此關鍵字!</li>
+        </ul>
+      </div>
+    </div>
+    <div class="brand">
+      <a href="#" id="brand-name">WORKDONE</a>
+    </div>
+    <div class="options-cell options-more">
+      <a href="#" class="fa fa-ellipsis-h" id="options-fa-more"></a>
+      <a href="#" class="fa fa-sort-desc" id="options-fa-more-mobile"></a>
+      <div id="drop-down-options-more">
+        <div id="drop-down-more-triangle">
+          <div id="inner-more-triangle"></div>
+        </div>
+        <ul id="more-menu">
+          <li>
+            <a href="#">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              <span>查看OKR</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-cog" aria-hidden="true"></i>
+              <span>個人設定</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+              <span>登出系統</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="options-cell options-home">
+      <a class="fa fa-home" id="options-fa-home"></a>
+    </div>
+    <div class="options-cell options-noti">
+      <a class="fa fa-bell" id="options-fa-bell">
+        <span id="noti-circle">3+</span></a>
+      <div id="drop-down-options-notification">
+        <div id="drop-down-noti-triangle">
+          <div id="inner-noti-triangle">
+          </div>
+        </div>
+        <ul id="noti-menu">
+          <li class="noti-title">通知</li>
+          <li data-o-id="123">
+            <a href="#">
+              <div class="noti-user-img">
+                <div class="noti-img">
+                  <img src="../public/images/anvis.PNG" class="user-img" alt="Anvis.png" data-user-id="456">
+                </div>
+              </div>
+              <div class="noti-content">
+                <div class="noti-text">
+                  <p><span class="noti-name" data-user-id="456">廖韋筑</span>對你的目標按讚及留言。</P>
+                </div>
+                <div class="noti-time">
+                  <p>17:05</p>
+                </div>
+              </div>
+              <div class="noti-check">
+                <i class="fa fa-circle" aria-hidden="true"></i>
+              </div>
+            </a>
+          </li>
+          <li data-o-id="123">
+            <a href="#">
+              <div class="noti-user-img">
+                <div class="noti-img">
+                  <img src="../public/images/anvis.PNG" class="user-img" alt="Anvis.png" data-user-id="456">
+                </div>
+              </div>
+              <div class="noti-content">
+                <div class="noti-text">
+                  <p><span class="noti-name" data-user-id="456">廖韋筑</span>對你的目標按讚及留言。</P>
+                </div>
+                <div class="noti-time">
+                  <p>17:05</p>
+                </div>
+              </div>
+              <div class="noti-check">
+                <i class="fa fa-circle" aria-hidden="true"></i>
+              </div>
+            </a>
+          </li>
+          <li data-o-id="123">
+            <a href="#">
+              <div class="noti-user-img">
+                <div class="noti-img">
+                  <img src="../public/images/anvis.PNG" class="user-img" alt="Anvis.png" data-user-id="456">
+                </div>
+              </div>
+              <div class="noti-content">
+                <div class="noti-text">
+                  <p><span class="noti-name" data-user-id="456">廖韋筑</span>對你的目標按讚及留言。</P>
+                </div>
+                <div class="noti-time">
+                  <p>17:05</p>
+                </div>
+              </div>
+              <div class="noti-check">
+                <i class="fa fa-circle" aria-hidden="true"></i>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="section-profile">
+      <div id="user" data-user-id="123">
+        <a id="profile-img" href="#aboutModal">
+          <div class="img-circle">
+            <img id="user-img" src="../public/images/frank.jpg" data-user-id="123">
+          </div>
+          <strong>更換大頭照</strong><span></span>
+        </a>
+        <h3 id="user-name">張辰豪</h3>
+        <p id="user-position">工程研發部 / 產品經理</p>
+        <div class="season">
+          <span id="selected-season" data-season="201704">2017年 Q4</span>
+          <a href="#" id="fa-drop-down" class="fa fa-chevron-down"></a>
+          <div id="drop-down-season">
+            <div id="drop-down-triangle">
+              <div id="drop-down-triangle-inner"></div>
+            </div>
+            <ul>
+              <li><a href="#" data-season="201703">2017年 Q3</a></li>
+              <li><a href="#" data-season="201702">2017年 Q2</a></li>
+              <li><a href="#" data-season="201701">2017年 Q1</a></li>
+            </ul>
+          </div>
+        </div>
+        <button id="add-okr" type="button">+新增您的OKR</button>
+
+
+      </div>
+    </div>
+    <div class="section-okr">
+      <div class="prompt-no-okr">
+        尚未新增目標
+      </div>
+      <div id="edit-check-section">
+        <div id="edit-check-box">
+          <h3 id="edit-check-text">確定要捨棄此次內容嗎?</h3>
+          <div class="input-btns check">
+            <button class="input-btn" id="edit-btn-confirm" type="button" name="button">捨棄</button>
+            <button class="input-btn" id="edit-btn-cancel" type="button" name="button">取消</button>
+          </div>
+        </div>
+      </div>
+      <div class="okr" data-obj-id="111">
+        <div class="card objective" data-obj-id="111">
+          <div class="obj-upper" data-obj-id="111">
+            <div class="okr-progress" data-obj-id="111">
+              <div class="chart">
+                <div class="circle-mask-outer left">
+                  <div class="circle-mask-inner">
+                    <div class="circle-body"></div>
+                  </div>
+                </div>
+                <div class="circle-mask-outer right">
+                  <div class="circle-mask-inner">
+                    <div class="circle-body"></div>
+                  </div>
+                </div>
+                <div class="chart-content">
+                  <p class="text">
+                    <span class="percent-number">60</span>
+                    <span class="percent-symbol">%</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="thumbs" data-obj-id="111">
+              <div class="like-icon" data-obj-id="111">
+                <a href="#" class="fa fa-thumbs-o-up" data-obj-id="111"></a>
+              </div>
+              <div class="like-number" data-for="a">150</div>
+            </div>
+            <div class="more-option" data-obj-id="111">
+              <a class="fa fa-ellipsis-h" data-obj-id="111"></a>
+              <div class="drop-down-obj" data-obj-id="111">
+                <ul class="obj-menu" data-obj-id="111">
+                  <li class="obj-menu-li obj-edit" data-obj-id="111">
+                    <a class="fa fa-pencil" data-obj-id="111">
+                      <span> 修改你的目標</span>
+                    </a>
+                  </li>
+                  <li class="obj-menu-li obj-delete" data-obj-id="111">
+                    <a class="fa fa-trash" data-obj-id="111">
+                      <span> 刪除你的目標</span>
+                    </a>
+                  </li>
+                  <li class="obj-menu-li obj-history" data-obj-id="111">
+                    <a class="fa fa-eye" data-obj-id="111"="">
+                      <span> 檢視歷史紀錄</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <h1 class="objective-content" data-obj-id="111" contenteditable="false">
+            完成OKR系統，包含前端設計與後端實作，最後做行銷推廣，讓公司全體員工滿意。
+              包含前端設計與後端實作，最後做行銷推廣，讓公司全體員工滿意!!!。
+          </h1>
+          <div class="obj-edit-btns" data-obj-id="111">
+            <button type="button" name="button" class="obj-edit-confirm" data-obj-id="111">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+            <button type="button" name="button" class="obj-edit-cancel" data-obj-id="111">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+            <p class="obj-edit-prompt" data-obj-id="111">目標內容不能為空白!</p>
+          </div>
+        </div>
+        <div class="row" data-obj-id="111">
+          <div class="card key-result" data-obj-id="111">
+            <div class="kr-upper" data-obj-id="111">
+              <div class="kr-title" data-obj-id="111">
+                <h4 data-obj-id="111">關鍵成果 Key Results</h4>
+              </div>
+            </div>
+            <div class="kr-content" data-obj-id="111">
+              <div class="kr" data-obj-id="111" data-kr-id="111AAA">
+                <div class="kr-text" data-obj-id="111" data-kr-id="111AAA" contentEditable="false">前端設計前端設計前端設計前端設計前端設計前端設計前端設計前端設計</div>
+                <div class="kr-progress" data-obj-id="111" data-kr-id="111AAA">
+                  <div class="ui-widget-content slider-content" data-obj-id="111" data-kr-id="111AAA" data-kr-progress="" style="border:0;">
+                    <div class="slider" data-obj-id="111" data-kr-id="111AAA" data-kr-progress="">
+                      <div class="handle ui-slider-handle" data-obj-id="111" data-kr-id="111AAA" data-kr-progress=""></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="kr-options" data-obj-id="111" data-kr-id="111AAA">
+                  <span class="kr-edit-prompt">資料更新中...</span>
+                  <button type="button" class="kr-cancel" data-obj-id="111" data-kr-id="111AAA">
+                    <i class="fa fa-times" aria-hidden="true" data-obj-id="111" data-kr-id="111AAA"></i>
+                  </button>
+                  <button type="button" class="kr-confirm" data-obj-id="111" data-kr-id="111AAA">
+                    <i class="fa fa-check" aria-hidden="true" data-obj-id="111" data-kr-id="111AAA"></i>
+                  </button>
+                  <a class="fa fa-trash kr-delete" data-obj-id="111" data-kr-id="111AAA"></a>
+                  <a class="fa fa-pencil kr-edit" data-obj-id="111" data-kr-id="111AAA"></a>
+                </div>
+
+              </div>
+              <div class="kr" data-obj-id="111" data-kr-id="111BBB">
+                <div class="kr-text" data-obj-id="111" data-kr-id="111BBB" contentEditable="false">前端設計前端設計前端設計前端設計前端設計前端設計前端設計前端設計</div>
+                <div class="kr-progress" data-obj-id="111" data-kr-id="111BBB">
+                  <div class="progress" data-obj-id="111" data-kr-id="111BBB">
+                    <div class="progress-bar bg-success" data-obj-id="111" data-kr-id="111BBB" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="30" style="width: 33%">33%</div>
+                  </div>
+                </div>
+                <div class="kr-options" data-obj-id="111" data-kr-id="111BBB">
+                  <button type="button" class="kr-cancel" data-obj-id="111" data-kr-id="111BBB">
+                    <i class="fa fa-times" aria-hidden="true" data-obj-id="111" data-kr-id="111BBB"></i>
+                  </button>
+                  <button type="button" class="kr-confirm" data-obj-id="111" data-kr-id="111BBB">
+                    <i class="fa fa-check" aria-hidden="true" data-obj-id="111" data-kr-id="111BBB"></i>
+                  </button>
+                  <a href="#" class="fa fa-trash kr-delete" data-obj-id="111" data-kr-id="111BBB"></a>
+                  <a href="#" class="fa fa-pencil kr-edit" data-obj-id="111" data-kr-id="111BBB"></a>
+                </div>
+              </div>
+              <div class="prompt-no-kr">
+                尚未新增關鍵成果
+              </div>
+              <div class="kr-add" data-obj-id="111">
+                <a class="kr-add-icon" data-obj-id="111">+</a>
+              </div>
+            </div>
+          </div>
+          <div class="card comment" data-obj-id="111">
+            <div class="cmt-upper" data-obj-id="111">
+              <div class="comment-title" data-obj-id="111">
+                <h4 data-obj-id="111">留言 Comments</h4>
+              </div>
+            </div>
+            <div class="comment-content" data-obj-id="111">
+              <div class="cmt" data-obj-id="111" data-cmt-id="111-AAA" data-user-id="789">
+                <div class="cmt-img" data-obj-id="111" data-cmt-id="111-AAA" data-user-id="789">
+                  <img class="user-img" src="../public/images/jerry.PNG" alt="Jerry.png" data-obj-id="111" data-cmt-id="111-AAA" data-user-id="789">
+                </div>
+                <div class="cmt-user" data-obj-id="111" data-cmt-id="111-AAA" data-user-id="789">
+                  <a id="cmt-user-name" href="#" data-obj-id="111" data-cmt-id="111-AAA" data-user-id="789">林庭緯</a>
+                  <p id="cmt-user-time" data-obj-id="111" data-cmt-id="111-AAA" data-user-id="789">11月2日 13:15</p>
+                </div>
+                <div class="cmt-text" data-obj-id="111" data-cmt-id="111-AAA" data-user-id="789">
+                  <p data-obj-id="111" data-cmt-id="111-AAA" data-user-id="789">我愛吃蛋!</p>
+                </div>
+                <div class="cmt-more" data-obj-id="111" data-cmt-id="111-AAA" data-user-id="789">
+                  <a class="fa fa-ellipsis-h cmt-more-icon" data-obj-id="111" data-cmt-id="111-AAA" data-user-id="789"></a>
+                  <div class="drop-down-cmt" data-cmt-id="111-AAA" data-user-id="789">
+                    <ul class="cmt-menu" data-cmt-id="111-AAA" data-user-id="789">
+                      <li class="cmt-menu-li" data-cmt-id="111-AAA" data-user-id="789">
+                        <a class="fa fa-trash" data-obj-id="111" data-user-id="789">
+                          <span> 刪除留言</span>
+                        </a>
+                      </li>
+                      <li class="cmt-menu-li" data-cmt-id="111-AAA" data-user-id="789">
+                        <a class="fa fa-pencil" data-cmt-id="111-AAA" data-user-id="789">
+                          <span> 編輯留言</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="cmt" data-obj-id="111" data-cmt-id="111-BBB" data-user-id="456">
+                <div class="cmt-img" data-obj-id="111" data-cmt-id="111-BBB">
+                  <img class="user-img" src="../public/images/Anvis.PNG" alt="Anvis.png" data-obj-id="111" data-cmt-id="111-BBB" data-user-id="456">
+                </div>
+                <div class="cmt-user" data-obj-id="111" data-cmt-id="111-BBB">
+                  <a id="cmt-user-name" href="#" data-obj-id="111" data-cmt-id="111-BBB" data-user-id="456">廖韋筑</a>
+                  <p id="cmt-user-time" data-obj-id="111" data-cmt-id="111-BBB">昨天 16:23</p>
+                </div>
+                <div class="cmt-text" data-obj-id="111" data-cmt-id="111-BBB">
+                  <p>阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿
+                  </p>
+                </div>
+                <div class="cmt-more" data-obj-id="111" data-cmt-id="111-BBB" data-user-id="456">
+                  <a class="fa fa-ellipsis-h cmt-more-icon" data-obj-id="111" data-cmt-id="111-BBB" data-user-id="456"></a>
+                  <div class="drop-down-cmt" data-cmt-id="111-BBB" data-user-id="456">
+                    <ul class="cmt-menu" data-cmt-id="111-BBB" data-user-id="456">
+                      <li class="cmt-menu-li" data-cmt-id="111-BBB" data-user-id="456">
+                        <a class="fa fa-trash" data-cmt-id="111-BBB" data-user-id="456">
+                          <span> 刪除留言</span>
+                        </a>
+                      </li>
+                      <li class="cmt-menu-li" data-cmt-id="111-BBB" data-user-id="456">
+                        <a class="fa fa-pencil" data-cmt-id="111-BBB" data-user-id="456">
+                          <span> 編輯留言</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="cmt" data-obj-id="111" data-cmt-id="111-CCC" data-user-id="101112">
+                <div class="cmt-img" data-obj-id="111" data-cmt-id="111-CCC" data-user-id="101112">
+                  <img class="user-img" src="../public/images/kong.PNG" alt="kong.png" data-obj-id="111" data-cmt-id="111-CCC" data-user-id="101112">
+                </div>
+                <div class="cmt-user" data-obj-id="111" data-cmt-id="111-CCC">
+                  <a id="cmt-user-name" href="#" data-obj-id="111" data-cmt-id="111-CCC">陳維漢</a>
+                  <p id="cmt-user-time" data-obj-id="111" data-cmt-id="111-CCC">17:05</p>
+                </div>
+                <div class="cmt-text" data-obj-id="111" data-cmt-id="111-CCC">
+                  <p data-obj-id="111" data-cmt-id="111-CCC">沒有錯啦!</p>
+                </div>
+                <div class="cmt-more" data-obj-id="111" data-cmt-id="111-CCC" data-user-id="101112">
+                  <a class="fa fa-ellipsis-h cmt-more-icon" data-obj-id="111" data-cmt-id="111-CCC" data-user-id="101112"></a>
+                  <div class="drop-down-cmt" data-cmt-id="111-CCC" data-user-id="101112">
+                    <ul class="cmt-menu" data-cmt-id="111-CCC" data-user-id="101112">
+                      <li class="cmt-menu-li" data-cmt-id="111-CCC" data-user-id="101112">
+                        <a class="fa fa-trash" data-cmt-id="111-CCC" data-user-id="101112">
+                          <span> 刪除留言</span>
+                        </a>
+                      </li>
+                      <li class="cmt-menu-li" data-cmt-id="111-CCC" data-user-id="101112">
+                        <a class="fa fa-pencil" data-cmt-id="111-CCC" data-user-id="101112">
+                          <span> 編輯留言</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="leave-cmt" data-obj-id="111">
+                <div class="cmt-inputbox" data-obj-id="111">
+                  <input id="cmt-message" type="text" placeholder="  對此則OKR留言" data-obj-id="111">
+                </div>
+                <div class="cmt-send" data-obj-id="111">
+                  <a href="#" id="cmt-send" class="fa fa-paper-plane-o" aria-hidden="true" data-obj-id="111"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+        <div class="history-slide" data-obj-id="111">
+          <div class="hisBtn" data-obj-id="111">
+            <button type="button" name="button" class="historyBTN">
+              <i class="fa fa-times" aria-hidden="true" ></i>
+            </button>
+          </div>
+          <div class="history-upper">
+            <div class="history-title">
+              <h1>歷史紀錄 Activity</h1>
+            </div>
+          </div>
+          <div class="history-lower">
+            <ul class="history-content">
+              <li class="history-li" data-history="1" data-history-date="20171122">
+                <div class="history-date">
+                  <p>22 Nov</p>
+                </div>
+                <div class="history-graph" data-history="1" data-history-date="20171122">
+                  <div class="hollow-dot">
+                  </div>
+                  <div class="solid-dot">
+                  </div>
+                  <div class="line">
+                  </div>
+                </div>
+                <div class="history-user">
+                  <div class="history-img">
+                    <img src="../public/images/anvis.PNG" class="user-img" alt="Anvis.png" data-user-id="456">
+                  </div>
+                </div>
+                <div class="history-text">
+                  您更新關鍵成果「前端程式實作完成」的值為12/30，完成度為40%。
+                  <br><span class="history-time">9:42 am</span>
+                </div>
+              </li>
+              <li class="history-li" data-history="2" data-history-date="20171120">
+                <div class="history-date">
+                  <p>20 Nov</p>
+                </div>
+                <div class="history-graph" data-history="2" data-history-date="20171120">
+                  <div class="hollow-dot"></div>
+                  <div class="solid-dot"></div>
+                  <div class="line"></div>
+                </div>
+                <div class="history-user">
+                  <div class="history-img">
+                    <img src="../public/images/anvis.PNG" class="user-img" alt="Anvis.png" data-user-id="456">
+                  </div>
+                </div>
+                <div class="history-text">
+                  您修改關鍵成果為「前端程式實作完成」。
+                  <br><span class="history-time">9:42 am</span>
+                </div>
+              </li>
+              <li class="history-li" data-history="3" data-history-date="20171120">
+                <div class="history-date">
+                  <p>20 Nov</p>
+                </div>
+                <div class="history-graph" data-history="3" data-history-date="20171120">
+                  <div class="hollow-dot"></div>
+                  <div class="solid-dot"></div>
+                  <div class="line"></div>
+                </div>
+                <div class="history-user">
+                  <div class="history-img">
+                    <img src="../public/images/anvis.PNG" class="user-img" alt="Anvis.png" data-user-id="456">
+                  </div>
+                </div>
+                <div class="history-text">
+                  您修改關鍵成果為「前端程式實作完成」。
+                  <br><span class="history-time">9:42 am</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="okr" data-obj-id="222">
+        <div class="card objective" data-obj-id="222">
+          <div class="obj-upper" data-obj-id="222">
+            <div class="okr-progress" data-obj-id="222">
+              <div class="chart">
+                <div class="circle-mask-outer left">
+                  <div class="circle-mask-inner">
+                    <div class="circle-body"></div>
+                  </div>
+                </div>
+                <div class="circle-mask-outer right">
+                  <div class="circle-mask-inner">
+                    <div class="circle-body"></div>
+                  </div>
+                </div>
+                <div class="chart-content">
+                  <p class="text">
+                    <span class="percent-number">60</span>
+                    <span class="percent-symbol">%</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="thumbs" data-obj-id="222">
+              <div class="like-icon" data-obj-id="222">
+                <a href="#" class="fa fa-thumbs-o-up" data-obj-id="222"></a>
+              </div>
+              <div class="like-number" data-for="a">150</div>
+            </div>
+            <div class="more-option" data-obj-id="222">
+              <a class="fa fa-ellipsis-h" data-obj-id="222"></a>
+              <div class="drop-down-obj" data-obj-id="222">
+                <ul class="obj-menu" data-obj-id="222">
+                  <li class="obj-menu-li obj-edit" data-obj-id="222">
+                    <a class="fa fa-pencil" data-obj-id="222">
+                      <span> 修改你的目標</span>
+                    </a>
+                  </li>
+                  <li class="obj-menu-li obj-delete" data-obj-id="222">
+                    <a class="fa fa-trash" data-obj-id="222">
+                      <span> 刪除你的目標</span>
+                    </a>
+                  </li>
+                  <li class="obj-menu-li obj-history" data-obj-id="222">
+                    <a class="fa fa-eye" data-obj-id="222">
+                      <span> 檢視歷史紀錄</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="objective-content" data-obj-id="222" contenteditable="false">
+            <h1 data-obj-id="222">完成OKR系統，包含前端設計與後端實作，最後做行銷推廣，讓公司全體員工滿意。
+              包含前端設計與後端實作，最後做行銷推廣，讓公司全體員工滿意。
+            </h1>
+            <div class="obj-edit-btns" data-obj-id="222">
+              <button type="button" name="button" class="obj-edit-confirm" data-obj-id="222">
+                <i class="fa fa-check" aria-hidden="true"></i>
+              </button>
+              <button type="button" name="button" class="obj-edit-cancel" data-obj-id="222">
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </button>
+              <p class="obj-edit-prompt" data-obj-id="222">目標內容不能為空白!</p>
+            </div>
+          </div>
+        </div>
+        <div class="row" data-obj-id="222">
+          <div class="card key-result" data-obj-id="222">
+            <div class="kr-upper" data-obj-id="222">
+              <div class="kr-title" data-obj-id="222">
+                <h4 data-obj-id="222">關鍵成果 Key Results</h4>
+              </div>
+            </div>
+            <div class="kr-content" data-obj-id="222">
+              <div class="kr" data-obj-id="222" data-kr-id="111AAA">
+                <div class="kr-text" data-obj-id="222" data-kr-id="111AAA" contentEditable="false">前端設計前端設計前端設計前端設計前端設計前端設計前端設計前端設計</div>
+                <div class="kr-progress" data-obj-id="222" data-kr-id="111AAA">
+                  <div class="progress" data-obj-id="222" data-kr-id="111AAA">
+                    <div class="progress-bar bg-success" data-obj-id="222" data-kr-id="111AAA" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="30" style="width: 33%">33%</div>
+                  </div>
+                </div>
+                <div class="kr-options" data-obj-id="222" data-kr-id="111AAA">
+                  <button type="button" class="kr-cancel" data-obj-id="222" data-kr-id="111AAA">
+                    <i class="fa fa-times" aria-hidden="true" data-obj-id="222" data-kr-id="111AAA"></i>
+                  </button>
+                  <button type="button" class="kr-confirm" data-obj-id="222" data-kr-id="111AAA">
+                    <i class="fa fa-check" aria-hidden="true" data-obj-id="222" data-kr-id="111AAA"></i>
+                  </button>
+                  <a href="#" class="fa fa-pencil kr-edit" data-obj-id="222" data-kr-id="111AAA"></a>
+                  <a href="#" class="fa fa-trash kr-delete" data-obj-id="222" data-kr-id="111AAA"></a>
+                </div>
+              </div>
+              <div class="kr" data-obj-id="222" data-kr-id="111BBB">
+                <div class="kr-text" data-obj-id="222" data-kr-id="111BBB" contentEditable="false">前端設計前端設計前端設計前端設計前端設計前端設計前端設計前端設計</div>
+                <div class="kr-progress" data-obj-id="222" data-kr-id="111BBB">
+                  <div class="progress" data-obj-id="222" data-kr-id="111BBB">
+                    <div class="progress-bar bg-success" data-obj-id="222" data-kr-id="111BBB" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="30" style="width: 33%">33%</div>
+                  </div>
+                </div>
+                <div class="kr-options" data-obj-id="222" data-kr-id="111BBB">
+                  <button type="button" class="kr-cancel" data-obj-id="222" data-kr-id="111BBB">
+                    <i class="fa fa-times" aria-hidden="true" data-obj-id="222" data-kr-id="111BBB"></i>
+                  </button>
+                  <button type="button" class="kr-confirm" data-obj-id="222" data-kr-id="111BBB">
+                    <i class="fa fa-check" aria-hidden="true" data-obj-id="222" data-kr-id="111BBB"></i>
+                  </button>
+                  <a href="#" class="fa fa-pencil kr-edit" data-obj-id="222" data-kr-id="111BBB"></a>
+                  <a href="#" class="fa fa-trash kr-delete" data-obj-id="222" data-kr-id="111BBB"></a>
+                </div>
+              </div>
+              <div class="kr" data-obj-id="222" data-kr-id="111CCC">
+                <div class="kr-text" data-obj-id="222" data-kr-id="111CCC" contentEditable="false">前端設計前端設計前端設計前端設計前端設計前端設計前端設計前端設計</div>
+                <div class="kr-progress" data-obj-id="222" data-kr-id="111CCC">
+                  <div class="progress" data-obj-id="222" data-kr-id="111CCC">
+                    <div class="progress-bar bg-success" data-obj-id="222" data-kr-id="111CCC" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="30" style="width: 33%">33%</div>
+                  </div>
+                </div>
+                <div class="kr-options" data-obj-id="222" data-kr-id="111CCC">
+                  <button type="button" class="kr-cancel" data-obj-id="222" data-kr-id="111CCC">
+                    <i class="fa fa-times" aria-hidden="true" data-obj-id="222" data-kr-id="111CCC"></i>
+                  </button>
+                  <button type="button" class="kr-confirm" data-obj-id="222" data-kr-id="111CCC">
+                    <i class="fa fa-check" aria-hidden="true" data-obj-id="222" data-kr-id="111CCC"></i>
+                  </button>
+                  <a href="#" class="fa fa-pencil kr-edit" data-obj-id="222" data-kr-id="111CCC"></a>
+                  <a href="#" class="fa fa-trash kr-delete" data-obj-id="222" data-kr-id="111CCC"></a>
+                </div>
+              </div>
+              <div class="kr-add">
+                <a class="kr-add-icon">+</a>
+              </div>
+            </div>
+          </div>
+          <div class="card comment" data-obj-id="222">
+            <div class="cmt-upper" data-obj-id="222">
+              <div class="comment-title" data-obj-id="222">
+                <h4 data-obj-id="222">留言 Comments</h4>
+              </div>
+            </div>
+            <div class="comment-content" data-obj-id="222">
+              <div class="cmt" data-obj-id="222" data-cmt-id="111-AAA" data-user-id="789">
+                <div class="cmt-img" data-obj-id="222" data-cmt-id="111-AAA" data-user-id="789">
+                  <img class="user-img" src="../public/images/jerry.PNG" alt="Jerry.png" data-obj-id="222" data-cmt-id="111-AAA" data-user-id="789">
+                </div>
+                <div class="cmt-user" data-obj-id="222" data-cmt-id="111-AAA" data-user-id="789">
+                  <a id="cmt-user-name" href="#" data-obj-id="222" data-cmt-id="111-AAA" data-user-id="789">林庭緯</a>
+                  <p id="cmt-user-time" data-obj-id="222" data-cmt-id="111-AAA" data-user-id="789">11月2日 13:15</p>
+                </div>
+                <div class="cmt-text" data-obj-id="222" data-cmt-id="111-AAA" data-user-id="789">
+                  <p data-obj-id="222" data-cmt-id="111-AAA" data-user-id="789">我愛吃蛋!</p>
+                </div>
+                <div class="cmt-more" data-obj-id="222" data-cmt-id="111-AAA" data-user-id="789">
+                  <a class="fa fa-ellipsis-h cmt-more-icon" data-obj-id="222" data-cmt-id="111-AAA" data-user-id="789"></a>
+                  <div class="drop-down-cmt" data-cmt-id="111-AAA" data-user-id="789">
+                    <ul class="cmt-menu" data-cmt-id="111-AAA" data-user-id="789">
+                      <li class="cmt-menu-li" data-cmt-id="111-AAA" data-user-id="789">
+                        <a class="fa fa-trash" data-obj-id="222" data-user-id="789">
+                          <span> 刪除留言</span>
+                        </a>
+                      </li>
+                      <li class="cmt-menu-li" data-cmt-id="111-AAA" data-user-id="789">
+                        <a class="fa fa-pencil" data-cmt-id="111-AAA" data-user-id="789">
+                          <span> 編輯留言</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="cmt" data-obj-id="222" data-cmt-id="111-BBB" data-user-id="456">
+                <div class="cmt-img" data-obj-id="222" data-cmt-id="111-BBB">
+                  <img class="user-img" src="../public/images/Anvis.PNG" alt="Anvis.png" data-obj-id="222" data-cmt-id="111-BBB" data-user-id="456">
+                </div>
+                <div class="cmt-user" data-obj-id="222" data-cmt-id="111-BBB">
+                  <a id="cmt-user-name" href="#" data-obj-id="222" data-cmt-id="111-BBB" data-user-id="456">廖韋筑</a>
+                  <p id="cmt-user-time" data-obj-id="222" data-cmt-id="111-BBB">昨天 16:23</p>
+                </div>
+                <div class="cmt-text" data-obj-id="222" data-cmt-id="111-BBB">
+                  <p>阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿阿
+                  </p>
+                </div>
+                <div class="cmt-more" data-obj-id="222" data-cmt-id="111-BBB" data-user-id="456">
+                  <a class="fa fa-ellipsis-h cmt-more-icon" data-obj-id="222" data-cmt-id="111-BBB" data-user-id="456"></a>
+                  <div class="drop-down-cmt" data-cmt-id="111-BBB" data-user-id="456">
+                    <ul class="cmt-menu" data-cmt-id="111-BBB" data-user-id="456">
+                      <li class="cmt-menu-li" data-cmt-id="111-BBB" data-user-id="456">
+                        <a class="fa fa-trash" data-cmt-id="111-BBB" data-user-id="456">
+                          <span> 刪除留言</span>
+                        </a>
+                      </li>
+                      <li class="cmt-menu-li" data-cmt-id="111-BBB" data-user-id="456">
+                        <a class="fa fa-pencil" data-cmt-id="111-BBB" data-user-id="456">
+                          <span> 編輯留言</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="cmt" data-obj-id="222" data-cmt-id="111-CCC" data-user-id="101112">
+                <div class="cmt-img" data-obj-id="222" data-cmt-id="111-CCC" data-user-id="101112">
+                  <img class="user-img" src="../public/images/kong.PNG" alt="kong.png" data-obj-id="222" data-cmt-id="111-CCC" data-user-id="101112">
+                </div>
+                <div class="cmt-user" data-obj-id="222" data-cmt-id="111-CCC">
+                  <a id="cmt-user-name" href="#" data-obj-id="222" data-cmt-id="111-CCC">陳維漢</a>
+                  <p id="cmt-user-time" data-obj-id="222" data-cmt-id="111-CCC">17:05</p>
+                </div>
+                <div class="cmt-text" data-obj-id="222" data-cmt-id="111-CCC">
+                  <p data-obj-id="222" data-cmt-id="111-CCC">沒有錯啦!</p>
+                </div>
+                <div class="cmt-more" data-obj-id="222" data-cmt-id="111-CCC" data-user-id="101112">
+                  <a class="fa fa-ellipsis-h cmt-more-icon" data-obj-id="222" data-cmt-id="111-CCC" data-user-id="101112"></a>
+                  <div class="drop-down-cmt" data-cmt-id="111-CCC" data-user-id="101112">
+                    <ul class="cmt-menu" data-cmt-id="111-CCC" data-user-id="101112">
+                      <li class="cmt-menu-li" data-cmt-id="111-CCC" data-user-id="101112">
+                        <a class="fa fa-trash" data-cmt-id="111-CCC" data-user-id="101112">
+                          <span> 刪除留言</span>
+                        </a>
+                      </li>
+                      <li class="cmt-menu-li" data-cmt-id="111-CCC" data-user-id="101112">
+                        <a class="fa fa-pencil" data-cmt-id="111-CCC" data-user-id="101112">
+                          <span> 編輯留言</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="leave-cmt" data-obj-id="222">
+                <div class="cmt-inputbox" data-obj-id="222">
+                  <input id="cmt-message" type="text" placeholder="  對此則OKR留言" data-obj-id="222">
+                </div>
+                <div class="cmt-send" data-obj-id="222">
+                  <a href="#" id="cmt-send" class="fa fa-paper-plane-o" aria-hidden="true" data-obj-id="222"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="clear:both;"></div>
+        </div>
+        <div class="history-slide" data-obj-id="222">
+          <div class="hisBtn" data-obj-id="222">
+            <button type="button" name="button" class="historyBTN">
+              <i class="fa fa-times" aria-hidden="true" ></i>
+            </button>
+          </div>
+          <div class="history-upper">
+            <div class="history-title">
+              <h1>歷史紀錄 Activity</h1>
+            </div>
+          </div>
+          <div class="history-lower">
+            <ul class="history-content">
+              <li class="history-li" data-history="1" data-history-date="20171122">
+                <div class="history-date">
+                  <p>22 Nov</p>
+                </div>
+                <div class="history-graph" data-history="1" data-history-date="20171122">
+                  <div class="hollow-dot">
+                  </div>
+                  <div class="solid-dot">
+                  </div>
+                  <div class="line">
+                  </div>
+                </div>
+                <div class="history-user">
+                  <div class="history-img">
+                    <img src="../public/images/anvis.PNG" class="user-img" alt="Anvis.png" data-user-id="456">
+                  </div>
+                </div>
+                <div class="history-text">
+                  222您更新關鍵成果「前端程式實作完成」的值為12/30，完成度為40%。
+                  <br><span class="history-time">9:42 am</span>
+                </div>
+              </li>
+              <li class="history-li" data-history="2" data-history-date="20171120">
+                <div class="history-date">
+                  <p>20 Nov</p>
+                </div>
+                <div class="history-graph" data-history="2" data-history-date="20171120">
+                  <div class="hollow-dot"></div>
+                  <div class="solid-dot"></div>
+                  <div class="line"></div>
+                </div>
+                <div class="history-user">
+                  <div class="history-img">
+                    <img src="../public/images/anvis.PNG" class="user-img" alt="Anvis.png" data-user-id="456">
+                  </div>
+                </div>
+                <div class="history-text">
+                  您修改關鍵成果為「前端程式實作完成」。
+                  <br><span class="history-time">9:42 am</span>
+                </div>
+              </li>
+              <li class="history-li" data-history="3" data-history-date="20171120">
+                <div class="history-date">
+                  <p>20 Nov</p>
+                </div>
+                <div class="history-graph" data-history="3" data-history-date="20171120">
+                  <div class="hollow-dot"></div>
+                  <div class="solid-dot"></div>
+                  <div class="line"></div>
+                </div>
+                <div class="history-user">
+                  <div class="history-img">
+                    <img src="../public/images/anvis.PNG" class="user-img" alt="Anvis.png" data-user-id="456">
+                  </div>
+                </div>
+                <div class="history-text">
+                  您修改關鍵成果為「前端程式實作完成」。
+                  <br><span class="history-time">9:42 am</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="section-modal">
+    <div id="okr-modal">
+      <div id="modal-steps">
+        <div id="steps-line">
+          <div id="line"></div>
+        </div>
+        <div class="stepDot step-1">1</div>
+        <div class="stepDot step-2">2</div>
+        <div class="stepDot step-3">3</div>
+      </div>
+      <div id="modal-content">
+        <div id="modal-slide">
+          <div id="modal-obj">
+            <h1 id="obj-prompt">輸入您的目標</h1>
+            <textarea id="obj-input" name="obj-input" cols="40" rows="5" cols="30" rows="5" onchange="this.rows=this.value.split(':\n').length-1"></textarea>
+          </div>
+          <div id="modal-kr">
+            <h1 id="obj-text"></h1>
+            <h3 id="obj-title">目標</h3>
+            <div id="kr-input-container">
+
+            </div>
+            <button id="add-kr" type="button">+新增您的關鍵成果</button>
+            <h5 id="kr-hint">最多五項</h5>
+
+            <div id="kr-input-module">
+              <h1 id="kr-prompt">輸入您的關鍵成果</h1>
+              <h1 id="kr-prompt-options">建議選項</h1>
+              <textarea id="kr-input" name="obj-input" cols="40" rows="5" cols="30" rows="5" onchange="this.rows=this.value.split(':\n').length-1"></textarea>
+              <div class="input-btns inner">
+                <button class="input-btn" id="kr-input-cancel" type="button" name="button">取消</button>
+                <button class="input-btn" id="kr-input-ok" type="button" name="button">儲存</button>
+                <span id="kr-input-hint">內容不能為空白!</span>
+
+              </div>
+              <div id="kr-input-options">
+                <h1 id="main-menu-title">職務類別</h1>
+                <ul class="main-menu">
+                  <li class="job-category">
+                    <div class="sub-menu-title">
+                      人力資源
+                      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </div>
+                    <ul class="sub-menu">
+                      <li class="kr-line"></li>
+                      <li class="kr-item"><span class="kr-item-text">平均職缺人員遞補天數45天</span></li>
+                      <li class="kr-item"><span class="kr-item-text">關鍵人才培育計畫的執行率</span></li>
+                      <li class="kr-item"><span class="kr-item-text">建置完成儲備幹部計畫進度</span></li>
+                    </ul>
+                  </li>
+                  <li class="job-category">
+                    <div class="sub-menu-title">
+                      行銷企劃
+                      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </div>
+                    <ul class="sub-menu">
+                      <li class="kr-line"></li>
+                      <li class="kr-item"><span class="kr-item-text">網路廣告點閱人次達五十萬次</span></li>
+                      <li class="kr-item"><span class="kr-item-text">廣告預算執行率達九成</span></li>
+                      <li class="kr-item"><span class="kr-item-text">客戶對廣告平均滿意度達80分以上</span></li>
+                    </ul>
+                  </li>
+                  <li class="job-category">
+                    <div class="sub-menu-title">
+                      財會金融
+                      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </div>
+                    <ul class="sub-menu">
+                      <li class="kr-line"></li>
+                      <li class="kr-item"><span class="kr-item-text">財務結構分析達成率</span></li>
+                      <li class="kr-item"><span class="kr-item-text">財務結構分析達成率</span></li>
+                      <li class="kr-item"><span class="kr-item-text">現金流量分析達成率</span></li>
+                    </ul>
+                  </li>
+                  <li class="job-category">
+                    <div class="sub-menu-title">
+                      工程研發
+                      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </div>
+                    <ul class="sub-menu">
+                      <li class="kr-line"></li>
+                      <li class="kr-item"><span class="kr-item-text">無效的研發成本與總研發成本發生率</span></li>
+                      <li class="kr-item"><span class="kr-item-text">加快關鍵子系統效能達成率</span></li>
+                      <li class="kr-item"><span class="kr-item-text">提升伺服器可靠性</span></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div id="modal-confirm">
+            <div id="update-text">
+              資料更新中
+
+            </div>
+            <div id="update-progress">
+              <div class="ball b1">
+              </div>
+              <div class="ball b2">
+              </div>
+              <div class="ball b3">
+              </div>
+              <div class="ball b4">
+              </div>
+              <div class="ball b5">
+              </div>
+              <div class="ball b6">
+              </div>
+              <div class="ball b7">
+              </div>
+              <div class="ball b8">
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="input-btns outer">
+          <button class="input-btn" id="obj-input-save" type="button" name="button">儲存</button>
+          <button class="input-btn" id="obj-input-next" type="button" name="button">下一步</button>
+          <button class="input-btn" id="obj-input-discard" type="button" name="button">捨棄</button>
+          <button class="input-btn" id="obj-input-prev" type="button" name="button">上一步</button>
+        </div>
+        <div class="check-box">
+          <h3 id="check-text">要捨棄此次內容嗎?</h3>
+          <div class="input-btns check">
+            <button class="input-btn" id="check-box-discard" type="button" name="button">捨棄</button>
+            <button class="input-btn" id="check-box-cancel" type="button" name="button">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-popup-delete">
+    <div id="delete-popup"></div>
+    <div id="delete-check-box">
+      <h3 class="delete-check-title del-prompt">您確認要刪除此<label class="delete-type">目標</label>?</h3>
+      <h3 class="delete-check-title del-process"><label class="delete-type">目標</label>刪除中...</h3>
+      <p id="delete-check-text"></p>
+      <div id="delete-input-btns">
+        <button class="input-btn" id="delete-check-box-confirm" type="button" name="button">刪除</button>
+        <button class="input-btn" id="delete-check-box-cancel" type="button" name="button">取消</button>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap core JavaScript
+<!-- Placed at the end of the document so the pages load faster -->
+  <script src="../public/javascripts/common/jquery.min.js"></script>
+  <script src="../public/javascripts/common/jquery.color.js"></script>
+  <script src="../public/javascripts/common/jquery-ui.js"></script>
+  <script src="../public/javascripts/profile/load_FE.js"></script>
+</body>
+
+</html>

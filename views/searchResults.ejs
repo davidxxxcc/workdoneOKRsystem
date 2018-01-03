@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>WORKDONE</title>
+  <link rel="stylesheet" href="/stylesheets/searchResults/searchResults.min.css">
+  <link rel="stylesheet" href="/stylesheets/common/font-awesome.min.css">
+</head>
+
+<body>
+  <header>
+    <div class="searchBar">
+      <input id="searchInput" type="text" placeholder=" Search...">
+      <button id="seatchButton" class="fa fa-search" type="button"></button>
+      <div id="search-prompt"></div>
+    </div>
+    <div class="brand">
+      <a href="#" id="brand-name"><img src="https://storage.googleapis.com/okrs-sys-emp-img/designevo-transparent-hori.png"></a>
+    </div>
+    <div class="options-cell options-more">
+      <a class="fa fa-ellipsis-h" id="options-fa-more"></a>
+      <a class="fa fa-sort-desc" id="options-fa-more-mobile"></a>
+      <div id="drop-down-options-more">
+        <div id="drop-down-more-triangle">
+          <div id="inner-more-triangle"></div>
+        </div>
+        <ul id="more-menu">
+          <li>
+            <a id="viewOthers" href="">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              <span>查看OKR</span>
+            </a>
+          </li>
+          <li>
+            <a id="setting" href="">
+              <i class="fa fa-cog" aria-hidden="true"></i>
+              <span>個人設定</span>
+            </a>
+          </li>
+          <li>
+            <a id="singout" href="">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+              <span>登出系統</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="options-cell options-home">
+      <a href="" class="fa fa-home" id="options-fa-home" data-user-id=""></a>
+    </div>
+    <div class="options-cell options-noti">
+      <a class="fa fa-bell" id="options-fa-bell">
+        <span id="noti-circle"></span></a>
+      <div id="drop-down-options-notification">
+        <div id="drop-down-noti-triangle">
+          <div id="inner-noti-triangle">
+          </div>
+        </div>
+        <ul id="noti-menu">
+          <li class="noti-title">通知</li>
+          <li class="noti-prompt">沒有通知</li>
+          <div class="noti-message"></div>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <section id="searchResults_block">
+  <script id="searchResults_template" type="text/x-handlebars-template">
+    <div class="title" id="empty-mes-start">
+      <p>「{{keyword}}」的搜尋結果</p>
+    </div>
+
+    <div id="empty_mes" data-id="{{isEmpty}}">
+      <p>無相符的搜尋結果</p>
+    </div>
+
+    {{#if departments}}
+    {{#each departments}}
+    <div class="dept-block" data-id="{{dep_ID}}">
+      <div class="dept-name">
+        <p>{{dep_name}}</p>
+      </div>
+
+      <hr>
+
+      <div class="people-block">
+        {{#each people}}
+          <a href="{{formatURL person_URL}}" data-id="{{person_userID}}" class="other-prof-btn">
+            <div class="person">
+
+              <div class="progress-container">
+                <div class="progress-triangle"></div>
+                <div class="progress-num">
+                  <span class="percent-num">{{person_progress}}</span>
+                  <span class="percent-symbol">%</span>
+                </div>
+
+                <div class="progress-circle">
+                  <div class="chart">
+                    <div class="mask-outer left">
+                      <div class="mask-inner">
+                        <div class="body"></div>
+                      </div>
+                    </div>
+                    <div class="mask-outer right">
+                      <div class="mask-inner">
+                        <div class="body"></div>
+                      </div>
+                    </div>
+
+                    <div class="img-circle">
+                      <img id="user_img" src="{{person_userImg}}">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="user-name">{{person_userName}}</div>
+              <div class="user-job">{{person_position}}</div>
+
+            </div>
+          </a>
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}
+    {{/if}}
+
+    {{#if staff}}
+    <div class="staff-block">
+      <div class="staff-block-name">
+        <p>員工</p>
+      </div>
+
+      <hr>
+
+      <div class="people-block">
+        {{#each staff}}
+          <a href="{{formatURL person_URL}}" data-id="{{person_userID}}" class="other-prof-btn">
+            <div class="person">
+
+              <div class="progress-container">
+                <div class="progress-triangle"></div>
+                <div class="progress-num">
+                  <span class="percent-num">{{person_progress}}</span>
+                  <span class="percent-symbol">%</span>
+                </div>
+
+                <div class="progress-circle">
+                  <div class="chart">
+                    <div class="mask-outer left">
+                      <div class="mask-inner">
+                        <div class="body"></div>
+                      </div>
+                    </div>
+                    <div class="mask-outer right">
+                      <div class="mask-inner">
+                        <div class="body"></div>
+                      </div>
+                    </div>
+
+                    <div class="img-circle">
+                      <img id="user_img" src="{{person_userImg}}">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="user-name">{{person_userName}}</div>
+              <div class="user-job">{{person_position}}</div>
+
+            </div>
+          </a>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+
+    {{#if objectives}}
+    <div class="obj-block">
+      <div class="obj-block-name">
+        <p>目標</p>
+      </div>
+
+      <hr>
+
+      <div class="objs">
+        {{#each objectives}}
+        <a href="{{formatObjURL obj_URL}}" class="obj">
+          <div class="img-container">
+            <div class="img-circle">
+              <img id="user_img" src="{{person_userImg}}">
+            </div>
+          </div>
+
+          <div class="contents-container">
+            <div class="obj-content">
+              <p>{{obj_text}}</p>
+            </div>
+
+            <div class="name-and-season">
+              <b class="name" data-id="{{user_ID}}">{{userName}}</b><p>於</p><b class="season">{{formatSeason obj_season}}</b><p>的目標</p>
+            </div>
+          </div>
+        </a>
+        {{/each}}
+
+        <hr>
+
+      </div>
+      {{/if}}
+
+    </div>
+  </script>
+
+  </section>
+
+
+<!-- 最初 UI 外觀 -->
+  <!-- <section>
+    <div class="title">
+      <p>「行」的搜尋結果</p>
+    </div>
+
+    <div class="dept-block">
+      <div class="dept-name">
+        <p>行銷部門</p>
+      </div>
+
+      <hr>
+
+    <div class="people-block">
+          <a href="#" class="other-prof-btn">
+            <div class="person">
+
+              <div class="progress-container">
+                <div class="progress-triangle"></div>
+                <div class="progress-num">
+                  <span class="percent-num">25</span>
+                  <span class="percent-symbol">%</span>
+                </div>
+
+                <div class="progress-circle">
+                  <div class="chart">
+                    <div class="mask-outer left">
+                      <div class="mask-inner">
+                        <div class="body"></div>
+                      </div>
+                    </div>
+                    <div class="mask-outer right">
+                      <div class="mask-inner">
+                        <div class="body"></div>
+                      </div>
+                    </div>
+
+                    <div class="img-circle">
+                      <img id="user_img">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="user-name">廖韋筑</div>
+              <div class="user-job">行銷部 / 行銷企劃</div>
+
+            </div>
+          </a>
+      </div>
+    </div>
+
+    <div class="staff-block">
+      <div class="staff-block-name">
+        <p>員工</p>
+      </div>
+
+      <hr>
+
+      <div class="people-block">
+          <a href="#" class="other-prof-btn" data-id="{{person_userID}}">
+            <div class="person">
+
+              <div class="progress-container">
+                <div class="progress-triangle"></div>
+                <div class="progress-num">
+                  <span class="percent-num">25</span>
+                  <span class="percent-symbol">%</span>
+                </div>
+
+                <div class="progress-circle">
+                  <div class="chart">
+                    <div class="mask-outer left">
+                      <div class="mask-inner">
+                        <div class="body"></div>
+                      </div>
+                    </div>
+                    <div class="mask-outer right">
+                      <div class="mask-inner">
+                        <div class="body"></div>
+                      </div>
+                    </div>
+
+                    <div class="img-circle">
+                      <img id="user_img">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="user-name">廖韋筑</div>
+              <div class="user-job">行銷部 / 行銷企劃</div>
+
+            </div>
+          </a>
+      </div>
+    </div>
+
+    <div class="obj-block">
+      <div class="obj-block-name">
+        <p>目標</p>
+      </div>
+
+      <hr>
+
+      <div class="objs">
+        <a href="#" class="obj">
+          <div class="img-container">
+            <div class="img-circle">
+              <img id="user_img">
+            </div>
+          </div>
+
+          <div class="contents-container">
+            <div class="obj-content">
+              <p>完成OKR系統，包含前端設計及後端實作，最後作行銷推廣，讓公司全體員工滿意。</p>
+            </div>
+
+            <div class="name-and-season">
+              <b class="name">張辰豪</b><p>於</p><b class="season">2017年Q4</b><p>的目標</p>
+            </div>
+          </div>
+        </a>
+
+        <hr>
+
+        <a href="#" class="obj">
+          <div class="img-container">
+            <div class="img-circle">
+              <img id="user_img">
+            </div>
+          </div>
+
+          <div class="contents-container">
+            <div class="obj-content">
+              <p>完成OKR系統，包含前端設計及後端實作，最後作行銷推廣，讓公司全體員工滿意。</p>
+            </div>
+
+            <div class="name-and-season">
+              <b class="name">張辰豪</b><p>於</p><b class="season">2017年Q4</b><p>的目標</p>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+
+  </section> -->
+
+
+  <script id="noti-template" type="text/x-handlebars-template">
+    {{#each notifications}}
+    <li class="noti-li" data-o-id="{{noti_obj_id}}" data-noti-time="{{noti_time}}" data-noti-read={{noti_isRead}} data-noti-id="{{noti_ID}}">
+      <a href="{{noti_link}}">
+        <div class="noti-user-img">
+          <div class="noti-img">
+            <img src="{{noti_user_img}}" class="user-img" alt="{{noti_user_name}}" data-user-id="{{noti_user_id}}">
+          </div>
+        </div>
+        <div class="noti-content">
+          <div class="noti-text">
+            <p><span class="noti-name" data-user-id="{{noti_user_id}}">{{noti_user_name}}</span>{{noti_text}}</P>
+          </div>
+          <div class="noti-time">
+            <p>{{formatDateToNow noti_time}}</p>
+          </div>
+        </div>
+        <div class="noti-check">
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </div>
+      </a>
+    </li>
+    {{/each}}
+  </script>
+  <script id="search-template" type="text/x-handlebars-template">
+
+      <div id="search-prompt-triangle">
+        <div id="search-prompt-triangle-inner">
+        </div>
+      </div>
+      <ul id="search-prompt-menu">
+        <li class="search-main-li search-title">搜尋結果</li>
+        {{#if departments}}
+        <li class="search-main-li search-type">
+          <ul class="search-sub-ul">
+            <li class="search-sub-li type-title">
+              <div class="type-title-name">
+                部門
+              </div>
+            </li>
+            {{#departments}}
+            <li class="search-sub-li search-dept">
+              <a class="search-sub-li-wrapper" href="{{dep_URL}}">
+                <div class="search-content">
+                  <div class="dept-name" data-dept-id="{{dep_ID}}">{{dep_name}}</div>
+                </div>
+                <div class="search-img">
+                  <div class="img-circle-container">
+                    <p class="dept-char">{{deptChar dep_name}}</p>
+                  </div>
+                </div>
+                <div class="cleared" style="clear: both;"></div>
+              </a>
+            {{/departments}}
+          </ul>
+        </li>
+        {{/if}}
+
+        {{#if people}}
+        <li class="search-main-li search-type">
+          <ul class="search-sub-ul">
+            <li class="search-sub-li type-title">
+              <div class="type-title-name">
+                人員
+              </div>
+            </li>
+            {{#people}}
+            <li class="search-sub-li search-user">
+              <a class="search-sub-li-wrapper" href="{{formatPersonURL person_URL}}">
+                <div class="search-content search-user-table">
+                  <div class="search-user-name">{{person_userName}}</div>
+                  <div class="search-user-position">{{person_position}}</div>
+                </div>
+                <div class="search-img">
+                  <div class="img-circle-container">
+                    <img class="user-img" src="{{person_userImg}}" alt="{{person_userName}}" data-user-id="{{person_userID}}">
+                  </div>
+                </div>
+                <div class="cleared" style="clear: both;"></div>
+              </a>
+            {{/people}}
+          </ul>
+        </li>
+        {{/if}}
+
+        {{#if objectives}}
+        <li class="search-main-li search-type">
+          <ul class="search-sub-ul">
+            <li class="search-sub-li type-title">
+              <div class="type-title-name">
+                目標
+              </div>
+            </li>
+            {{#objectives}}
+            <li class="search-sub-li search-user">
+              <a class="search-sub-li-wrapper" href="{{formatObjURL obj_URL obj_season}}">
+                <div class="search-content search-obj-table">
+                  <div class="search-obj-user"><label class="search-obj-user-name" style="color:#000;">{{userName}}</label>於<label class="search-obj-user-season" style="color:#000;">{{formatSeason obj_season}}</label>的目標
+                  </div>
+                  <div class="search-obj-text">
+                    {{formatObj obj_text}}
+                  </div>
+                </div>
+                <div class="search-img">
+                  <div class="img-circle-container">
+                    <img class="user-img" src="{{userImg}}" alt="{{userName}}" data-user-id="{{userID}}">
+                  </div>
+                </div>
+                <div class="cleared" style="clear: both;"></div>
+              </a>
+            {{/objectives}}
+          </ul>
+        </li>
+        {{/if}}
+        {{checkData departments people objectives}}
+
+      </ul>
+
+  </script>
+
+  <script src="/javascripts/common/jquery-3.2.1.js"></script>
+  <!--************** 控制 JS 的顏色動畫*************** -->
+  <script src="/javascripts/common/jquery.color.js"></script>
+  <script src="/javascripts/common/handlebars-v4.0.11.js"></script>
+  <script src="/javascripts/searchResults/searchResults.js"></script>
+  <script src="/javascripts/common/header.js"></script>
+
+  <script>
+    var kw = '<%= keywords %>';
+    var depOnly = '<%= depOnly %>';
+    loadSearchResults(kw, depOnly);
+  </script>
+
+</body>
+
+</html>

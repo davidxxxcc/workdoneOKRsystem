@@ -1,0 +1,252 @@
+﻿html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block
+}
+
+body {
+    line-height: 1
+}
+
+ol,
+ul {
+    list-style: none
+}
+
+blockquote,
+q {
+    quotes: none
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+#BG {
+    background-image: url("https://i.imgur.com/7YzybCa.jpg");
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat
+}
+
+#login-part {
+    width: 323px;
+    height: 406px;
+    background-color: #54c8cf;
+    border-radius: 10px;
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.5);
+    margin: 87px 478.5px
+}
+
+#login-part .logo .rectangle-9 {
+    width: 375px;
+    height: 7px;
+    background-color: rgba(83, 142, 166, 0.6)
+}
+
+#login-part .logo .workdone {
+    display: inline-block;
+    width: 323px;
+    height: 43px;
+    font-family: Herculanum;
+    font-size: 43px;
+    text-align: center;
+    color: #d8e7e8;
+    padding-top: 65.7px
+}
+
+#login-part .id-column {
+    padding: 65px 38.5px 7px 38.5px
+}
+
+#login-part .id-column input[type="id-input"] {
+    width: 235px;
+    height: 34px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: inset 2px 1px 3px 0 rgba(0, 0, 0, 0.5);
+    font-size: 0.9rem;
+    color: #9b9b9b;
+    padding-left: 10px
+}
+
+#login-part .pwd-column {
+    padding: 0 38.5px 42px 38.5px
+}
+
+#login-part .pwd-column input[type="pwd-input"] {
+    width: 235px;
+    height: 34px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: inset 2px 1px 3px 0 rgba(0, 0, 0, 0.5);
+    font-size: 0.9rem;
+    color: #9b9b9b;
+    padding-left: 10px
+}
+
+#login-part .login-button {
+    margin: 0 38.5px 25.5px 38.5px;
+    width: 245px;
+    height: 40.5px;
+    border-radius: 10px;
+    background-color: #fc4349;
+    box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.5)
+}
+
+#login-part .login-button .login {
+    display: inline-block;
+    width: 33px;
+    height: 22px;
+    font-family: PingFangTC;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    color: #ffffff;
+    padding: 13px 106px 8.5px 106px
+}
+
+#login-part .forgot-pwd-link {
+    display: inline-block;
+    width: 70px;
+    height: 20px;
+    font-family: "微軟正黑體";
+    font-size: 14px;
+    text-align: center;
+    text-decoration: underline;
+    color: #000000;
+    padding: 0 126px 28.5px 126px
+}
+
+.back-button {
+    /* margin: 0 38.5px 25.5px 38.5px; */
+    width: 245px;
+    height: 40.5px;
+    border-radius: 10px;
+    background-color: #fc4349;
+    box-shadow: 1px 4px 4px 0 rgba(0, 0, 0, 0.5)
+}
+
+.back-button .back {
+    display: inline-block;
+    width: 80px;
+    height: 22px;
+    font-family: PingFangTC;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    color: #ffffff;
+    padding: 13px 82.5px 8.5px 82.5px
+}
+
+input:active,
+input:focus,
+textarea:focus {
+    outline: none
+}

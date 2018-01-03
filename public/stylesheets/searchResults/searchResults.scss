@@ -1,0 +1,383 @@
+@import '../common/reset';
+@import '../common/header';
+@import '../profile/rwd';
+
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+
+body {
+  background-color: #f2f2f2;
+}
+
+
+section {
+  // outline: 1px solid black;
+  width: 75%;
+  margin: 80px auto 0 auto;
+  padding: 3%;
+
+  .title {
+    // outline: 1px solid black;
+
+    p {
+      // outline: 1px solid black;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: "微軟正黑體";
+    }
+  }
+
+  #empty_mes {
+    width: 100%;
+    margin: 30px auto;
+    padding: 20px 30px;
+    background-color: #ffffff;
+    text-align: center;
+
+    p {
+      font-size: 28px;
+      font-weight: 600;
+      font-family: "微軟正黑體";
+      color: #979797;
+      text-shadow: 0px 0.5px 0.5px #9b9b9b;
+    }
+  }
+
+  .dept-block,
+  .staff-block {
+    // outline: 1px solid black;
+    width: 100%;
+    margin: 30px auto;
+    padding: 20px 30px;
+    background-color: #ffffff;
+
+    .dept-name,
+    .staff-block-name {
+      // outline: 1px solid black;
+      position: relative;
+
+      p {
+        // outline: 1px solid black;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: "微軟正黑體";
+      }
+    }
+
+    hr {
+      margin: 20px auto;
+      color: #d7dadb;
+    }
+
+    .people-block {
+      // outline: 1px solid pink;
+      width: 100%;
+
+      a {
+        text-decoration: none;
+
+        .person {
+          display: inline-block;
+          width: 140px;
+          height: 165px;
+          border: 1px solid #979797;
+          border-radius: 5px;
+          margin: 1.1%;
+          // box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+          transition: 0.5s;
+
+          &:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+          }
+
+          .progress-triangle {
+            // outline: 1px solid black;
+            border-color: transparent #4bb4ba #4bb4ba transparent;
+            border-style: solid solid solid solid;
+
+            /* 設定邊框（上、下；左、右）大小相同的數值，可拼湊出任意形狀的三角形 */
+            border-width: 2px;
+
+            /* 設定 width、height 可更好理解原理 */
+            height: 0px;
+            width: 0px;
+
+            margin-top: 10px;
+            transform: translate(-5px, 0);
+          }
+
+          .progress-num {
+            // outline: 1px solid black;
+            display: inline-block;
+            width: 60px;
+            height: 20px;
+            background-image: radial-gradient(circle at 50% 50%, #55c8cf, #8ce8c2);
+            box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.5);
+            border-radius: 1px;
+            color: #ffffff;
+            font-family: "微軟正黑體";
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            padding: 4px 0;
+            transform: translate(-5px, 0);
+          }  // .progress-num end
+
+          .progress-circle {
+            // outline: 1px solid red;
+            padding: 0 30px;
+            margin: 7px 0;
+          }
+
+          .chart {
+            // outline: 1px solid blue;
+            width: 76px;
+            height: 76px;
+            position: relative;
+            border-radius: 50%;
+            box-shadow: 0 0.8px 0.8px 0.2px rgba(151, 151, 151, 1);
+
+            //mask
+            .mask-inner {
+              // outline: 1px solid red;
+              // display: inline-block;
+              overflow: hidden;
+              position: absolute;
+              width: 38px;
+              height: 76px;
+            }
+
+            .mask-outer {
+              // outline: 1px solid pink;
+              // display: inline-block;
+              overflow: hidden;
+              position: absolute;
+              width: 38px;
+              height: 76px;
+            }
+
+            //left outer side mask
+            .mask-outer.left {
+              left: 0;
+            }
+
+            //right outer side mask
+            .mask-outer.right {
+              right: 0;
+            }
+
+            //inner mask
+            .mask-inner {
+              -webkit-transform: rotate(0);
+              -ms-transform: rotate(0);
+              transform: rotate(0);
+            }
+
+            //left inner mask
+            .mask-outer.left .mask-inner {
+              left: 100%;
+              -webkit-transform-origin: 0 50%;
+              -ms-transform-origin: 0 50%;
+              transform-origin: 0 50%;
+            }
+
+            //right inner mask
+            .mask-outer.right .mask-inner {
+              right: 100%;
+              -webkit-transform-origin: 100% 50%;
+              -ms-transform-origin: 100% 50%;
+              transform-origin: 100% 50%;
+            }
+
+            .body {
+              // outline: 1px solid black;
+              z-index: 5;
+              border-radius: 50%;
+              position: absolute;
+              width: 76px;
+              height: 76px;
+              border: 7px solid #69bf3e;
+              // box-shadow: 0 0.8px 0.8px 0 rgba(80, 80, 80, 1);
+            }
+
+            .mask-outer.left .body {
+              right: 0;
+            }
+
+            .mask-outer.right .body {
+              left: 0;
+            }
+
+
+            .img-circle {
+              // outline: 1px solid black;
+              width: 62.5px;
+              height: 62.5px;
+              display: inline-block;
+              margin: 7px;
+
+              border-radius: 50%;
+              overflow: hidden;
+
+              #user_img {
+                display: block;
+                width: 100%;
+                height: auto;
+                background-color: black;
+              }
+            }
+
+          }
+
+          .user-name {
+            // outline: 1px solid blue;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: "微軟正黑體";
+            color: black;
+            text-align: center;
+            margin-top: 5px;
+          }
+
+          .user-job {
+            // outline: 1px solid red;
+            font-size: 9px;
+            font-weight: 300;
+            font-family: "微軟正黑體";
+            color: #8a8888;
+            text-align: center;
+            margin-top: 3px;
+          }
+
+        }  // .person end
+      }  // .a end
+
+    }
+  }
+
+  .obj-block {
+    // outline: 1px solid black;
+    width: 100%;
+    margin: 30px auto;
+    padding: 20px 30px;
+    background-color: #ffffff;
+
+    .obj-block-name {
+      // outline: 1px solid black;
+      position: relative;
+
+      p {
+        // outline: 1px solid black;
+        font-size: 16px;
+        font-weight: 600;
+        font-family: "微軟正黑體";
+      }
+    }
+
+    hr {
+      margin: 20px auto;
+    }
+
+    .objs {
+      // outline: 1px solid black;
+      padding: 30px auto;
+
+      .obj {
+        // outline: 1px solid black;
+        display: table;
+        text-decoration: none;
+        color: #000000;
+        // padding: 10px 5px;
+        width: 100%;
+        transition: 0.5s;
+
+        &:hover {
+          background-color: rgba(242, 140, 140, 0.6);  //主題粉
+          // background-color: rgba(140, 232, 194, 0.6);  //主題綠
+          // background-color: rgba(85, 200, 207, 0.5);  //主題藍
+          box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+          // height: 200px;
+        }
+
+        .img-container{
+          // outline: 1px solid black;
+          display: table-cell;
+          position: relative;
+          width: 62px;
+          height: 62px;
+          padding: 0 1vw 0 1vw;
+
+          .img-circle {
+            // outline: 1px solid black;
+            position: absolute;
+            display: inline-block;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            box-shadow: 0 0.8px 0.8px 0.2px rgba(151, 151, 151, 1);
+            overflow: hidden;
+            top:50%;
+            transform: translateY(-50%);
+
+            #user_img {
+              display: block;
+              width: 100%;
+              height: auto;
+              background-color: black;
+            }
+          }
+
+        }
+
+
+        .contents-container{
+          // outline: 1px solid black;
+          display: table-cell;
+          position: relative;
+          width: calc(100% - 62px);
+          padding: 15px 3vw 15px 3vw;
+
+          .obj-content {
+            // outline: 1px solid black;
+            position: relative;
+            margin-bottom: 5px;
+
+            p {
+              font-size: 16px;
+              font-weight: 600;
+              font-family: "微軟正黑體";
+            }
+          }
+
+          .name-and-season {
+            // outline: 1px solid black;
+
+            .name,
+            .season {
+              display: inline-block;
+              font-size: 12px;
+              font-family: "微軟正黑體";
+            }
+
+            p {
+              display: inline-block;
+              font-size: 12px;
+              font-family: "微軟正黑體";
+              color: #9b9b9b;
+            }
+          }
+        }
+      }
+
+      hr {
+        margin: 30px auto;
+      }
+
+    }
+  }
+}

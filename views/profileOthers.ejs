@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <!-- Logo icon-->
+  <link rel="icon" href="/stylesheets/common/favicon.ico">
+  <title>OKR</title>
+  <!-- Bootstrap core CSS -->
+  <link href="/stylesheets/common/bootstrap.min.css" rel="stylesheet">
+  <!-- Icon resource -->
+  <link href="/stylesheets/common/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom styles for this template -->
+  <link href="/stylesheets/profile/main.min.css" rel="stylesheet">
+  <!-- Responsive Web Design -->
+  <link href="/stylesheets/profile/rwd.css" rel="stylesheet">
+  <!-- Dynamically html content generation -->
+  <script src="/javascripts/common/handlebars-v4.0.11.js"></script>
+  <!-- jQuery-ui plug-in -->
+  <link rel="stylesheet" href="/stylesheets/common/jquery-ui.css">
+</head>
+
+<body>
+  <header>
+    <div class="searchBar">
+      <input id="searchInput" type="text" placeholder=" Search...">
+      <button id="seatchButton" class="fa fa-search" type="button"></button>
+      <div id="search-prompt"></div>
+    </div>
+    <div class="brand">
+        <a href="#" id="brand-name"><img src="https://storage.googleapis.com/okrs-sys-emp-img/designevo-transparent-hori.png"></a>
+    </div>
+    <div class="options-cell options-more">
+      <a class="fa fa-ellipsis-h" id="options-fa-more"></a>
+      <a class="fa fa-sort-desc" id="options-fa-more-mobile"></a>
+      <div id="drop-down-options-more">
+        <div id="drop-down-more-triangle">
+          <div id="inner-more-triangle"></div>
+        </div>
+        <ul id="more-menu">
+          <li>
+            <a id="viewOthers" href="">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              <span>查看OKR</span>
+            </a>
+          </li>
+          <li>
+            <a id="setting" href="">
+              <i class="fa fa-cog" aria-hidden="true"></i>
+              <span>個人設定</span>
+            </a>
+          </li>
+          <li>
+            <a id="singout" href="">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+              <span>登出系統</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="options-cell options-home">
+      <a href="" class="fa fa-home" id="options-fa-home" data-user-id=""></a>
+    </div>
+    <div class="options-cell options-noti">
+      <a class="fa fa-bell" id="options-fa-bell">
+        <span id="noti-circle"></span></a>
+      <div id="drop-down-options-notification">
+        <div id="drop-down-noti-triangle">
+          <div id="inner-noti-triangle">
+          </div>
+        </div>
+        <ul id="noti-menu">
+          <li class="noti-title">通知</li>
+          <li class="noti-prompt">沒有通知</li>
+          <div class="noti-message"></div>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <section>
+    <div class="section-profile">
+    </div>
+    <div class="section-okr">
+      <div class="prompt-no-okr">
+        尚未新增目標
+      </div>
+      <div id="cmt-edit-check-section">
+        <div id="cmt-edit-check-box">
+          <h3 id="cmt-edit-check-text">確定刪除此留言?</h3>
+          <!-- <p id="cmt-"></p> -->
+          <div class="input-btns check">
+            <button class="input-btn" id="cmt-edit-btn-confirm" type="button" name="button">刪除</button>
+            <button class="input-btn" id="cmt-edit-btn-cancel" type="button" name="button">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Placed at the end of the document so the pages load faster -->
+
+  <script id="profile-template" type="text/x-handlebars-template">
+    <div id="user" data-user-id="{{profile.profile_user_id}}">
+      <a id="profile-img">
+        <div class="img-circle">
+          <img id="user-img" src="{{profile.profile_user_img}}" data-user-id="{{profile.profile_user_id}}">
+        </div>
+      </a>
+      <h3 id="user-name">{{profile.profile_user_name}}</h3>
+      <p id="user-position">{{profile.profile_user_position}}</p>
+      <div class="season">
+        <span id="selected-season" data-season="{{profile.seasons.[1]}}">{{formatSeason profile.seasons.[1]}}</span>
+        <a href="#" id="fa-drop-down" class="fa fa-chevron-down"></a>
+        <div id="drop-down-season">
+          <div id="drop-down-triangle">
+            <div id="drop-down-triangle-inner"></div>
+          </div>
+          <ul>
+            {{#profile.seasons}}
+            <li class="sea-menu-li" data-season="{{this}}"><a class="sea-li" data-season="{{this}}">{{formatSeason this}}</a></li>
+            {{/profile.seasons}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </script>
+  <script id="noti-template" type="text/x-handlebars-template">
+    {{#each notifications}}
+    <li class="noti-li" data-o-id="{{noti_obj_id}}" data-noti-time="{{noti_time}}" data-noti-read={{noti_isRead}} data-noti-id="{{noti_ID}}">
+      <a href="{{noti_link}}">
+        <div class="noti-user-img">
+          <div class="noti-img">
+            <img src="{{noti_user_img}}" class="user-img" alt="{{noti_user_name}}" data-user-id="{{noti_user_id}}">
+          </div>
+        </div>
+        <div class="noti-content">
+          <div class="noti-text">
+            <p><span class="noti-name" data-user-id="{{noti_user_id}}">{{noti_user_name}}</span>{{noti_text}}</P>
+          </div>
+          <div class="noti-time">
+            <p>{{formatDateToNow noti_time}}</p>
+          </div>
+        </div>
+        <div class="noti-check">
+          <i class="fa fa-circle" aria-hidden="true"></i>
+        </div>
+      </a>
+    </li>
+    {{/each}}
+  </script>
+  <script id="okr-template" type="text/x-handlebars-template">
+    {{#each objectives}}
+    <div class="okr" data-obj-id="{{obj_ID}}">
+      <div class="card objective" data-obj-id="{{obj_ID}}">
+        <div class="obj-upper" data-obj-id="{{obj_ID}}">
+          <div class="okr-progress" data-obj-id="{{obj_ID}}">
+            <div class="chart" data-obj-id="{{obj_ID}}">
+              <div class="circle-mask-outer left">
+                <div class="circle-mask-inner">
+                  <div class="circle-body"></div>
+                </div>
+              </div>
+              <div class="circle-mask-outer right">
+                <div class="circle-mask-inner">
+                  <div class="circle-body"></div>
+                </div>
+              </div>
+              <div class="chart-content">
+                <p class="text">
+                  <span class="percent-number" data-obj-id="{{obj_ID}}" data-obj-progress="{{obj_progress}}">{{obj_progress}}</span>
+                  <span class="percent-symbol" data-obj-id="{{obj_ID}}">%</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="thumbs" data-obj-id="{{obj_ID}}">
+            <div class="like-icon" data-obj-id="{{obj_ID}}" data-isLike="{{isLike}}">
+              <a class="fa fa-thumbs-o-up" data-obj-id="{{obj_ID}}" aria-hidden="true"></a>
+            </div>
+            <div class="like-number" data-obj-id="{{obj_ID}}">{{obj_likeNumber}}</div>
+          </div>
+          <div class="more-option" data-obj-id="{{obj_ID}}">
+            <a class="fa fa-ellipsis-h" data-obj-id="{{obj_ID}}"></a>
+            <div class="drop-down-obj" data-obj-id="{{obj_ID}}">
+              <ul class="obj-menu" data-obj-id="{{obj_ID}}">
+                <li class="obj-menu-li obj-history" data-obj-id="{{obj_ID}}">
+                  <a class="fa fa-eye" data-obj-id="{{obj_ID}}">
+                    <span data-obj-id="{{obj_ID}}"> 檢視歷史紀錄</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <h1 class="objective-content" data-obj-id="{{obj_ID}}" contenteditable="false">{{obj_text}}</h1>
+        <div class="obj-edit-btns" data-obj-id="{{obj_ID}}">
+          <button type="button" name="button" class="obj-edit-confirm" data-obj-id="{{obj_ID}}">
+            <i class="fa fa-check" aria-hidden="true"></i>
+          </button>
+          <button type="button" name="button" class="obj-edit-cancel" data-obj-id="{{obj_ID}}">
+            <i class="fa fa-times" aria-hidden="true"></i>
+          </button>
+          <p class="obj-edit-prompt" data-obj-id="{{obj_ID}}">目標內容不能為空白!</p>
+        </div>
+      </div>
+      <div class="row" data-obj-id="{{obj_ID}}">
+        <div class="card key-result" data-obj-id="{{obj_ID}}">
+          <div class="kr-upper" data-obj-id="{{obj_ID}}">
+            <div class="kr-title" data-obj-id="{{obj_ID}}">
+              <h4 data-obj-id="{{obj_ID}}">關鍵成果 Key Results</h4>
+            </div>
+          </div>
+          <div class="kr-content" data-obj-id="{{obj_ID}}">
+            {{#keyResults}}
+            <div class="kr" data-obj-id="{{../obj_ID}}" data-kr-id="{{kr_ID}}">
+              <div class="kr-text" data-obj-id="{{../obj_ID}}" data-kr-id="{{kr_ID}}" contenteditable="false">{{kr_text}}</div>
+              <div class="kr-progress" data-obj-id="{{../obj_ID}}" data-kr-id="{{kr_ID}}">
+                <div class="ui-widget-content slider-content" data-obj-id="{{../obj_ID}}" data-kr-id="{{kr_ID}}" style="border:0;">
+                  <div class="slider" data-obj-id="{{../obj_ID}}" data-kr-id="{{kr_ID}}" data-kr-progress="{{kr_progress}}">
+                    <div class="handle ui-slider-handle" data-obj-id="{{../obj_ID}}" data-kr-id="{{kr_ID}}"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="kr-options" data-obj-id="{{../obj_ID}}" data-kr-id="{{kr_ID}}">
+                <span class="kr-edit-prompt" data-obj-id="{{../obj_ID}}" data-kr-id="{{kr_ID}}"></span>
+                <button type="button" class="kr-cancel" data-obj-id="{{../obj_ID}}" data-kr-id="{{kr_ID}}">
+                  <i class="fa fa-times" aria-hidden="true" data-obj-id="{{../obj_ID}}" data-kr-id="{{kr_ID}}"></i>
+                </button>
+                <button type="button" class="kr-confirm" data-obj-id="{{../obj_ID}}" data-kr-id="{{kr_ID}}">
+                  <i class="fa fa-check" aria-hidden="true" data-obj-id="{{../obj_ID}}" data-kr-id="{{kr_ID}}"></i>
+                </button>
+              </div>
+            </div>
+            {{/keyResults}}
+            <div class="prompt-no-kr" data-obj-id="{{obj_ID}}" >
+              尚未新增關鍵成果
+            </div>
+          </div>
+        </div>
+        <div class="card comment" data-obj-id="{{obj_ID}}">
+          <div class="cmt-upper" data-obj-id="{{obj_ID}}">
+            <div class="comment-title" data-obj-id="{{obj_ID}}">
+              <h4 data-obj-id="{{obj_ID}}">留言 Comments</h4>
+            </div>
+          </div>
+          <div class="comment-content" data-obj-id="{{obj_ID}}">
+            {{#comments}}
+            <div class="cmt" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+              <div class="cmt-img" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                <img class="user-img" src="{{cmt_userImg}}" alt="{{cmt_userName}}" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+              </div>
+              <div class="cmt-user" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                <a class="cmt-user-name" href="{{formatCmtURL url}}" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">{{cmt_userName}}</a>
+                <p class="cmt-user-time" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}" data-cmt-time="{{cmt_time}}">{{formatCmtDate cmt_time}}</p>
+              </div>
+              <div class="cmt-text" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}" contenteditable="false">
+                {{cmt_text}}
+              </div>
+              {{#if edit}}
+              <div class="cmt-more" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                <a class="fa fa-ellipsis-h cmt-more-icon" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}"></a>
+                <div class="drop-down-cmt" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                  <ul class="cmt-menu" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                    {{#if delete}}
+                    <li class="cmt-menu-li cmt-delete" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                      <a class="fa fa-trash" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                        <span data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}"> 刪除留言</span>
+                      </a>
+                    </li>
+                    {{/if}}
+                    {{#if edit}}
+                    <li class="cmt-menu-li cmt-edit" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                      <a class="fa fa-pencil" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                        <span data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}"> 編輯留言</span>
+                      </a>
+                    </li>
+                    {{/if}}
+                  </ul>
+                </div>
+              </div>
+              {{else if delete}}
+              <div class="cmt-more" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                <a class="fa fa-ellipsis-h cmt-more-icon" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}"></a>
+                <div class="drop-down-cmt" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                  <ul class="cmt-menu" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                    {{#if delete}}
+                    <li class="cmt-menu-li cmt-delete" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                      <a class="fa fa-trash" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                        <span data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}"> 刪除留言</span>
+                      </a>
+                    </li>
+                    {{/if}}
+                    {{#if edit}}
+                    <li class="cmt-menu-li cmt-edit" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                      <a class="fa fa-pencil" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                        <span data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}"> 編輯留言</span>
+                      </a>
+                    </li>
+                    {{/if}}
+                  </ul>
+                </div>
+              </div>
+              {{/if}}
+              <div class="cmt-edit-options" data-cmt-id="{{cmt_ID}}" data-obj-id="{{../obj_ID}}">
+                <button type="button" class="cmt-cancel" data-cmt-id="{{cmt_ID}}">
+                  <i class="fa fa-times" aria-hidden="true" data-obj-id="{{../obj_ID}}" data-kr-id="{{kr_ID}}"></i>
+                </button>
+                <button type="button" class="cmt-confirm" data-cmt-id="{{cmt_ID}}">
+                  <i class="fa fa-check" aria-hidden="true" data-obj-id="{{../obj_ID}}" data-kr-id="{{kr_ID}}"></i>
+                </button>
+                <div class="cmt-edit-prompt" data-obj-id="{{../obj_ID}}" data-cmt-id="{{cmt_ID}}"></div>
+              </div>
+              <div style="clear:both;"></div>
+            </div>
+            {{/comments}}
+          </div>
+          <div class="leave-cmt" data-obj-id="{{obj_ID}}" data-cmt-id="">
+            <div class="cmt-inputbox" data-obj-id="{{obj_ID}}" data-cmt-id="">
+              <input class="cmt-message" type="text" placeholder="  對此則OKR留言" data-obj-id="{{obj_ID}}" data-cmt-id="">
+            </div>
+            <button type="button" class="cmt-send" data-obj-id="{{obj_ID}}" data-cmt-id="">
+              <i class="fa fa-paper-plane-o cmt-send-btn" aria-hidden="true" data-obj-id="{{obj_ID}}"></i>
+            </button>
+            <div class="cmt-prompt" data-obj-id="{{obj_ID}}">
+              輸入不能為空白!
+            </div>
+          </div>
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+      <div class="history-slide" data-obj-id="{{obj_ID}}">
+        <div class="hisBtn" data-obj-id="{{obj_ID}}">
+          <button type="button" name="button" class="historyBTN" data-obj-id="{{../obj_ID}}">
+            <i class="fa fa-times" aria-hidden="true" data-obj-id="{{../obj_ID}}"></i>
+          </button>
+        </div>
+        <div class="history-upper" data-obj-id="{{obj_ID}}">
+          <div class="history-title" data-obj-id="{{obj_ID}}">
+            <h1 data-obj-id="{{obj_ID}}">歷史紀錄 Activity</h1>
+          </div>
+        </div>
+        <div class="history-lower" data-obj-id="{{obj_ID}}">
+          <ul class="history-content" data-obj-id="{{obj_ID}}">
+            {{#activities}}
+            <li class="history-li" data-history="{{@index}}" data-obj-id="{{../obj_ID}}" data-history-date="{{act_time}}">
+              <div class="history-date" data-history="{{@index}}" data-history-date="{{act_time}}">
+                <p data-history="{{@index}}" data-history-date="{{act_time}}">{{formatDate act_time}}</p>
+              </div>
+              <div class="history-graph" data-history="{{@index}}" data-history-date="{{act_time}}">
+                <div class="hollow-dot">
+                </div>
+                <div class="solid-dot">
+                </div>
+                <div class="line">
+                </div>
+              </div>
+              <div class="history-text" data-history="{{@index}}" data-history-date="{{act_time}}">
+                {{act_text}}
+                <br><span class="history-time" data-history="{{@index}}" data-history-date="{{act_time}}">{{act_time}}</span>
+              </div>
+            </li>
+            {{/activities}}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </script>
+  <script id="act-template" type="text/x-handlebars-template">
+    {{#activities}}
+    <li class="history-li" data-history="{{@index}}" data-obj-id="{{../obj_ID}}" data-history-date="{{act_time}}">
+      <div class="history-date" data-history="{{@index}}" data-history-date="{{act_time}}">
+        <p data-history="{{@index}}" data-history-date="{{act_time}}">{{formatDate act_time}}</p>
+      </div>
+      <div class="history-graph" data-history="{{@index}}" data-history-date="{{act_time}}">
+        <div class="hollow-dot">
+        </div>
+        <div class="solid-dot">
+        </div>
+        <div class="line">
+        </div>
+      </div>
+      <div class="history-text" data-history="{{@index}}" data-history-date="{{act_time}}">
+        {{act_text}}
+        <br><span class="history-time" data-history="{{@index}}" data-history-date="{{act_time}}">{{act_time}}</span>
+      </div>
+    </li>
+    {{/activities}}
+  </script>
+  <script id="search-template" type="text/x-handlebars-template">
+
+      <div id="search-prompt-triangle">
+        <div id="search-prompt-triangle-inner">
+        </div>
+      </div>
+      <ul id="search-prompt-menu">
+        <li class="search-main-li search-title">搜尋結果</li>
+        {{#if departments}}
+        <li class="search-main-li search-type">
+          <ul class="search-sub-ul">
+            <li class="search-sub-li type-title">
+              <div class="type-title-name">
+                部門
+              </div>
+            </li>
+            {{#departments}}
+            <li class="search-sub-li search-dept">
+              <a class="search-sub-li-wrapper" href="{{dep_URL}}">
+                <div class="search-content">
+                  <div class="dept-name" data-dept-id="{{dep_ID}}">{{dep_name}}</div>
+                </div>
+                <div class="search-img">
+                  <div class="img-circle-container">
+                    <p class="dept-char">{{deptChar dep_name}}</p>
+                  </div>
+                </div>
+                <div class="cleared" style="clear: both;"></div>
+              </a>
+            {{/departments}}
+          </ul>
+        </li>
+        {{/if}}
+
+        {{#if people}}
+        <li class="search-main-li search-type">
+          <ul class="search-sub-ul">
+            <li class="search-sub-li type-title">
+              <div class="type-title-name">
+                人員
+              </div>
+            </li>
+            {{#people}}
+            <li class="search-sub-li search-user">
+              <a class="search-sub-li-wrapper" href="{{formatPersonURL person_URL}}">
+                <div class="search-content search-user-table">
+                  <div class="search-user-name">{{person_userName}}</div>
+                  <div class="search-user-position">{{person_position}}</div>
+                </div>
+                <div class="search-img">
+                  <div class="img-circle-container">
+                    <img class="user-img" src="{{person_userImg}}" alt="{{person_userName}}" data-user-id="{{person_userID}}">
+                  </div>
+                </div>
+                <div class="cleared" style="clear: both;"></div>
+              </a>
+            {{/people}}
+          </ul>
+        </li>
+        {{/if}}
+
+        {{#if objectives}}
+        <li class="search-main-li search-type">
+          <ul class="search-sub-ul">
+            <li class="search-sub-li type-title">
+              <div class="type-title-name">
+                目標
+              </div>
+            </li>
+            {{#objectives}}
+            <li class="search-sub-li search-user">
+              <a class="search-sub-li-wrapper" href="{{formatObjURL obj_URL obj_season}}">
+                <div class="search-content search-obj-table">
+                  <div class="search-obj-user"><label class="search-obj-user-name" style="color:#000;">{{userName}}</label>於<label class="search-obj-user-season" style="color:#000;">{{formatSeason obj_season}}</label>的目標
+                  </div>
+                  <div class="search-obj-text">
+                    {{formatObj obj_text}}
+                  </div>
+                </div>
+                <div class="search-img">
+                  <div class="img-circle-container">
+                    <img class="user-img" src="{{userImg}}" alt="{{userName}}" data-user-id="{{userID}}">
+                  </div>
+                </div>
+                <div class="cleared" style="clear: both;"></div>
+              </a>
+            {{/objectives}}
+          </ul>
+        </li>
+        {{/if}}
+        {{checkData departments people objectives}}
+
+      </ul>
+
+  </script>
+
+  <script id="cmt-template" type="text/x-handlebars-template">
+    <div class="cmt" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+      <div class="cmt-img" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+        <img class="user-img" src="{{cmt_userImg}}" alt="{{cmt_userName}}" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+      </div>
+      <div class="cmt-user" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+        <a class="cmt-user-name" href="/profile" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">{{cmt_userName}}</a>
+        <p class="cmt-user-time" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}" data-cmt-time="{{cmt_time}}">{{formatCmtDate cmt_time}}</p>
+      </div>
+      <div class="cmt-text" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}" contenteditable="false">
+        {{cmt_text}}
+      </div>
+      {{#if edit}}
+      <div class="cmt-more" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+        <a class="fa fa-ellipsis-h cmt-more-icon" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}"></a>
+        <div class="drop-down-cmt" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+          <ul class="cmt-menu" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+            {{#if delete}}
+            <li class="cmt-menu-li cmt-delete" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+              <a class="fa fa-trash" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                <span data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}"> 刪除留言</span>
+              </a>
+            </li>
+            {{/if}}
+            {{#if edit}}
+            <li class="cmt-menu-li cmt-edit" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+              <a class="fa fa-pencil" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                <span data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}"> 編輯留言</span>
+              </a>
+            </li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+      {{else if delete}}
+      <div class="cmt-more" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+        <a class="fa fa-ellipsis-h cmt-more-icon" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}"></a>
+        <div class="drop-down-cmt" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+          <ul class="cmt-menu" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+            {{#if delete}}
+            <li class="cmt-menu-li cmt-delete" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+              <a class="fa fa-trash" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                <span data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}"> 刪除留言</span>
+              </a>
+            </li>
+            {{/if}}
+            {{#if edit}}
+            <li class="cmt-menu-li cmt-edit" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+              <a class="fa fa-pencil" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}">
+                <span data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}" data-user-id="{{cmt_userID}}"> 編輯留言</span>
+              </a>
+            </li>
+            {{/if}}
+          </ul>
+        </div>
+      </div>
+      {{/if}}
+      <div class="cmt-edit-options" data-cmt-id="{{cmt_ID}}" data-obj-id="{{obj_ID}}">
+        <button type="button" class="cmt-cancel" data-cmt-id="{{cmt_ID}}">
+          <i class="fa fa-times" aria-hidden="true" data-obj-id="{{obj_ID}}" data-kr-id="{{kr_ID}}"></i>
+        </button>
+        <button type="button" class="cmt-confirm" data-cmt-id="{{cmt_ID}}">
+          <i class="fa fa-check" aria-hidden="true" data-obj-id="{{obj_ID}}" data-kr-id="{{kr_ID}}"></i>
+        </button>
+        <div class="cmt-edit-prompt" data-obj-id="{{obj_ID}}" data-cmt-id="{{cmt_ID}}"></div>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </script>
+
+  <!-- Bootstrap core JavaScript
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="/javascripts/common/jquery.min.js"></script>
+  <script src="/javascripts/common/jquery.color.js"></script>
+  <script src="/javascripts/common/jquery-ui.js"></script>
+  <script src="/javascripts/profileOthers/profileOthers_load.js"></script>
+  <script src="/javascripts/common/header.js"></script>
+
+  <script>
+    var others_UUID = '<%= others_UUID %>';
+    var season = '<%= season %>';
+    // console.log('others_UUID: ' + others_UUID);
+    // console.log('season:' + season);
+    ajaxRequNotifications(others_UUID, season);
+  </script>
+</body>
+
+</html>

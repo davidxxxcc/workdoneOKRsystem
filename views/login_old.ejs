@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        <%= title %>
+    </title>
+    <link rel="stylesheet" href="/stylesheets/scss/login.min.css">
+    <!-- weichu's css -->
+    <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+    <!-- jQuery lib -->
+    <script src="/javascripts/loginAjax.js"></script>
+    <!-- ajax.js -->
+    <script>
+        // btn-search- onclick:
+        // var acc = document.getElementById('acc-input').value;
+        // var pwd = document.getElementById('pwd-input').value;
+
+        // function Search() {
+        //     // Foolproof
+        //     var acc = document.getElementById('acc-input').value;
+        //     var pwd = document.getElementById('pwd-input').value;
+        //     console.log(acc);
+        //     if (acc == '') {
+        //         alert('Account is empty.');
+        //         return;
+        //     }
+        //     if (pwd == '') {
+        //         alert('Password is empty.');
+        //         return;
+        //     }
+        //     window.location.href = '/profile/?account=' + acc + '&password=' + pwd;
+        // }
+        // function Send_acc_pwd() {
+        //     // Foolproof
+        //     var acc = document.getElementById('acc-input').value;
+        //     var pwd = document.getElementById('pwd-input').value;
+        //     console.log(acc);
+        //     if (acc == '') {
+        //         alert('Account is empty.');
+        //         return;
+        //     }
+        //     if (pwd == '') {
+        //         alert('Password is empty.');
+        //         return;
+        //     }
+        //     Check_acc_pwd('post', acc, pwd);
+        // }
+        function formSubmit() {
+            // Foolproof
+            var acc = document.getElementById('acc-input').value;
+            var pwd = document.getElementById('pwd-input').value;
+            // console.log(acc);
+            if (acc == '') {
+                alert('Account is empty.');
+                return;
+            }
+            if (pwd == '') {
+                alert('Password is empty.');
+                return;
+            }
+            // document.getElementById("UserInfoForm").submit();
+            loginCheck('POST+JSON send', acc, pwd);
+        }
+
+    </script>
+</head>
+
+<body id="BG">
+    <section id="login-part">
+        <div class="logo">
+            <span class="workdone">workdone</span>
+            <span class="rectangle-9"></span>
+        </div>
+        <form id="UserInfoForm" action="/login" method='post'>
+            <div class="id-column">
+                <!-- Account = 信箱 -->
+                <input id="acc-input" type="id-input" name="account" placeholder="Account">
+            </div>
+            <div class="pwd-column">
+                <!-- Password -->
+                <input id="pwd-input" type="pwd-input" name="password" placeholder="Password">
+            </div>
+            <!-- <input type="submit" value='Submit'> -->
+        </form>
+        <div class="login-button">
+            <span class="login" onclick="formSubmit();">登入</span>
+        </div>
+        <div class="forgot-pwd-link">
+            <a href="#" style="color: black" span class="forgot-pwd">忘記密碼？</span>
+        </div>
+        <p id="ppp"></p>
+    </section>
+
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "workdone-okrssystem-cmoneypro",
+  "private_key_id": "856a4473eb7c2f3568d4d5d97d6065feb4020a92",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCUkzXdBjb69qHI\n0K4Tr7aEU7Uj48nbImpI4E+80WK3kLmIhPEAGp5J7AnCku8yJZMIaPMrOiJG8q+R\nGo/0Q53K2ZNJ7LX9VIhYhemIj8dp8BU3TUyDZfugCTph15bJoxlCULeN03q7fBad\nar2yPG0Og0bN1E2+wF7l11TNJTc3t+QAch7T2UQ+ccgGink/z0Fli9x+IYVElSzo\nvEDpjwLDn1axp5JMZkOdzv6pRD35c8FQajkCboNQu2b3GLa/RNYKFV3mF3dObqJ6\nf+dLUh+SaE0721qFnimSdB0C6DjR0eWL0FTGlravFENkyi2HP6/5B6do72SbJtot\nahnu7OTvAgMBAAECggEAF5x5b+Gf9Swis9YuA+TlvYvL+qMlnhSPDXvQUDJ6XK+8\nPGzcG+cfBqJjPq+5IaAFCM4c7t6zOdExg37UJ75jIiyHkrTyiwrXDDJj1Zb72uMT\njBFVuoAHh/xPceMgDHVF+1r2gKx+EbN7qJKhCOU/c5H7O5Sksk7CBga9bEigyNLL\nhBKSKOGl1pOQNQ0s2kGQVqTE1Tunj8BNKW19vkqE3AcDKHuidLfSpMJpIj574nAx\n/+YtWWa5hIQ/pw0wBECyu88Q4HERhYvPkYVa+QliVQrAc1ovRNA16NvsgAD8dJW5\ny2Fhh9PASUJnL88vffKTmVX0p3QEMvnbBn/K8vnf+QKBgQDFkY6SNAD3soDJcTm6\nIGoCpuxcKKzxA23vm3wXhHqF90AJtKkB9tvhmv9A8REEOAUD/wxJzqA9dL/nyrKg\ntPBMifYQWan5fxDqi8VqryPN+pOZuGSb3PXu1bmtlsStV26mruEQGVVDxkxt6rui\nCeVQNNKiXIdFxlfgqq5Lg/UfYwKBgQDAhDjcTSmqXNxm3F3Zm/TTki4NnoUA6ZQO\nlPvAZQyLYqg5jtUMv8SnKiNXDsFkjRmVeLDDPT4dE0S3WxR6opwjh8vQB+srZyng\naFPHmASljDPWiZGSHro0RV9ItfcLOwQi8Adob3q3onDCxCf6SvAaAr/Y8SfaOpe4\nC6xCwqYYBQKBgFmnj/cwui+tRVwkkXmxM+o4LZI0syY71Cujd1CEwcUBSoIdBYTq\nrSVX3PVvb7VmZoBFwSHNLlI1JNDe3uims1VIVe1dgxDBZL/K5a9gAvN5/nkHgEBq\nqP/U5QmtHVs8De599YwEsviqiAxpNPR3YSRglCUxsAEt3LsLOUTzgMzZAoGASsxU\np0uXr6hqvdBK6nyMsBMwr3vyozsdmljKQ6M/L3zCbbKQFmb/yg82MeH6w82Krid5\nTjIiSvusjCzoFQnO7oMZbhdViMSJYbZHLtpim8uQbH+AvqwPnrWBYufIN2XToptt\n1WbS4DxN4W6DNd0d0o1U6r4vxLtVLV3jrQChtd0CgYAwHV77hkE6ynT6CexzYZ5b\nuYzHyWVBJjkKZyEYLSmDptwHxakKUydQzMXdd2a8XIpNlnfIVHVyZ6KInbeonuTz\n+u/lMggkuu/Z30dmtqlRVFo85WKjYMUxG7gt0rZ6e/OVGebvm8BfvqsBDDLpjWRP\newU1R54PzJSYlHbqH0i8VQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "okrs-service-account@workdone-okrssystem-cmoneypro.iam.gserviceaccount.com",
+  "client_id": "100175455022219680047",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/okrs-service-account%40workdone-okrssystem-cmoneypro.iam.gserviceaccount.com"
+}

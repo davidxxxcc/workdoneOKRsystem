@@ -1,0 +1,15 @@
+$greenTheme: #8DE9C3;
+$pinkButton: #F28F8F;
+$greyText: #DAD8DB;
+$greyBackground: #F2F2F2;
+$whiteCard: #FFFFFF;
+
+
+
+//Grid System
+$grid-columns: 12;
+$grid-max-width: 1200px;//breakpoint-small
+$breakpoint-small: "only screen and (min-width: 0px)";
+$breakpoint-medium: "only screen and (min-width: 768px)";
+$breakpoint-large: "only screen and (min-width: 1008px)";
+$breakpoint-xl: "only screen and (min-width: 1300px)";
