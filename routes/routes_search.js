@@ -241,8 +241,8 @@ router.get('/get_requData_searchResult',function(req, res, next){
             }else{
                 json_pkg_search.isEmpty = false;
             }
-            // console.log('search success!');
-            // console.log(JSON.stringify(json_pkg_search));
+            console.log('search success!');
+            console.log(JSON.stringify(json_pkg_search));
             res.status(200).json(JSON.stringify(json_pkg_search));
         }
     });
