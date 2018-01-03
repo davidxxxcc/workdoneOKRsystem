@@ -150,6 +150,7 @@ router.post('/pos_provData_editProfilePic', service_gcs.multer.single('profilePi
             var json_pkg = {
                 newPic_URL: newPic_URL
             };
+            console.log('Edit pic success');
             res.status(200).json(JSON.stringify(json_pkg));
         }
     });
