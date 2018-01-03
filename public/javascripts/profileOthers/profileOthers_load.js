@@ -772,27 +772,52 @@ function addCmtToPage(cmtData){
 }
 
 //Add comment
-function addComment(){
-  var objID, $cmtInput, $cmtBtn, cmtTime;
-  $(".section-okr").on("click", ".cmt-send", function(){
+function addComment() {
+  var objID, $cmtInput, $cmtBtn, cmtTime, firID = "";
+  $(".section-okr").on("click", ".cmt-send", function (event) {
     objID = $(this).attr("data-obj-id");
     $cmtInput = $(".cmt-message[data-obj-id='" + objID + "']");
     $cmtBtn = $(".cmt-send[data-obj-id='" + objID + "']");
     $cmtPrompt = $(".cmt-prompt[data-obj-id='" + objID + "']");
     $cmtText = $cmtInput.val().trim();
 
-    if($cmtText == null || $cmtText.length == 0){
+    if ($cmtText == null || $cmtText.length == 0 ) {
       $cmtPrompt.text("輸入不能為空白!");
       $cmtPrompt.show();
     }
-    else{
+    else {
+      $cmtInput.val(null);
       $cmtPrompt.text("留言上傳中...");
       $cmtPrompt.show();
       cmtTime = GetDateTime();
       ajaxSendAddCmt(objID, $cmtText, cmtTime, friID);
     }
+  });
+
+  $(".section-okr").on("keyup", ".cmt-message", function (event) {
+    if(event.keyCode == 13){
+      objID = $(this).attr("data-obj-id");
+      $cmtInput = $(".cmt-message[data-obj-id='" + objID + "']");
+      $cmtBtn = $(".cmt-send[data-obj-id='" + objID + "']");
+      $cmtPrompt = $(".cmt-prompt[data-obj-id='" + objID + "']");
+      $cmtText = $cmtInput.val().trim();
+
+      if ($cmtText == null || $cmtText.length == 0 ) {
+        $cmtPrompt.text("輸入不能為空白!");
+        $cmtPrompt.show();
+      }
+      else {
+        $cmtInput.val(null);
+        $cmtPrompt.text("留言上傳中...");
+        $cmtPrompt.show();
+        cmtTime = GetDateTime();
+        ajaxSendAddCmt(objID, $cmtText, cmtTime, friID);
+      }
+    }
 
   });
+
+
 }
 //Delete comment
 function deleteComment(){
