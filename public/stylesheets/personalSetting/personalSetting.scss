@@ -109,9 +109,9 @@ section {
         #change_profPic_btn {
           // outline: 1px solid black;
           display: inline-block;
-          position: absolute;
-          top: 50%;
-
+          position: relative;
+          bottom: 0px;
+          margin-top: 5px;
           text-align: center;
 
           button {

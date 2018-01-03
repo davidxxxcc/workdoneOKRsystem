@@ -4,6 +4,7 @@ var GCP_url = 'http://35.196.96.33:3000';
 var GCP_CMTest_URL = 'http://35.196.96.33:5000';
 var Now_url = GCP_CMTest_URL;
 
+var url_noti = Now_url + "/profile/get_requData_notification";
 var url_changePwd = Now_url + "/personalSetting/pos_provData_editPassword";
 var url_upload = Now_url + '/personalSetting/pos_provData_editProfilePic';
 var hoverMenu = "#8de9c2";
@@ -18,11 +19,45 @@ var fadeDuration = 500;
 function loading(imgURL) {
   $('#img_circle>img').attr('src', imgURL);
   headerAfterLoading();
+  ajaxRequNotifications();
   viewPwds();
   getPwds();
   uploadImg();
 }
 
+function ajaxRequNotifications(season) {
+  if (season == null) {
+    season = GetSeason();
+  }
+  // console.log(season);
+  $.ajax({
+    url: url_noti,
+    type: 'GET',
+    dataType: 'json',
+    success: function (dataJSON) {
+      var data = JSON.parse(dataJSON);
+      console.log(data);
+      Handlebars.registerHelper("formatDateToNow", function (text) {
+        str = formatDateToNow(text);
+        return new Handlebars.SafeString(str);
+      });
+      var notiInfo = $('#noti-template').html();
+      var template = Handlebars.compile(notiInfo);
+      var notiData = template(data);
+      $('.noti-message').append(notiData);
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+      //console.log('jqXHR: ' + JSON.stringify(jqXHR) + ',\ntextStatus: ' + textStatus + '\nerrorThrown: ' + errorThrown);
+      if (jqXHR.status == 403) {
+        alert('#Error: 您的憑證已經預期 請重新登入. \n自動導向: Log-in page.');
+        window.location.href = '/';
+      }
+    },
+    complete: function () {
+      //console.log("notification done"); //after success and error callbacks are executed
+    }
+  });
+}
 
 // function setProfPic(imgURL) {
 //   console.log('here');
@@ -281,4 +316,60 @@ function uploadImg() {
 
     });
   });
+}
+
+/* ------ 取得當前季度 ------ */
+function GetSeason() {
+	var now = new Date();
+	var year = now.getFullYear();
+	var month = now.getMonth() + 1;
+	var season;
+
+	if (month <= 3) {
+		season = "01";
+	} else if (month > 3 && month <= 6) {
+		season = "02";
+	} else if (month > 6 && month <= 9) {
+		season = "03";
+	} else if (month > 9 && month <= 12) {
+		season = "04";
+	}
+	var str = year + season;
+	return str;
+}
+
+// format date compared with current time
+function formatDateToNow(text) {
+  var now = GetDateTime();
+  var year = parseInt(text.substr(0, 4))
+  var month = parseInt(text.substr(5, 2));
+  var day = parseInt(text.substr(8, 2));
+  var time = text.substr(11, 5);
+  var yearNow = parseInt(now.substr(0, 4))
+  var monthNow = parseInt(now.substr(5, 2));
+  var dayNow = parseInt(now.substr(8, 2));
+  var timeNow = now.substr(11, 5);
+  var str;
+  //今年的留言
+  if (year == yearNow) {
+    if (month != monthNow) {
+      str = month + "月" + day + "日 " + time;
+    }
+    //這個月留言
+    else if (month == monthNow && dayNow - day > 1) {
+      str = month + "月" + day + "日 " + time;
+    }
+    //昨日留言
+    else if (month == monthNow && dayNow - day == 1) {
+      str = "昨天 " + time;
+    }
+    //今日留言
+    else {
+      str = time;
+    }
+  }
+  else {
+    str = year + "年" + month + "月" + day + "日 " + time;
+  }
+  return str;
 }

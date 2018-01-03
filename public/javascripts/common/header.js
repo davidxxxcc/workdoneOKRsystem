@@ -535,4 +535,3 @@ function GetDateTime() {
   var dateTime = year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
   return dateTime;
 }
-
