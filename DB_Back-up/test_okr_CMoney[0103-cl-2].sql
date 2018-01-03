@@ -136,13 +136,13 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`Emp_UUID`, `Company`, `Department`, `Position`, `Emp_Account`, `Password`, `Emp_Name`, `Img_URL`, `Ses_ID`, `Act_Setting`, `Act_AnotherData`, `Act_Permission`, `Avg_Progress`, `Disable`) VALUES
-('169d1c97-efa2-11e7-9108-74d02b1dfe7c', 'C001', 1, '理財寶企劃組/產品經理', 'terry_lai@cmoney.com.tw', '123456', '賴承佑', '', 'C001^p^2018Q1', '', '', 0, 0, 0),
-('67d4df0e-f02f-11e7-80e0-74d02b1dfe7c', 'C001', 2, '理財寶-金融科技部/產品經理', 'amy_chung@cmoney.com.tw', '123456', '叢日萱', '', 'C001^p^2018Q1', '', '', 0, 0, 0),
-('7482549f-efa2-11e7-9108-74d02b1dfe7c', 'C001', 1, '理財寶企劃組/產品經理', 'sean_lin@cmoney.com.tw', '123456', '林孟勳', '', 'C001^p^2018Q1', '', '', 0, 0, 0),
-('9451eb70-efa2-11e7-9108-74d02b1dfe7c', 'C001', 1, '理財寶企劃組/產品經理', 'bon_chen@cmoney.com.tw', '123456', '陳定邦', '', 'C001^p^2018Q1', '', '', 0, 0, 0),
-('abde7ab2-efa2-11e7-9108-74d02b1dfe7c', 'C001', 1, '理財寶企劃組/產品經理', 'tim_wu@cmoney.com.tw', '123456', '吳侑庭', '', 'C001^p^2018Q1', '', '', 0, 0, 0),
-('bf962f65-efa2-11e7-9108-74d02b1dfe7c', 'C001', 1, '理財寶企劃組/產品經理', 'danny@cmoney.com.tw', '123456', '陳建銘', '', 'C001^p^2018Q1', '', '', 0, 0, 0),
-('dd7b0669-efa2-11e7-9108-74d02b1dfe7c', 'C001', 1, '理財寶企劃組/UI設計師', 'piper_chien@cmoney.com.tw', '123456', '簡潔安', '', 'C001^p^2018Q1', '', '', 0, 0, 0);
+('169d1c97-efa2-11e7-9108-74d02b1dfe7c', 'C001', 1, '理財寶企劃組/產品經理', 'terry_lai@cmoney.com.tw', '123456', '賴承佑', 'https://vignette.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138', 'C001^p^2018Q1', '', '', 0, 0, 0),
+('67d4df0e-f02f-11e7-80e0-74d02b1dfe7c', 'C001', 2, '理財寶-金融科技部/產品經理', 'amy_chung@cmoney.com.tw', '123456', '叢日萱', 'https://vignette.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138', 'C001^p^2018Q1', '', '', 0, 0, 0),
+('7482549f-efa2-11e7-9108-74d02b1dfe7c', 'C001', 1, '理財寶企劃組/產品經理', 'sean_lin@cmoney.com.tw', '123456', '林孟勳', 'https://vignette.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138', 'C001^p^2018Q1', '', '', 0, 0, 0),
+('9451eb70-efa2-11e7-9108-74d02b1dfe7c', 'C001', 1, '理財寶企劃組/產品經理', 'bon_chen@cmoney.com.tw', '123456', '陳定邦', 'https://vignette.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138', 'C001^p^2018Q1', '', '', 0, 0, 0),
+('abde7ab2-efa2-11e7-9108-74d02b1dfe7c', 'C001', 1, '理財寶企劃組/產品經理', 'tim_wu@cmoney.com.tw', '123456', '吳侑庭', 'https://vignette.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138', 'C001^p^2018Q1', '', '', 0, 0, 0),
+('bf962f65-efa2-11e7-9108-74d02b1dfe7c', 'C001', 1, '理財寶企劃組/產品經理', 'danny@cmoney.com.tw', '123456', '陳建銘', 'https://vignette.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138', 'C001^p^2018Q1', '', '', 0, 0, 0),
+('dd7b0669-efa2-11e7-9108-74d02b1dfe7c', 'C001', 1, '理財寶企劃組/UI設計師', 'piper_chien@cmoney.com.tw', '123456', '簡潔安', 'https://vignette.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138', 'C001^p^2018Q1', '', '', 0, 0, 0);
 
 --
 -- Triggers `employee`
