@@ -6,7 +6,7 @@ var service_gcs_file = require('../library/service_GCS_file');
 var router_Storage = require('@google-cloud/storage');
 var router_GCS_storage = new router_Storage({
     projectId: 'workdone-okrssystem-cmoneypro',
-    keyFilename: './WorkDone-OKRsSystem-CMoneyPro-856a4473eb7c.json'
+    keyFilename: '../WorkDone-OKRsSystem-CMoneyPro-856a4473eb7c.json'
 });
 var router_GCS_imgBucketName = 'okrs-sys-emp-img';
 var router_GCS_imgBucketInstance = router_GCS_storage.bucket(router_GCS_imgBucketName);
@@ -127,20 +127,20 @@ router.post('/pos_provData_editProfilePic', service_gcs.multer.single('profilePi
         function (next) {
             req.db_con.query('SELECT `Img_URL` FROM `employee` WHERE `Emp_UUID` = ?', req.session.Emp_UUID, function (err, rows) {
                 console.log('oldFileName: ' + rows[0].Img_URL);
-                service_gcs.deleteFile(rows[0].Img_URL);
+                // service_gcs.deleteFile(rows[0].Img_URL);
 
-                // var oldFileName = rows[0].Img_URL;
+                var oldFileName = rows[0].Img_URL;
                 // router_GCS_imgBucketInstance
-                // router_GCS_storage
-                //     .bucket(router_GCS_imgBucketName)
-                //     .file(oldFileName)
-                //     .delete()
-                //     .then(() => {
-                //         console.log(`gs://${router_GCS_imgBucketName}/${oldFileName} deleted.`);
-                //     })
-                //     .catch(err => {
-                //         console.error('ERROR:', err);
-                //     });
+                router_GCS_storage
+                    .bucket(router_GCS_imgBucketName)
+                    .file(oldFileName)
+                    .delete()
+                    .then(() => {
+                        console.log(`gs://${router_GCS_imgBucketName}/${oldFileName} deleted.`);
+                    })
+                    .catch(err => {
+                        console.error('ERROR:', err);
+                    });
                 next(err);
             });
         },
