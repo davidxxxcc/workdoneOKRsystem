@@ -89,7 +89,8 @@ function okrDataCheck(){
 }
 //Set user ID to variable friendID
 function setFriID(){
-  friID = $("#user-img").attr("data-user-id");
+  friID = $("#profile-user-img").attr("data-user-id");
+  console.log("friID" + friID);
 }
 //Set up home & viewothers
 // function setHref(){

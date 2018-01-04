@@ -224,9 +224,8 @@
   <script id="profile-template" type="text/x-handlebars-template">
     <div id="user" data-user-id="{{profile.profile_user_id}}">
       <a id="profile-img">
-        <div class="img-circle">
-          <img id="user-img" src="{{profile.profile_user_img}}" data-user-id="{{profile.profile_user_id}}">
-        </div>
+        <img id="profile-user-img" src="{{profile.profile_user_img}}" data-user-id="{{profile.profile_user_id}}">
+          <!-- <img id="user-img" src="{{profile.profile_user_img}}" data-user-id="{{profile.profile_user_id}}"> -->
       </a>
       <h3 id="user-name">{{profile.profile_user_name}}</h3>
       <p id="user-position">{{profile.profile_user_position}}</p>

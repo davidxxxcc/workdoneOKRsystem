@@ -127,10 +127,16 @@ header {
                       font-size: 30px;
                     }
                     .user-img {
-                      display: block;
-                      margin: 0 auto;
+                      height: 100%;
                       width: 100%;
-                      height: auto;
+                      overflow: hidden;
+                      /* fill the container, preserving aspect ratio, and cropping to fit */
+                      background-size: cover;
+                       /* center the image vertically and horizontally */
+                       background-position: top center;
+                       /* round the edges to a circle with border radius 1/2 container size */
+                       border-radius: 50%;
+
                     }
                   }
                 }
