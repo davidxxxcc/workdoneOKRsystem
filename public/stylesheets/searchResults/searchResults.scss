@@ -330,9 +330,13 @@ section {
 
             #user_img {
               display: block;
-              width: 100%;
-              height: auto;
-              background-color: black;
+                width: 100%;
+                height: 100%;
+                /* fill the container, preserving aspect ratio, and cropping to fit */
+                background-size: cover;
+                /* center the image vertically and horizontally */
+                background-position: top center;
+                background-color: black;
             }
           }
 
