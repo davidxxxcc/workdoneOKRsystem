@@ -3,11 +3,11 @@ var async = require('async');
 var router = express.Router();
 var service_gcs = require('../library/service_GCS');
 var service_gcs_file = require('../library/service_GCS_file');
-var Storage = require('@google-cloud/storage');
-const GCS_storage = Storage({
+const Storage = require('@google-cloud/storage');
+const GCS_storage = new Storage({
     projectId: 'workdone-okrssystem-cmoneypro',
     keyFilename: './WorkDone-OKRsSystem-CMoneyPro-856a4473eb7c.json'
-  });
+});
 var GCS_imgBucketName = 'okrs-sys-emp-img';
 var GCS_imgBucketInstance = GCS_storage.bucket(GCS_imgBucketName);
 
@@ -128,7 +128,9 @@ router.post('/pos_provData_editProfilePic', service_gcs.multer.single('profilePi
             req.db_con.query('SELECT `Img_URL` FROM `employee` WHERE `Emp_UUID` = ?', req.session.Emp_UUID, function (err, rows) {
                 // service_gcs.deleteFile(rows[0].Img_URL);
                 var oldFileName = rows[0].Img_URL;
-                GCS_imgBucketInstance
+                // GCS_imgBucketInstance
+                GCS_storage
+                    .bucket(GCS_imgBucketName)
                     .file(oldFileName)
                     .delete()
                     .then(() => {
