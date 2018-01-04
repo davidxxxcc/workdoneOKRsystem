@@ -123,6 +123,7 @@ function deleteFile(filename) {
 //====================================================
 
 module.exports = {
+  deleteFile,
   getPublicUrl,
   sendUploadToGCS,
   multer
