@@ -18,7 +18,7 @@ const Multer = require('multer');
 
 const GCS_storage = Storage({
   projectId: 'workdone-okrssystem-cmoneypro',
-  // keyFilename: './WorkDone-OKRsSystem-CMoneyPro-856a4473eb7c.json'
+  keyFilename: './WorkDone-OKRsSystem-CMoneyPro-856a4473eb7c.json'
 });
 var GCS_imgBucketName = 'okrs-sys-emp-img';
 var GCS_imgBucketInstance = GCS_storage.bucket(GCS_imgBucketName);
