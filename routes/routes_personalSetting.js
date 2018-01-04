@@ -3,7 +3,11 @@ var async = require('async');
 var router = express.Router();
 var service_gcs = require('../library/service_GCS');
 var service_gcs_file = require('../library/service_GCS_file');
-var GCS_storage = require('@google-cloud/storage');
+var Storage = require('@google-cloud/storage');
+const GCS_storage = Storage({
+    projectId: 'workdone-okrssystem-cmoneypro',
+    keyFilename: './WorkDone-OKRsSystem-CMoneyPro-856a4473eb7c.json'
+  });
 var GCS_imgBucketName = 'okrs-sys-emp-img';
 var GCS_imgBucketInstance = GCS_storage.bucket(GCS_imgBucketName);
 
