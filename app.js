@@ -105,14 +105,14 @@ app.use('/personalSetting', routes_personalSetting);
 
 // ----------------- Error -----------------
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -123,15 +123,15 @@ app.use(function(err, req, res, next) {
 });
 // ---------------------------------------------------
 
-schedule.scheduleJob('0 0 7 5 1,4,7,10 *', function(){
+schedule.scheduleJob('0 0 7 5 1,4,7,10 *', function () {
   console.log('The answer to life, the universe, and everything!!!!!');
   var str = GetSeason();
-  var year,season;
-  if(str.substring(5) > 3){
-    year = str.substring(0,3) + 1;
+  var year, season;
+  if (str.substring(5) > 3) {
+    year = str.substring(0, 3) + 1;
     season = '1';
-  }else{
-    year = str.substring(0,3);
+  } else {
+    year = str.substring(0, 3);
     season = str.substring(5) + 1;
   }
   var now = new Date();
@@ -140,12 +140,18 @@ schedule.scheduleJob('0 0 7 5 1,4,7,10 *', function(){
   var seasonName = year + season;
   var startDay = startDay();
   var endDay = endDay();
-  
-  db_con.query('INSERT INTO `season` (`Ses_ID`, `Cmp_ID`, `Ses_Name`, `Start_Day`, `End_Day`, `Disable`) VALUE (?,?,?,?,?,?)',[seasonID,'C001',seasonName,startDay,endDay,0],function(err,rows){
+  //==================================
+  seasonID = 'C001^p^2018Q3';
+  seasonName = '201803';
+  startDay = '2018-07-01';
+  endDay = '2018-09-30'; 
+  //==================================
+
+  db_con.query('INSERT INTO `season` (`Ses_ID`, `Cmp_ID`, `Ses_Name`, `Start_Day`, `End_Day`, `Disable`) VALUE (?,?,?,?,?,?)', [seasonID, 'C001', seasonName, startDay, endDay, 0], function (err, rows) {
     console.log('insert into season!');
-    if(err){
+    if (err) {
       console.log("err: " + err);
-    }else{
+    } else {
       console.log('add season success!');
     }
   });
@@ -164,39 +170,39 @@ function GetSeason() {
   var season;
 
   if (month <= 3) {
-      season = "01";
+    season = "01";
   } else if (month > 3 && month <= 6) {
-      season = "02";
+    season = "02";
   } else if (month > 6 && month <= 9) {
-      season = "03";
+    season = "03";
   } else if (month > 9 && month <= 12) {
-      season = "04";
+    season = "04";
   }
   var str = year + season;
   return str;
 }
-function startDay(){
+function startDay() {
   var now = new Date();
   var year = now.getFullYear();
   var month = now.getMonth() + 1;
   var date = now.getDate();
-  if(month < 10 ){
+  if (month < 10) {
     month = '0' + month;
   }
-  if(date < 10){
+  if (date < 10) {
     date = '0' + date;
   }
   return year + '-' + month + '-' + date;
 };
-function endDate(){
+function endDate() {
   var now = startDay();
-  if(now.substring(5,9) == '01-01'){
-    return now.substring(0,4) + '03-31';
-  }else if(now.substring(5,9) == '04-01'){
-    return now.substring(0,4) + '06-30';
-  }else if(now.substring(5,9) == '07-01'){
-    return now.substring(0,4) + '09-30';
-  }else{
-    return  now.substring(0,4) + '12-31';
+  if (now.substring(5, 9) == '01-01') {
+    return now.substring(0, 4) + '03-31';
+  } else if (now.substring(5, 9) == '04-01') {
+    return now.substring(0, 4) + '06-30';
+  } else if (now.substring(5, 9) == '07-01') {
+    return now.substring(0, 4) + '09-30';
+  } else {
+    return now.substring(0, 4) + '12-31';
   }
 };
