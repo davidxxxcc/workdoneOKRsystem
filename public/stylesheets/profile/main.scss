@@ -256,7 +256,7 @@
         }
         #kr-input-module{
           display: none;
-          overflow: hidden;
+          overflow:visible;
 
           .input-btns.inner{
             position: relative;
@@ -567,6 +567,9 @@
       font-size: 18px;
       text-align: center;
       line-height: 27px;
+      word-wrap: break-word;
+      word-break: break-all;
+
 
     }
     #delete-input-btns{
@@ -1598,7 +1601,7 @@ section {
             position: relative;
             display: block;
             margin: 10px 1vw 0;
-            height: 20px;
+            min-height: 20px;
             color:#000;
             .kr-edit-prompt{
               position: absolute;
