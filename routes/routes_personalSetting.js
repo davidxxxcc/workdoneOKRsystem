@@ -4,6 +4,7 @@ var router = express.Router();
 var service_gcs = require('../library/service_GCS');
 var service_gcs_file = require('../library/service_GCS_file');
 var GCS_storage = require('@google-cloud/storage');
+var GCS_imgBucketName = 'okrs-sys-emp-img';
 var GCS_imgBucketInstance = GCS_storage.bucket(GCS_imgBucketName);
 
 
