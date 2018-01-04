@@ -13,12 +13,12 @@
 <body>
   <header>
     <div class="searchBar">
-      <input id="searchInput" type="text" placeholder=" Search...">
+      <input id="searchInput" type="text" placeholder=" Search..." autocomplete="nope">
       <button id="seatchButton" class="fa fa-search" type="button"></button>
       <div id="search-prompt"></div>
     </div>
     <div class="brand">
-      <a href="#" id="brand-name"><img src="https://storage.googleapis.com/okrs-sys-emp-img/designevo-transparent-hori.png"></a>
+      <a id="brand-name"><img src="https://storage.googleapis.com/okrs-sys-emp-img/designevo-transparent-hori.png"></a>
     </div>
     <div class="options-cell options-more">
       <a class="fa fa-ellipsis-h" id="options-fa-more"></a>
@@ -89,7 +89,7 @@
           <script id="random_template" type="text/x-handlebars-template">
             <div class="people-block" id="people_block_random" data-id="{{Emp_UUID}}">
               {{#each viewOthers_random20}}
-              <a href="#" class="other-prof-btn" data-id="{{person_userID}}">
+              <a class="other-prof-btn" data-id="{{person_userID}}">
                 <div class="person">
 
                   <div class="progress-container">
@@ -119,7 +119,8 @@
                   </div>
 
                   <div class="user-name">{{person_userName}}</div>
-                  <div class="user-job">{{person_position}}</div>
+                  <div class="user-job">{{formatDept person_position}}</div>
+                  <div class="user-job">{{formatPos person_position}}</div>
                 </div>
               </a>
               {{/each}}
@@ -128,7 +129,7 @@
 
           <script id="loadMore_template" type="text/x-handlebars-template">
             {{#each viewOthers_loadMore}}
-            <a href="#" class="other-prof-btn" data-id="{{person_userID}}">
+            <a class="other-prof-btn" data-id="{{person_userID}}">
               <div class="person">
 
                 <div class="progress-container">
@@ -158,7 +159,8 @@
                 </div>
 
                 <div class="user-name">{{person_userName}}</div>
-                <div class="user-job">{{person_position}}</div>
+                <div class="user-job">{{formatDept person_position}}</div>
+                <div class="user-job">{{formatPos person_position}}</div>
               </div>
             </a>
             {{/each}}
@@ -179,7 +181,7 @@
 
             <div class="people-block">
               {{#each people}}
-              <a href="#" class="other-prof-btn" data-id="{{person_userID}}">
+              <a class="other-prof-btn" data-id="{{person_userID}}">
                 <div class="person" data-id="{{person_userID}}">
 
                   <div class="progress-container">
@@ -209,7 +211,8 @@
                   </div>
 
                   <div class="user-name">{{person_userName}}</div>
-                  <div class="user-job">{{person_position}}</div>
+                  <div class="user-job">{{formatDept person_position}}</div>
+                  <div class="user-job">{{formatPos person_position}}</div>
                 </div>
               </a>
               {{/each}}
@@ -262,7 +265,8 @@
                   </div>
 
                   <div class="user-name">{{person_userName}}</div>
-                  <div class="user-job">{{person_position}}</div>
+                  <div class="user-job">{{formatDept person_position}}</div>
+                  <div class="user-job">{{formatPos person_position}}</div>
                 </div>
               </a>
               {{/each}}

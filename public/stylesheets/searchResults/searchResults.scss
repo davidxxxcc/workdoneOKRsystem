@@ -84,7 +84,7 @@ section {
         .person {
           display: inline-block;
           width: 140px;
-          height: 165px;
+          height: 185px;
           border: 1px solid #979797;
           border-radius: 5px;
           margin: 1.1%;
@@ -227,7 +227,11 @@ section {
               #user_img {
                 display: block;
                 width: 100%;
-                height: auto;
+                height: 100%;
+                /* fill the container, preserving aspect ratio, and cropping to fit */
+                background-size: cover;
+                /* center the image vertically and horizontally */
+                background-position: top center;
                 background-color: black;
               }
             }
@@ -236,7 +240,7 @@ section {
 
           .user-name {
             // outline: 1px solid blue;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
             font-family: "微軟正黑體";
             color: black;
@@ -246,12 +250,12 @@ section {
 
           .user-job {
             // outline: 1px solid red;
-            font-size: 9px;
+            font-size: 12px;
             font-weight: 300;
             font-family: "微軟正黑體";
             color: #8a8888;
             text-align: center;
-            margin-top: 3px;
+            margin-top: 4px;
           }
 
         }  // .person end

@@ -94,6 +94,18 @@ function loadSearchResults(kw, depOnly) {
           return new Handlebars.SafeString(str);
         });
 
+        Handlebars.registerHelper('formatDept', function(job) {
+          var jobArr = job.split('/');
+          var dept = jobArr[0];
+          return new Handlebars.SafeString(dept);
+        });
+
+        Handlebars.registerHelper('formatPos', function(job) {
+          var jobArr = job.split('/');
+          var position = jobArr[1];
+          return new Handlebars.SafeString(position);
+        });
+
         var templateInfo = document.getElementById('searchResults_template').innerHTML;
   			var template = Handlebars.compile(templateInfo);
         var templateData = template(data);

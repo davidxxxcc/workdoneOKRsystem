@@ -266,6 +266,7 @@ function isNull(str) {
 }
 
 
+
 function uploadImg() {
   // $("#uploadImage").change(function(){
   //   readImage( this );
@@ -282,7 +283,8 @@ function uploadImg() {
   //   }
   // }
 
-  $('#uploadImage').change(function() {
+  // $('#uploadImage').change(function() {
+  $('#uploadBtn').click(function() {
     //## 宣告一個FormData
     var data = new FormData();
     //## 將檔案append FormData

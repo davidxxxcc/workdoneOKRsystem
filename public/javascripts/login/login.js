@@ -28,8 +28,8 @@ var UIController = (function () {
 
     // Get input values
     getInput: function () {
-      var idChecked = document.getElementById(DOMstrings.inputId).value;
-      var pwdChecked = document.getElementById(DOMstrings.inputPwd).value;
+      var idChecked = document.getElementById(DOMstrings.inputId).value.trim();
+      var pwdChecked = document.getElementById(DOMstrings.inputPwd).value.trim();
       if ((idChecked !== "") && (pwdChecked !== "") && (idChecked.search(emailRule) != -1)) {
         return {
           "id": idChecked,

@@ -80,6 +80,19 @@ function loadRandomOKRs() {
     success: function(responseData, textStatus, jqXHR) {
 			/* ------ 後端用 ------ */
 			var data = JSON.parse(responseData);
+
+      Handlebars.registerHelper('formatDept', function(job) {
+        var jobArr = job.split('/');
+        var dept = jobArr[0];
+        return new Handlebars.SafeString(dept);
+      });
+
+      Handlebars.registerHelper('formatPos', function(job) {
+        var jobArr = job.split('/');
+        var position = jobArr[1];
+        return new Handlebars.SafeString(position);
+      });
+
 			var templateInfo = document.getElementById('random_template').innerHTML;
 			var template = Handlebars.compile(templateInfo);
 			var templateData = template(data);
@@ -87,6 +100,7 @@ function loadRandomOKRs() {
 			if (data.viewOthers_random20.length >= 20) {
 				setLoadMoreBtn('append');
 			}
+
 			loadDeptsOKRs();
 
 
