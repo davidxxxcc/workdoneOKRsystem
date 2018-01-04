@@ -5,7 +5,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var schedule = require('node-schedule');
 // Module loading
 var app = express();
 // ---------------------------------------------------
@@ -123,6 +123,80 @@ app.use(function(err, req, res, next) {
 });
 // ---------------------------------------------------
 
+schedule.scheduleJob('0 0 7 5 1,4,7,10 *', function(){
+  console.log('The answer to life, the universe, and everything!!!!!');
+  var str = GetSeason();
+  var year,season;
+  if(str.substring(5) > 3){
+    year = str.substring(0,3) + 1;
+    season = '1';
+  }else{
+    year = str.substring(0,3);
+    season = str.substring(5) + 1;
+  }
+  var now = new Date();
+
+  var seasonID = 'C001^p^' + year + 'Q' + season;
+  var seasonName = year + season;
+  var startDay = startDay();
+  var endDay = endDay();
+  
+  db_con.query('INSERT INTO `season` (`Ses_ID`, `Cmp_ID`, `Ses_Name`, `Start_Day`, `End_Day`, `Disable`) VALUE (?,?,?,?,?,?)',[seasonID,'C001',seasonName,startDay,endDay,0],function(err,rows){
+    console.log('insert into season!');
+    if(err){
+      console.log("err: " + err);
+    }else{
+      console.log('add season success!');
+    }
+  });
+});
+
+
 // ----------------- Module export -----------------
 module.exports = app;
+//exports.db_con = db_con;
 // ---------------------------------------------------
+//Return season format ex: "201703"
+function GetSeason() {
+  var now = new Date();
+  var year = now.getFullYear();
+  var month = now.getMonth() + 1;
+  var season;
+
+  if (month <= 3) {
+      season = "01";
+  } else if (month > 3 && month <= 6) {
+      season = "02";
+  } else if (month > 6 && month <= 9) {
+      season = "03";
+  } else if (month > 9 && month <= 12) {
+      season = "04";
+  }
+  var str = year + season;
+  return str;
+}
+function startDay(){
+  var now = new Date();
+  var year = now.getFullYear();
+  var month = now.getMonth() + 1;
+  var date = now.getDate();
+  if(month < 10 ){
+    month = '0' + month;
+  }
+  if(date < 10){
+    date = '0' + date;
+  }
+  return year + '-' + month + '-' + date;
+};
+function endDate(){
+  var now = startDay();
+  if(now.substring(5,9) == '01-01'){
+    return now.substring(0,4) + '03-31';
+  }else if(now.substring(5,9) == '04-01'){
+    return now.substring(0,4) + '06-30';
+  }else if(now.substring(5,9) == '07-01'){
+    return now.substring(0,4) + '09-30';
+  }else{
+    return  now.substring(0,4) + '12-31';
+  }
+};
