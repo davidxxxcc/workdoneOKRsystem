@@ -132,13 +132,26 @@ router.post('/pos_provData_editProfilePic', service_gcs.multer.single('profilePi
                 // service_gcs.deleteFile(rows[0].Img_URL);
 
                 // router_GCS_imgBucketInstance
-                router_GCS_storage.bucket(router_GCS_imgBucketName).file(oldFileName).delete()
-                    .then(() => {
-                        console.log(`gs://${router_GCS_imgBucketName}/${oldFileName} deleted.`);
-                    })
-                    .catch(err => {
-                        console.error('ERROR:', err);
-                    });
+                // router_GCS_storage.bucket(router_GCS_imgBucketName).file(oldFileName).delete()
+                //     .then(() => {
+                //         console.log(`gs://${router_GCS_imgBucketName}/${oldFileName} deleted.`);
+                //     })
+                //     .catch(err => {
+                //         console.error('ERROR:', err);
+                //     });
+
+                //
+                var fileInstance = router_GCS_storage.bucket(router_GCS_imgBucketName).file(oldFileName);
+                fileInstance.delete(function (err, apiResponse) { });
+
+                //-
+                // If the callback is omitted, we'll return a Promise.
+                //-
+                fileInstance.delete().then(function (data) {
+                    var apiResponse = data[0];
+                });
+
+
                 next(err);
             });
         },
