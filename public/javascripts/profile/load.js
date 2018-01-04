@@ -940,7 +940,7 @@ function krEdit() {
     // 0 for initial value, 1 for editing whole objective, 2 for editing key result text only, 3 for editing key result progress only, 4 for editing key result both text and progress
     //edit krProgress only
     if (!hasNumber($krTextNew)) {
-      $krPrompt.text("關鍵目標必須包含阿拉伯數字!");
+      $krPrompt.html("關鍵目標必須包含阿拉伯數字!<br>例: 粉絲團人數提升1000人");
     }
     else {
       if ($krText == $krTextNew && $krProgress != $krProgressNew) {
@@ -1516,7 +1516,7 @@ function initiModal() {
   $('#kr-input-module').hide();
   $('#kr-hint').show();
   $('#kr-input-container').show();
-
+  $('#kr-input-hint').text(null);
 
 }
 //Show or hide section-modal
@@ -1861,7 +1861,7 @@ function clickAddKrBtn() {
         $krInputHint.text("內容不能為空白!").css("display", "inline");
       }
       else if (!hasNumber(krText)) {
-        $krInputHint.text("關鍵目標必須包含阿拉伯數字!").css("display", "inline");
+        $krInputHint.html("關鍵目標必須包含阿拉伯數字!<br>例: 粉絲團人數提升1000人").css("display", "inline");
       }
       else {
         $krInputHint.css("display", "none");
@@ -1882,7 +1882,7 @@ function clickAddKrBtn() {
         $krInputHint.text("內容不能為空白!").css("display", "inline");
       }
       else if (!hasNumber(krText)) {
-        $krInputHint.text("關鍵目標必須包含阿拉伯數字!").css("display", "inline");
+        $krInputHint.html("關鍵目標必須包含阿拉伯數字!<br>例: 粉絲團人數提升1000人").css("display", "inline");
       }
       else {
         $krInputHint.css("display", "none");
