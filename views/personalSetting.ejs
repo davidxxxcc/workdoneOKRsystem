@@ -13,12 +13,12 @@
 <body>
   <header>
     <div class="searchBar">
-      <input id="searchInput" type="text" placeholder=" Search...">
+      <input id="searchInput" type="text" placeholder=" Search..." autocomplete="nope">
       <button id="seatchButton" class="fa fa-search" type="button"></button>
       <div id="search-prompt"></div>
     </div>
     <div class="brand">
-      <a href="#" id="brand-name"><img src="https://storage.googleapis.com/okrs-sys-emp-img/designevo-transparent-hori.png"></a>
+      <a id="brand-name"><img src="https://storage.googleapis.com/okrs-sys-emp-img/designevo-transparent-hori.png"></a>
     </div>
     <div class="options-cell options-more">
       <a class="fa fa-ellipsis-h" id="options-fa-more"></a>
@@ -92,7 +92,9 @@
 
             <!-- <button class="fa fa-plus-circle"></button> -->
             <!-- <input accept="image/*" id="uploadImage" type="file" class="fa fa-plus-circle"> -->
+
             <input accept="image/*" id="uploadImage" type="file" name="profilePic">
+            <button type="button" name="button" id="uploadBtn">上傳</button>
 
             <!-- <span class="btn btn-success fileinput-button">
               <i class="fa fa-plus-circle"></i> -->
@@ -123,11 +125,11 @@
           <div class="old-pwd">
             <p class="input">輸入舊密碼</p>
             <!--暗文密码输入框-->
-            <input type="password" id="input_old_pwd_invisible" autocomplete="off">
+            <input type="password" id="input_old_pwd_invisible" autocomplete="nope">
             <div id="icon_old_visible" class="fa fa-eye"></div>
 
             <!--明文密码输入框-->
-            <input type="text" id="input_old_pwd_visible" style="display: none;" autocomplete="off">
+            <input type="text" id="input_old_pwd_visible" style="display: none;" autocomplete="nope">
             <div id="icon_old_invisible" class="fa fa-eye-slash" style="display: none;"></div>
 
             <div class="error-mes-block" id="wrong_mes" style="display: none;">
@@ -144,11 +146,11 @@
           <div class="new-pwd">
             <p class="input">輸入新密碼</p>
             <!--暗文密码输入框-->
-            <input type="password" id="input_new_pwd_invisible" autocomplete="off">
+            <input type="password" id="input_new_pwd_invisible" autocomplete="nope">
             <div id="icon_new_visible" class="fa fa-eye"></div>
 
             <!--明文密码输入框-->
-            <input type="text" id="input_new_pwd_visible" style="display: none;" autocomplete="off">
+            <input type="text" id="input_new_pwd_visible" style="display: none;" autocomplete="nope">
             <div id="icon_new_invisible" class="fa fa-eye-slash" style="display: none;"></div>
 
             <div class="error-mes-block" id="incomplete_new" style="display: none;">
@@ -160,11 +162,11 @@
           <div class="confirm-pwd">
             <p class="input">確認新密碼</p>
             <!--暗文密码输入框-->
-            <input type="password" id="input_conf_pwd_invisible" autocomplete="off">
+            <input type="password" id="input_conf_pwd_invisible" autocomplete="nope">
             <div id="icon_conf_visible" class="fa fa-eye"></div>
 
             <!--明文密码输入框-->
-            <input type="text" id="input_conf_pwd_visible" style="display: none;" autocomplete="off">
+            <input type="text" id="input_conf_pwd_visible" style="display: none;" autocomplete="nope">
             <div id="icon_conf_invisible" class="fa fa-eye-slash" style="display: none;"></div>
 
             <div class="error-mes-block" id="dismatch_mes" style="display: none;">
@@ -182,7 +184,7 @@
             <button type="button" id="confirm_btn">送出</button>
             <button type="button" id="cancel_btn">取消</button>
             <p class="error-mes" id="success_mes" style="display: none;">密碼更新成功！</p>
-            <p class="error-mes" id="again_mes" style="display: none;">密碼更新失敗，請重試</p>
+            <p class="error-mes" id="again_mes" style="display: none;">請重試</p>
           </div>
 
         </div>

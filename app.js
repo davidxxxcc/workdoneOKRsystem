@@ -28,7 +28,7 @@ var mysql_cloud = mysql.createConnection({
   database: 'test_okr_CMoney'
 });
 var db_con = mysql_cloud;
-// --- 
+// ---
 
 
 //session
