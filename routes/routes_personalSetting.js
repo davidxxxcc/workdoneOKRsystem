@@ -116,6 +116,12 @@ router.post('/pos_provData_editProfilePic', service_gcs.multer.single('profilePi
     // });
 
     var tasks = [
+        function (next) {
+            req.db_con.query('SELECT `Img_URL` FROM `employee` WHERE `Emp_UUID` = ?', req.session.Emp_UUID, function (err, rows) {
+                service_gcs.deleteFile(rows[0].Img_URL);
+                next(err);
+            });
+        },
         // act_like
         // notification
         // employee

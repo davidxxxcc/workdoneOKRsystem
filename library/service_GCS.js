@@ -81,6 +81,47 @@ const multer = Multer({
 });
 // [END multer]
 
+//==================== Delete File ====================
+function deleteFile(filename) {
+  // [START storage_delete_file]
+  // Imports the Google Cloud client library
+  // const Storage = require('@google-cloud/storage');
+
+  // Creates a client
+  // const storage = new Storage();
+
+  /**
+   * TODO(developer): Uncomment the following lines before running the sample.
+   */
+  // const bucketName = 'Name of a bucket, e.g. my-bucket';
+  // const filename = 'File to delete, e.g. file.txt';
+
+  // Deletes the file from the bucket
+
+  // storage
+  //   .bucket(bucketName)
+  //   .file(filename)
+  //   .delete()
+  //   .then(() => {
+  //     console.log(`gs://${bucketName}/${filename} deleted.`);
+  //   })
+  //   .catch(err => {
+  //     console.error('ERROR:', err);
+  //   });
+
+  GCS_imgBucketInstance
+    .file(filename)
+    .delete()
+    .then(() => {
+      console.log(`gs://${GCS_imgBucketName}/${filename} deleted.`);
+    })
+    .catch(err => {
+      console.error('ERROR:', err);
+    });
+  // [END storage_delete_file]
+}
+//====================================================
+
 module.exports = {
   getPublicUrl,
   sendUploadToGCS,
