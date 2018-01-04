@@ -141,16 +141,15 @@ router.post('/pos_provData_editProfilePic', service_gcs.multer.single('profilePi
                 //     });
 
                 //
-                var fileInstance = router_GCS_storage.bucket(router_GCS_imgBucketName).file(oldFileName);
-                fileInstance.delete(function (err, apiResponse) { });
+                // var fileInstance = router_GCS_storage.bucket(router_GCS_imgBucketName).file(oldFileName);
+                // fileInstance.delete(function (err, apiResponse) { });
 
-                //-
-                // If the callback is omitted, we'll return a Promise.
-                //-
-                fileInstance.delete().then(function (data) {
-                    var apiResponse = data[0];
-                });
-
+                // //-
+                // // If the callback is omitted, we'll return a Promise.
+                // //-
+                // fileInstance.delete().then(function (data) {
+                //     var apiResponse = data[0];
+                // });
 
                 next(err);
             });
