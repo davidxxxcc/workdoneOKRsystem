@@ -127,19 +127,26 @@ router.post('/pos_provData_editProfilePic', service_gcs.multer.single('profilePi
         function (next) {
             req.db_con.query('SELECT `Img_URL` FROM `employee` WHERE `Emp_UUID` = ?', req.session.Emp_UUID, function (err, rows) {
 
-                var oldFileName = rows[0].Img_URL;
-                console.log('oldFileName:\n ' + oldFileName);
-                // service_gcs.deleteFile(rows[0].Img_URL);
+                var oldFilePath = rows[0].Img_URL;
+                var url_NeverChange = 'https://vignette.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138';
+                if (oldFilePath != url_NeverChange) {
 
-                // router GCS imgBucket Instance
-                router_GCS_storage.bucket(router_GCS_imgBucketName).file(oldFileName).delete()
-                    .then(() => {
-                        console.log(`gs://${router_GCS_imgBucketName}/${oldFileName} deleted.`);
-                    })
-                    .catch(err => {
-                        console.error('ERROR:', err);
-                    });
+                    var oldFileName = rows[0].Img_URL;
+                    oldFileName = String(oldFileName);
+                    var path_google = "https://storage.googleapis.com/" + router_GCS_imgBucketName + "/";
+                    oldFileName.replace(path_google, "");
+                    console.log('oldFileName:\n ' + oldFileName);
+                    // service_gcs.deleteFile(rows[0].Img_URL);
 
+                    // router GCS imgBucket Instance
+                    router_GCS_storage.bucket(router_GCS_imgBucketName).file(oldFileName).delete()
+                        .then(() => {
+                            console.log(`gs://${router_GCS_imgBucketName}/${oldFileName} deleted.`);
+                        })
+                        .catch(err => {
+                            console.error('ERROR:', err);
+                        });
+                }
                 //
                 // var fileInstance = router_GCS_storage.bucket(router_GCS_imgBucketName).file(oldFileName);
                 // fileInstance.delete(function (err, apiResponse) { });
