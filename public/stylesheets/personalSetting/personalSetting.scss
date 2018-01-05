@@ -57,7 +57,9 @@ section {
 
       #user_img {
         // outline: 1px solid red;
-        margin: 0 3vw;
+        display: inline-block;
+        margin: 0 2vw 0 3vw;
+        bottom: 0px;
 
         #img_circle {
           // outline: 1px solid black;
@@ -79,6 +81,32 @@ section {
             background-size: cover;
             /* center the image vertically and horizontally */
             background-position: top center;
+          }
+
+          #loader_container {
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            transform: translate(-50%, -50%);
+            display: inline-block;
+            border: 16px solid #d5d5d5;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+
+            /* Safari */
+            @-webkit-keyframes spin {
+              0% { -webkit-transform: rotate(0deg); }
+              100% { -webkit-transform: rotate(360deg); }
+            }
+
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
           }
 
         }
@@ -110,43 +138,70 @@ section {
         //     color: #fff;
         //   }
         // }
+      }
 
-        #change_profPic_btn {
+      #change_profPic_btn {
+        // outline: 1px solid black;
+        display: inline-block;
+        position: relative;
+        bottom: 1vh;
+        text-align: center;
+
+        input {
           // outline: 1px solid black;
           display: inline-block;
-          position: relative;
-          bottom: 0px;
-          margin-top: 5px;
-          text-align: center;
+          background-color: rgba(84, 200, 207, 0.5);
+        }
 
-          input {
-            // outline: 1px solid black;
-            display: inline-block;
-            background-color: rgba(84, 200, 207, 0.5);
+        // #loader_container {
+        //   display: inline-block;
+        //   padding: 0 1vw;
+        //
+        //   .loader {
+        //     // outline: 1px solid black;
+        //     position: relative;
+        //     display: inline-block;
+        //     border: 3px solid #d5d5d5;
+        //     border-top: 3px solid #3498db;
+        //     border-radius: 50%;
+        //     width: 20px;
+        //     height: 20px;
+        //     -webkit-animation: spin 2s linear infinite; /* Safari */
+        //     animation: spin 2s linear infinite;
+        //   }
+        //
+        //   /* Safari */
+        //   @-webkit-keyframes spin {
+        //     0% { -webkit-transform: rotate(0deg); }
+        //     100% { -webkit-transform: rotate(360deg); }
+        //   }
+        //
+        //   @keyframes spin {
+        //     0% { transform: rotate(0deg); }
+        //     100% { transform: rotate(360deg); }
+        //   }
+        // }
+
+        button {
+          // outline: 1px solid black;
+          display: inline-block;
+          padding: 3px 10px;
+          margin-top: 1px;
+          border-radius: 10px;
+          // background-color: rgba(242, 140, 140, 1);
+          background-color: #54c8cf;
+          font-size: 14px;
+          font-family: "微軟正黑體";
+          color: #000000;
+          text-shadow: 1px 1px rgba(151, 151, 151, 0.2);
+          transition: 0.5s;
+
+          &:hover {
+            // color: #FFFFFF;
+            // color: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEE));
+            // color: -moz-linear-gradient(0% 90% 90deg, #EEE, #FFF);
+            box-shadow: 1.5px 1.5px rgba(0, 0, 0, 0.3);
           }
-
-          button {
-            // outline: 1px solid black;
-            display: inline-block;
-            padding: 3px 10px;
-            margin-top: 1px;
-            border-radius: 10px;
-            // background-color: rgba(242, 140, 140, 1);
-            background-color: #54c8cf;
-            font-size: 14px;
-            font-family: "微軟正黑體";
-            color: #000000;
-            text-shadow: 1px 1px rgba(151, 151, 151, 0.2);
-            transition: 0.5s;
-
-            &:hover {
-              // color: #FFFFFF;
-              // color: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEE));
-              // color: -moz-linear-gradient(0% 90% 90deg, #EEE, #FFF);
-              box-shadow: 1.5px 1.5px rgba(0, 0, 0, 0.3);
-            }
-          }
-
         }
       }
     }

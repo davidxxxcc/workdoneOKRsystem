@@ -285,6 +285,12 @@ function uploadImg() {
 
   // $('#uploadImage').change(function() {
   $('#uploadBtn').click(function () {
+    var img = $('#img_circle>img');
+    img.hide();
+    img.attr('src', null);
+    var loader = $('#loader_container');
+    loader.show();
+
     //## 宣告一個FormData
     var data = new FormData();
     //## 將檔案append FormData
@@ -303,19 +309,17 @@ function uploadImg() {
       contentType: false, // 告诉jQuery不要去這置Content-Type
       processData: false, // 告诉jQuery不要去處理發送的數據
       // timeout: 30000,
-
       success: function (responseData, textStatus, jqXHR) {
         console.log('responseData: ' + responseData);
         console.log('jqXHR: ' + jqXHR);
         console.log('textStatus: ' + textStatus);
         // 後端用
         var data = JSON.parse(responseData);
-        $('#img_circle>img').attr('src', data.newPic_URL);
-
+        img.attr('src', data.newPic_URL).show();
+        loader.hide();
         // 前端用
         // $('#img_circle>img').attr('src', data.newPic_URL);
       },
-
       error: function (jqXHR, textStatus, errorThrown) {
         console.log('jqXHR: ' + jqXHR);
         console.log('textStatus: ' + textStatus);
@@ -327,9 +331,8 @@ function uploadImg() {
         } else {
           alert("error");
         }
-
+        loader.hide();
       }
-
     });
   });
 }
