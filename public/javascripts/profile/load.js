@@ -261,8 +261,12 @@ function resizeAddOkrBtn() {
   if ($windowWidth <= 800) {
     //console.log("resize");
     $okrBTN.html("+");
+    $("#kr-input-options").css("right","-80vw");
+
   } else {
     $okrBTN.html("+新增您的OKR");
+    $("#kr-input-options").css("right","-25vw");
+
   }
 
   //detect window resize
@@ -271,8 +275,11 @@ function resizeAddOkrBtn() {
     ////console.log($windowWidth);
     if ($windowWidth <= 800) {
       $okrBTN.html("+");
+      $("#kr-input-options").css("right","-80vw");
+
     } else {
       $okrBTN.html("+新增您的OKR");
+      $("#kr-input-options").css("right","-25vw");
     }
   });
 }

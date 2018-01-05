@@ -212,15 +212,13 @@
     #okr-modal{
       width: 90vw !important;
       height: 90vw !important;
-      padding: 10vw 5vw !important;
-
+      padding: 5vw !important;
     }
     #modal-steps{
       height: 10vw !important;
       width: 100% !important;
       padding: 2vw 1vw !important;
       margin: 0 !important;
-
     }
     #steps-line{
       width: 76vw !important;
@@ -231,8 +229,29 @@
       line-height: 4.5vw !important;
       font-size: 3.5vw !important;
     }
+
     #modal-content{
-      height:60vw !important;
+      height:70vw !important;
+      width:80vw !important;
+    }
+    #modal-slide{
+      height:70vw !important;
+      width:80vw !important;
+    }
+    #modal-obj{
+      height:100% !important;
+      width:100% !important;
+    }
+    #modal-kr{
+      height:100% !important;
+      width:100% !important;
+      left: 80vw !important;
+    }
+    #modal-confirm{
+      height:100% !important;
+      width:100% !important;
+      left: 160vw !important;
+
     }
     #modal-obj>#obj-prompt{
       margin: 2vw auto !important;
@@ -247,8 +266,60 @@
       height: 30vw !important;
       font-size: 8vw !important;
     }
-    #modal-kr{
-      left: 90vw !important;
+    #obj-text{
+      margin: 5vw 1vw 0 1vw  !important;
+      max-height: 24vw !important;
+      line-height: 8vw !important;
+      font-size: 8vw !important;
+      padding: 0px !important;
+    }
+    #obj-title{
+      width: 15vw !important;
+      height: 8vw !important;
+      font-size: 4vw !important;
+      line-height: 8vw !important;
+    }
+    #add-kr{
+      width: 40vw !important;
+      height: 8vw !important;
+      border-radius: 4vw !important;
+    }
+    #kr-input-module{
+
+    }
+    #kr-prompt{
+      line-height: 5vw !important;
+      font-size: 4vw !important;
+      height: 5vw !important;
+    }
+    #kr-prompt-options{
+      line-height: 5vw !important;
+      font-size: 3vw !important;
+      height: 5vw !important;
+      width: 100% !important;
+    }
+    #kr-input{
+      width: 100% !important;
+      margin: 0 !important;
+      line-height: 5vw !important;
+      font-size: 3vw !important;
+      word-wrap: break-word;
+      word-break: break-all;
+      height: 5vw !important;
+      max-height: 10vw !important;
+    }
+
+    #kr-input-options{
+      width: 80vw !important;
+    }
+
+    #update-text{
+      height: 20vw !important;
+      line-height: 20vw !important;
+      font-size: 5vw !important;
+    }
+    #update-progress{
+      margin:30vw auto !important;
     }
 
 
