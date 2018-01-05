@@ -16,6 +16,7 @@ router.post('/pos_provData_loginCheck', function (req, res, next) {
     // var pwd = req.body.password;
     // console.log('sdagagfggfgafgfg');
     console.log('Date.now: ' + Date.now);
+    console.log('Date().getTime()' + Date().getTime());
     var acc = req.body.id;
     // console.log('acc: ' + acc);
     var pwd = req.body.pwd;
