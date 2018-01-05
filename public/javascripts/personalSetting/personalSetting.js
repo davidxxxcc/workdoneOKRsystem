@@ -74,7 +74,7 @@ function viewPwds() {
   var $iconOldInvisible = $('#icon_old_invisible');
 
   //隐藏password，显示text
-  $('#icon_old_visible').on('click', function() {
+  $('#icon_old_visible').on('click', function () {
     var value = $inputOldInvisible.val();
     $inputOldVisible.val(value);
     $inputOldInvisible.hide();
@@ -84,7 +84,7 @@ function viewPwds() {
   });
 
   //隐藏text block，显示password block
-  $('#icon_old_invisible').on('click', function() {
+  $('#icon_old_invisible').on('click', function () {
     var value = $inputOldVisible.val();
     $inputOldInvisible.val(value);
     $inputOldInvisible.show();
@@ -98,7 +98,7 @@ function viewPwds() {
   var $iconNewVisible = $('#icon_new_visible');
   var $iconNewInvisible = $('#icon_new_invisible');
 
-  $('#icon_new_visible').on('click', function() {
+  $('#icon_new_visible').on('click', function () {
     var value = $inputNewInvisible.val();
     $inputNewVisible.val(value);
     $inputNewInvisible.hide();
@@ -107,7 +107,7 @@ function viewPwds() {
     $iconNewVisible.hide();
   });
 
-  $('#icon_new_invisible').on('click', function() {
+  $('#icon_new_invisible').on('click', function () {
     var value = $inputNewVisible.val();
     $inputNewInvisible.val(value);
     $inputNewInvisible.show();
@@ -121,7 +121,7 @@ function viewPwds() {
   var $iconConfVisible = $('#icon_conf_visible');
   var $iconConfInvisible = $('#icon_conf_invisible');
 
-  $('#icon_conf_visible').on('click', function() {
+  $('#icon_conf_visible').on('click', function () {
     var value = $inputConfInvisible.val();
     $inputConfVisible.val(value);
     $inputConfInvisible.hide();
@@ -130,7 +130,7 @@ function viewPwds() {
     $iconConfVisible.hide();
   });
 
-  $('#icon_conf_invisible').on('click', function() {
+  $('#icon_conf_invisible').on('click', function () {
     var value = $inputConfVisible.val();
     $inputConfInvisible.val(value);
     $inputConfInvisible.show();
@@ -142,7 +142,7 @@ function viewPwds() {
 
 
 function getPwds() {
-  $('#confirm_btn').on('click', function() {
+  $('#confirm_btn').on('click', function () {
     // 判斷三個都有inputs再發ajax
     var $oldPwd = $('#input_old_pwd_invisible').val();
     if (isNull($oldPwd) == true) {
@@ -168,7 +168,7 @@ function getPwds() {
           "user_oldPwd": $oldPwd,
           "user_newPwd": $newPwd
         }
-        var pwdJsonPkg = JSON.stringify({data});
+        var pwdJsonPkg = JSON.stringify({ data });
         // call ajax
         checkNewPwd(pwdJsonPkg);
       } else {
@@ -196,7 +196,7 @@ function getPwds() {
 
   });
 
-  $('#cancel_btn').on('click', function() {
+  $('#cancel_btn').on('click', function () {
     // clear input fields
     clearInputFields();
   });
@@ -205,14 +205,14 @@ function getPwds() {
 
 function checkNewPwd(pwdJsonPkg) {
   $.ajax({
-    data: {test: pwdJsonPkg},
+    data: { test: pwdJsonPkg },
     url: url_changePwd,
     type: 'POST',
     dataType: 'JSON',
     timeout: 5000,
 
     // ajax succeeds --> clear input fields --> show correct messages
-    success: function(responseData, textStatus, jqXHR) {
+    success: function (responseData, textStatus, jqXHR) {
       clearInputFields();
       if (jqXHR.status == 200) {
         $('#success_mes').css('display', '').fadeOut(3000);
@@ -223,7 +223,7 @@ function checkNewPwd(pwdJsonPkg) {
       }
     },
     // ajax fails --> clear input fields --> show error messages
-    error: function(jqXHR, textStatus, errorThrown) {
+    error: function (jqXHR, textStatus, errorThrown) {
       clearInputFields();
       if (jqXHR.status == 403) {
         $('#wrong_mes').css('display', '').fadeOut(3000);
@@ -284,7 +284,7 @@ function uploadImg() {
   // }
 
   // $('#uploadImage').change(function() {
-  $('#uploadBtn').click(function() {
+  $('#uploadBtn').click(function () {
     //## 宣告一個FormData
     var data = new FormData();
     //## 將檔案append FormData
@@ -304,7 +304,10 @@ function uploadImg() {
       processData: false, // 告诉jQuery不要去處理發送的數據
       timeout: 5000,
 
-      success: function(responseData, textStatus, jqXHR) {
+      success: function (responseData, textStatus, jqXHR) {
+        console.log('responseData: ' + responseData);
+        console.log('jqXHR: ' + jqXHR);
+        console.log('textStatus: ' + textStatus);
         // 後端用
         var data = JSON.parse(responseData);
         $('#img_circle>img').attr('src', data.newPic_URL);
@@ -313,8 +316,11 @@ function uploadImg() {
         // $('#img_circle>img').attr('src', data.newPic_URL);
       },
 
-      error: function(jqXHR, textStatus, errorThrown) {
-        alert( "error" );
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log('jqXHR: ' + jqXHR);
+        console.log('textStatus: ' + textStatus);
+        console.log('errorThrown: ' + errorThrown);
+        alert("error");
       }
 
     });
@@ -323,22 +329,22 @@ function uploadImg() {
 
 /* ------ 取得當前季度 ------ */
 function GetSeason() {
-	var now = new Date();
-	var year = now.getFullYear();
-	var month = now.getMonth() + 1;
-	var season;
+  var now = new Date();
+  var year = now.getFullYear();
+  var month = now.getMonth() + 1;
+  var season;
 
-	if (month <= 3) {
-		season = "01";
-	} else if (month > 3 && month <= 6) {
-		season = "02";
-	} else if (month > 6 && month <= 9) {
-		season = "03";
-	} else if (month > 9 && month <= 12) {
-		season = "04";
-	}
-	var str = year + season;
-	return str;
+  if (month <= 3) {
+    season = "01";
+  } else if (month > 3 && month <= 6) {
+    season = "02";
+  } else if (month > 6 && month <= 9) {
+    season = "03";
+  } else if (month > 9 && month <= 12) {
+    season = "04";
+  }
+  var str = year + season;
+  return str;
 }
 
 // format date compared with current time
