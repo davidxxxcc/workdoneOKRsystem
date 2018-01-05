@@ -123,7 +123,7 @@ app.use(function (err, req, res, next) {
 });
 // ---------------------------------------------------
 
-schedule.scheduleJob('0 0 12 5 1,4,7,10 *', function () {
+schedule.scheduleJob('0 30 4 5 1,4,7,10 *', function () {
   console.log('The answer to life, the universe, and everything!!!!!');
   var str = GetSeason();
   var year, season;
