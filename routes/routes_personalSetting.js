@@ -132,9 +132,9 @@ router.post('/pos_provData_editProfilePic', service_gcs.multer.single('profilePi
                 if (oldFilePath != url_NeverChange) {
 
                     var oldFileName = rows[0].Img_URL;
-                    oldFileName = String(oldFileName);
+                    //oldFileName = String(oldFileName);
                     var path_google = "https://storage.googleapis.com/" + router_GCS_imgBucketName + "/";
-                    oldFileName.replace(path_google, "");
+                    oldFileName = oldFileName.replace(path_google, "");
                     console.log('oldFileName:\n ' + oldFileName);
                     // service_gcs.deleteFile(rows[0].Img_URL);
 
