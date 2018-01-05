@@ -302,7 +302,7 @@ function uploadImg() {
       type: "POST",
       contentType: false, // 告诉jQuery不要去這置Content-Type
       processData: false, // 告诉jQuery不要去處理發送的數據
-      timeout: 20000,
+      timeout: 1000,
 
       success: function (responseData, textStatus, jqXHR) {
         console.log('responseData: ' + responseData);
@@ -320,7 +320,12 @@ function uploadImg() {
         console.log('jqXHR: ' + jqXHR);
         console.log('textStatus: ' + textStatus);
         console.log('errorThrown: ' + errorThrown);
-        alert("error");
+        if (errorThrown == 'timeout') {
+          alert('timeout.');
+        } else {
+          alert("error");
+        }
+
       }
 
     });
