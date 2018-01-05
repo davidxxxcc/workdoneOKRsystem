@@ -19,7 +19,7 @@
     position: fixed;
     width: 60vw;
     min-height: 40vw;
-    max-height: 50vw;
+    // max-height: 50vw;
     border-radius: 10px;
     border: 1px solid #b4b5b7;
     //background-color: #c2c1c9;
@@ -181,6 +181,8 @@
           line-height: 1.5vw;
           text-align: center;
           padding: 2vw 1vw 1vw 1vw;
+          word-wrap: break-word;
+          word-break: break-all;
           overflow: auto;
         }
         #obj-title{
@@ -1543,12 +1545,12 @@ section {
           //background: #fceaea;
           //outline: 1px solid black;
           .kr-text {
-            font-size: 1.3vw;
-            padding: 1vw;
+            font-size: 15px;
+            padding: 5px 1vw;
             //min-height: 2.5vw;
             display: block;
             width: 100%;
-            line-height: 1.5vw;
+            line-height: 15px;
             white-space: normal;
             word-wrap: break-word;
             word-break: break-all;

@@ -140,6 +140,34 @@ function optDropDwonMenu() {
   });
 }
 
+
+
+//****************************RWD effect*************************//
+
+//change href of brandID with when resizing window
+function linkBrandID() {
+  $windowWidth = $(window).width();
+  $brandIcon = $('#brand-name');
+  //Current window size
+  if ($windowWidth <= 800) {
+    //console.log("resize");
+    $brandIcon.attr("href",homeLink);
+  } else {
+    $brandIcon.attr("href",null);
+  }
+
+  //detect window resize
+  $(window).resize(function () {
+    $windowWidth = $(window).width();
+    ////console.log($windowWidth);
+    if ($windowWidth <= 800) {
+      //console.log("resize");
+      $brandIcon.attr("href",homeLink);
+    } else {
+      $brandIcon.attr("href",null);
+    }
+  });
+}
 //****************************Hover effect************************************//
 
 //Hover for search query
@@ -291,6 +319,7 @@ function checkNotiIsRead() {
 
 function headerAfterLoading() {
   setHref();
+  linkBrandID();
   optDropDwonMenu();
   searchKeyWords();
   hoverSearch();
