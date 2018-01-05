@@ -5,6 +5,11 @@ var router = express.Router();
 // ########## Routes ##########
 // ----- Require Page: Login
 router.get('/', function (req, res, next) {
+    var now = new Date();
+    console.log(now);
+    new Date().toISOString().
+        replace(/T/, ' ').      // replace T with a space
+        replace(/\..+/, '')     // delete the dot and everything after
     res.render('login', { title: 'Log-in page' });
 });
 // ----- Provide Data to Login Check
@@ -15,8 +20,7 @@ router.post('/pos_provData_loginCheck', function (req, res, next) {
     // var acc = req.body.account;
     // var pwd = req.body.password;
     // console.log('sdagagfggfgafgfg');
-    var now = new Date();
-    console.log(now);
+
     // console.log('Date.now: ' + Date.now);
     // console.log('Date().getTime()' + Date().getTime());
     var acc = req.body.id;
