@@ -17,6 +17,6 @@ INSERT INTO `employee` (`Emp_UUID`, `Company`, `Department`, `Position`, `Emp_Ac
 INSERT INTO `employee` (`Emp_UUID`, `Company`, `Department`, `Position`, `Emp_Account`, `Password`, `Emp_Name`, `Img_URL`, `Ses_ID`, `Act_Setting`, `Act_AnotherData`, `Act_Permission`, `Avg_Progress`, `Disable`) VALUES ('', 'C001', '2', '理財寶金融科技組/產品經理', 'Chong@CMTest.com', '123456', '叢小萱', 'https://vignentte.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138', 'C001^p^2017Q3', '', '', '0', '0', '0');
 
 
-UPDATE `employee` SET `Img_URL` = 'https://vignette.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138' WHERE `Img_URL` = ' https://vigne\r\ntte.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138'
+UPDATE `employee` SET `Img_URL` = 'https://vignette.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138' WHERE `Emp_Name` = ' https://vigne\r\ntte.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138'
 
 INSERT INTO `employee` (`Emp_UUID`, `Company`, `Department`, `Position`, `Emp_Account`, `Password`, `Emp_Name`, `Img_URL`, `Ses_ID`, `Act_Setting`, `Act_AnotherData`, `Act_Permission`, `Avg_Progress`, `Disable`) VALUES ('', 'C001', '2', '理財寶金融科技組/產品經理', 'Chong@CMTest.com', '123456', '叢小萱', 'https://vigne\r\ntte.wikia.nocookie.net/peanuts/images/d/dc/Woodstock.gif/revision/latest?cb=20090301022138', 'C001^p^2017Q3', '', '', '0', '0', '0');
