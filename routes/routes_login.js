@@ -5,11 +5,12 @@ var router = express.Router();
 // ########## Routes ##########
 // ----- Require Page: Login
 router.get('/', function (req, res, next) {
-    var now = new Date();
-    console.log(now);
-    new Date().toISOString().
+    var nowDate = new Date();
+    console.log('now Date: ' + nowDate);
+    var nowDateWithoutT = new Date().toISOString().
         replace(/T/, ' ').      // replace T with a space
         replace(/\..+/, '')     // delete the dot and everything after
+    console.log('now Date Without T: ' + nowDateWithoutT);
     res.render('login', { title: 'Log-in page' });
 });
 // ----- Provide Data to Login Check
