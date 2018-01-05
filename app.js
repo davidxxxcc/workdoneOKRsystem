@@ -123,8 +123,7 @@ app.use(function (err, req, res, next) {
 });
 // ---------------------------------------------------
 
-schedule.scheduleJob('0 30 4 5 1,4,7,10 *', function () {
-  console.log('The answer to life, the universe, and everything!!!!!');
+schedule.scheduleJob('0 0 0 1 1,4,7,10 *', function () {
   var str = GetSeason();
   var year, season;
   if (str.substring(5) > 3) {
@@ -140,14 +139,8 @@ schedule.scheduleJob('0 30 4 5 1,4,7,10 *', function () {
   var seasonName = year + season;
   var startDay = startDate();
   var endDay = endDate();
-  //==================================
-  seasonID = 'C001^p^2018Q3';
-  seasonName = '201803';
-  startDay = '2018-07-01';
-  endDay = '2018-09-30'; 
-  //==================================
 
-  db_con.query('INSERT INTO `season` (`Ses_ID`, `Cmp_ID`, `Ses_Name`, `Start_Day`, `End_Day`, `Disable`) VALUE (?,?,?,?,?,?)', [seasonID, 'C001', seasonName, startDay, endDay, 0], function (err, rows) {
+  db_con.query('INSERT INTO `season` (`Ses_ID`, `Cmp_ID`, `Ses_Name`, `Start_Day`, `End_Day`, `Disable`) VALUE (?, ?, ?, ?, ?, ?)', [seasonID, 'C001', seasonName, startDay, endDay, 0], function (err, rows) {
     console.log('insert into season!');
     if (err) {
       console.log("err: " + err);

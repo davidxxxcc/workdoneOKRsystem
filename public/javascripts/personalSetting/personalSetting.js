@@ -302,7 +302,7 @@ function uploadImg() {
       type: "POST",
       contentType: false, // 告诉jQuery不要去這置Content-Type
       processData: false, // 告诉jQuery不要去處理發送的數據
-      timeout: 30000,
+      // timeout: 30000,
 
       success: function (responseData, textStatus, jqXHR) {
         console.log('responseData: ' + responseData);
@@ -321,7 +321,7 @@ function uploadImg() {
         console.log('textStatus: ' + textStatus);
         console.log('errorThrown: ' + errorThrown);
         if (errorThrown == 'timeout') {
-          alert('檔案上傳中, 可能因網路或檔案大小上傳速度較慢, 請稍後重新整理.');
+          alert('檔案上傳中, 可能因網路或檔案大小上傳速度較慢, 請稍後再試.');
         } else if (errorThrown == 'Internal Server Error') {
           alert('Error: 檔案過大 - 不可大於 5 MB.');
         } else {
