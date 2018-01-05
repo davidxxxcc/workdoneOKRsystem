@@ -123,24 +123,37 @@ app.use(function (err, req, res, next) {
 });
 // ---------------------------------------------------
 
-schedule.scheduleJob('0 0 0 1 1,4,7,10 *', function () {
+schedule.scheduleJob('0 0 0 30 3,6,9,12 *', function () {
+  console.log('The answer to life, the universe, and everything!!!!!');
   var str = GetSeason();
   var year, season;
-  if (str.substring(5) > 3) {
-    year = str.substring(0, 3) + 1;
-    season = '1';
-  } else {
-    year = str.substring(0, 3);
-    season = str.substring(5) + 1;
-  }
-  var now = new Date();
-
-  var seasonID = 'C001^p^' + year + 'Q' + season;
-  var seasonName = year + season;
   var startDay = startDate();
   var endDay = endDate();
+  if (str.substring(5) == 1) {
+    year = str.substring(0, 4);
+    season = '3';
+  } else if(str.substring(5) == 2){
+    year = str.substring(0, 4);
+    season = '4';
+  }else if(str.substring(5) == 3){
+    year = parseInt(str.substring(0, 4))+1;
+    season = '1';
+  }else{
+    year = parseInt(str.substring(0, 4))+1;
+    season = '2';
+  }
+  
+  var seasonID = 'C001^p^' + year + 'Q' + season;
+  var seasonName = year + '0' +season;
+  
+  //==================================
+  // seasonID = 'C001^p^2018Q3';
+  // seasonName = '201803';
+  // startDay = '2018-07-01';
+  // endDay = '2018-09-30'; 
+  //==================================
 
-  db_con.query('INSERT INTO `season` (`Ses_ID`, `Cmp_ID`, `Ses_Name`, `Start_Day`, `End_Day`, `Disable`) VALUE (?, ?, ?, ?, ?, ?)', [seasonID, 'C001', seasonName, startDay, endDay, 0], function (err, rows) {
+  db_con.query('INSERT INTO `season` (`Ses_ID`, `Cmp_ID`, `Ses_Name`, `Start_Day`, `End_Day`, `Disable`) VALUE (?,?,?,?,?,?)', [seasonID, 'C001', seasonName, startDay, endDay, 0], function (err, rows) {
     console.log('insert into season!');
     if (err) {
       console.log("err: " + err);
@@ -178,22 +191,28 @@ function startDate() {
   var now = new Date();
   var year = now.getFullYear();
   var month = now.getMonth() + 1;
-  var date = now.getDate();
-  if (month < 10) {
-    month = '0' + month;
+  var result;
+  if(month == 3){
+    result = year + '-07-01';
+  }else if(month == 6){
+    result = year + '-10-01';
+  }else if(month == 9){
+    year++;
+    result = year + '-01-01';
+  }else{
+    year++;
+    result = year + '-04-01';
   }
-  if (date < 10) {
-    date = '0' + date;
-  }
-  return year + '-' + month + '-' + date;
+  return result;
 };
 function endDate() {
   var now = startDate();
-  if (now.substring(5, 9) == '01-01') {
+  console.log('now.substring(5, 9) : ' + now.substring(5, 9));
+  if (now.substring(5, 10) == '01-01') {
     return now.substring(0, 4) + '-' + '03-31';
-  } else if (now.substring(5, 9) == '04-01') {
+  } else if (now.substring(5, 10) == '04-01') {
     return now.substring(0, 4) + '-' + '06-30';
-  } else if (now.substring(5, 9) == '07-01') {
+  } else if (now.substring(5, 10) == '07-01') {
     return now.substring(0, 4) + '-' + '09-30';
   } else {
     return now.substring(0, 4) + '-' + '12-31';
