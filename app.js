@@ -123,7 +123,7 @@ app.use(function (err, req, res, next) {
 });
 // ---------------------------------------------------
 
-schedule.scheduleJob('0 0 7 5 1,4,7,10 *', function () {
+schedule.scheduleJob('0 0 12 5 1,4,7,10 *', function () {
   console.log('The answer to life, the universe, and everything!!!!!');
   var str = GetSeason();
   var year, season;
@@ -138,8 +138,8 @@ schedule.scheduleJob('0 0 7 5 1,4,7,10 *', function () {
 
   var seasonID = 'C001^p^' + year + 'Q' + season;
   var seasonName = year + season;
-  var startDay = startDay();
-  var endDay = endDay();
+  var startDay = startDate();
+  var endDay = endDate();
   //==================================
   seasonID = 'C001^p^2018Q3';
   seasonName = '201803';
@@ -181,7 +181,7 @@ function GetSeason() {
   var str = year + season;
   return str;
 }
-function startDay() {
+function startDate() {
   var now = new Date();
   var year = now.getFullYear();
   var month = now.getMonth() + 1;
@@ -195,14 +195,14 @@ function startDay() {
   return year + '-' + month + '-' + date;
 };
 function endDate() {
-  var now = startDay();
+  var now = startDate();
   if (now.substring(5, 9) == '01-01') {
-    return now.substring(0, 4) + '03-31';
+    return now.substring(0, 4) + '-' + '03-31';
   } else if (now.substring(5, 9) == '04-01') {
-    return now.substring(0, 4) + '06-30';
+    return now.substring(0, 4) + '-' + '06-30';
   } else if (now.substring(5, 9) == '07-01') {
-    return now.substring(0, 4) + '09-30';
+    return now.substring(0, 4) + '-' + '09-30';
   } else {
-    return now.substring(0, 4) + '12-31';
+    return now.substring(0, 4) + '-' + '12-31';
   }
 };
