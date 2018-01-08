@@ -135,7 +135,7 @@ router.get('/get_requData_viewOtherByRan',function(req, res, next){
         //get total number of employee
         function(companyID,next){
             req.db_con.query('SELECT COUNT(*) c FROM `employee` WHERE `Company` = ? AND `Disable` = "0"',companyID,function(err,rows){
-                var empNumber = rows[0].c - 1;
+                var empNumber = rows[0].c;
                 //get how many number
                 var getNumber;
                 if(empNumber >= 20){
@@ -161,7 +161,7 @@ router.get('/get_requData_viewOtherByRan',function(req, res, next){
         },
         //get empolyee data
         function(rdmArray,getNumber,companyID,next){
-            req.db_con.query('SELECT * FROM `employee` WHERE `Company` = ? AND `Disable` = 0 AND `Emp_UUID` != ?',[companyID,req.session.Emp_UUID],function(err,rows){
+            req.db_con.query('SELECT * FROM `employee` WHERE `Company` = ? AND `Disable` = 0',companyID,function(err,rows){
                 for(var i = 0;i < getNumber; i++){
                     var temp = {
                         person_userID: rows[rdmArray[i]].Emp_UUID,
