@@ -74,106 +74,15 @@
 
     <div class="filter_tab">
       <ul class="tabs">
-        <li><a href="#tab_random">隨機排序</a></li>
         <li><a href="#tab_depts">部門排序</a></li>
         <li><a href="#tab_recent">最近瀏覽</a></li>
+        <li><a href="#tab_random">為您推薦</a></li>
       </ul>
     </div>
 
     <div class="tab-container">
 
-      <div id="tab_random" class="tab_content">
-        <div class="block-name">
-          <p>隨機排序</p>
-
-          <script id="random_template" type="text/x-handlebars-template">
-            <div class="people-block" id="people_block_random" data-id="{{Emp_UUID}}">
-              {{#each viewOthers_random20}}
-              <a class="other-prof-btn" data-id="{{person_userID}}">
-                <div class="person">
-
-                  <div class="progress-container">
-                    <div class="progress-triangle"></div>
-                    <div class="progress-num">
-                      <span class="percent-num">{{person_progress}}</span>
-                      <span class="percent-symbol">%</span>
-                    </div>
-
-                    <div class="progress-circle">
-                      <div class="chart">
-                        <div class="mask-outer left">
-                          <div class="mask-inner">
-                            <div class="body"></div>
-                          </div>
-                        </div>
-                        <div class="mask-outer right">
-                          <div class="mask-inner">
-                            <div class="body"></div>
-                          </div>
-                        </div>
-                        <div class="img-circle">
-                          <img id="user_img" src="{{person_userImg}}">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="user-name">{{person_userName}}</div>
-                  <div class="user-job">{{formatDept person_position}}</div>
-                  <div class="user-job">{{formatPos person_position}}</div>
-                </div>
-              </a>
-              {{/each}}
-            </div>
-          </script>
-
-          <script id="loadMore_template" type="text/x-handlebars-template">
-            {{#each viewOthers_loadMore}}
-            <a class="other-prof-btn" data-id="{{person_userID}}">
-              <div class="person">
-
-                <div class="progress-container">
-                  <div class="progress-triangle"></div>
-                  <div class="progress-num">
-                    <span class="percent-num">{{person_progress}}</span>
-                    <span class="percent-symbol">%</span>
-                  </div>
-
-                  <div class="progress-circle">
-                    <div class="chart">
-                      <div class="mask-outer left">
-                        <div class="mask-inner">
-                          <div class="body"></div>
-                        </div>
-                      </div>
-                      <div class="mask-outer right">
-                        <div class="mask-inner">
-                          <div class="body"></div>
-                        </div>
-                      </div>
-                      <div class="img-circle">
-                        <img id="user_img" src="{{person_userImg}}">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="user-name">{{person_userName}}</div>
-                <div class="user-job">{{formatDept person_position}}</div>
-                <div class="user-job">{{formatPos person_position}}</div>
-              </div>
-            </a>
-            {{/each}}
-          </script>
-
-          <!-- <div class="load-more-btn">
-            <button id="load_more_btn">載入更多...</button>
-          </div> -->
-
-        </div>
-      </div>
-
-      <div id="tab_depts" class="tab_content" style="display: none;">
+      <div id="tab_depts" class="tab_content">
         <script id="depts_template" type="text/x-handlebars-template">
           {{#each viewOthers_depts}}
           <div class="block-name">
@@ -276,6 +185,97 @@
         </div>
       </div>
 
+      <div id="tab_random" class="tab_content" style="display: none;">
+        <div class="block-name">
+          <p>為您推薦</p>
+
+          <script id="random_template" type="text/x-handlebars-template">
+            <div class="people-block" id="people_block_random" data-id="{{Emp_UUID}}">
+              {{#each viewOthers_random20}}
+              <a class="other-prof-btn" data-id="{{person_userID}}">
+                <div class="person">
+
+                  <div class="progress-container">
+                    <div class="progress-triangle"></div>
+                    <div class="progress-num">
+                      <span class="percent-num">{{person_progress}}</span>
+                      <span class="percent-symbol">%</span>
+                    </div>
+
+                    <div class="progress-circle">
+                      <div class="chart">
+                        <div class="mask-outer left">
+                          <div class="mask-inner">
+                            <div class="body"></div>
+                          </div>
+                        </div>
+                        <div class="mask-outer right">
+                          <div class="mask-inner">
+                            <div class="body"></div>
+                          </div>
+                        </div>
+                        <div class="img-circle">
+                          <img id="user_img" src="{{person_userImg}}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="user-name">{{person_userName}}</div>
+                  <div class="user-job">{{formatDept person_position}}</div>
+                  <div class="user-job">{{formatPos person_position}}</div>
+                </div>
+              </a>
+              {{/each}}
+            </div>
+          </script>
+
+          <script id="loadMore_template" type="text/x-handlebars-template">
+            {{#each viewOthers_loadMore}}
+            <a class="other-prof-btn" data-id="{{person_userID}}">
+              <div class="person">
+
+                <div class="progress-container">
+                  <div class="progress-triangle"></div>
+                  <div class="progress-num">
+                    <span class="percent-num">{{person_progress}}</span>
+                    <span class="percent-symbol">%</span>
+                  </div>
+
+                  <div class="progress-circle">
+                    <div class="chart">
+                      <div class="mask-outer left">
+                        <div class="mask-inner">
+                          <div class="body"></div>
+                        </div>
+                      </div>
+                      <div class="mask-outer right">
+                        <div class="mask-inner">
+                          <div class="body"></div>
+                        </div>
+                      </div>
+                      <div class="img-circle">
+                        <img id="user_img" src="{{person_userImg}}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="user-name">{{person_userName}}</div>
+                <div class="user-job">{{formatDept person_position}}</div>
+                <div class="user-job">{{formatPos person_position}}</div>
+              </div>
+            </a>
+            {{/each}}
+          </script>
+
+          <!-- <div class="load-more-btn">
+            <button id="load_more_btn">載入更多...</button>
+          </div> -->
+
+        </div>
+      </div>
+      
     </div>
 
   </section>
