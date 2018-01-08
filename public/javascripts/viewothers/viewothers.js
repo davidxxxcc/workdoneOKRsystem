@@ -281,8 +281,7 @@ function setLoadMoreBtn(str) {
 /* ------ 設定排序依據的分頁 ------ */
 function setTab() {
 	// 預設顯示第一個 Tab
-	var _showTab = 1;
-
+	var _showTab = 0;
 
 	$('.filter_tab').each(function() {
 		// 目前的頁籤區塊
