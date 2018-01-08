@@ -283,6 +283,7 @@ function setTab() {
 	// 預設顯示第一個 Tab
 	var _showTab = 1;
 
+
 	$('.filter_tab').each(function() {
 		// 目前的頁籤區塊
 		var $tab = $(this);
