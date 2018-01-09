@@ -502,16 +502,12 @@
             opacity: 0.12;
 
           }
-
-
+          @-webkit-keyframes rotateThis {
+          from {-webkit-transform:scale(.5) rotate(0deg);}
+          to {-webkit-transform:scale(.5) rotate(360deg);}
+          }
 
         }
-          @-webkit-keyframes rotateThis {
-    from {-webkit-transform:scale(.5) rotate(0deg);}
-    to {-webkit-transform:scale(.5) rotate(360deg);}
-}
-
-
 
       }
     }
@@ -839,6 +835,90 @@ section {
     padding: 2vw 5vw;
     width: 100%;
     min-height: 100vh;
+
+    #update-okr-progress{
+        position: relative;
+        // top:50%;
+        // left:50%;
+        // transform: translate(-50%, -50%);
+        display: none;
+        margin:5vw auto;
+        width: 10vw;
+        height: 10vw;
+        //background-color:grey;
+        transform:rotate(45deg) translate(0, -35px);
+        -webkit-animation-name: rotateThis;
+        -webkit-animation-duration:1.5s;
+        -webkit-animation-iteration-count:infinite;
+        -webkit-animation-timing-function:linear;
+        .ball{
+          position: absolute;
+          width: 2vw;
+          height: 2vw;
+          border-radius: 50%;
+          background-color: #235c57;
+        }
+        .b1{
+          // background-color: #235c57;
+          left:4vw;
+          top:0;
+          opacity: 1;
+        }
+        .b2{
+          // background-color: #318179;
+          right:1.2vw;
+          top:1.2vw;
+          opacity: 0.87;
+
+        }
+        .b3{
+          // background-color: #3fa69c;
+          right:0vw;
+          top:4vw;
+          opacity: 0.75;
+
+        }
+        .b4{
+          // background-color: #45b8ac;
+          right:1.2vw;
+          bottom:1.2vw;
+          opacity: 0.62;
+
+        }
+        .b5{
+          // background-color: #6bc7be;
+          right:4vw;
+          bottom:0vw;
+          opacity: 0.50;
+
+        }
+        .b6{
+          // background-color: #90d5ce;
+          left:1.2vw;
+          bottom:1.2vw;
+          opacity: 0.37;
+
+        }
+        .b7{
+          // background-color: #daf1ef;
+          left:0vw;
+          bottom:4vw;
+          opacity: 0.25;
+
+        }
+        .b8{
+          // background-color: #f4fbfa;
+          left:1.2vw;
+          top:1.2vw;
+          opacity: 0.12;
+
+        }
+        @-webkit-keyframes rotateThis {
+        from {-webkit-transform:scale(.5) rotate(0deg);}
+        to {-webkit-transform:scale(.5) rotate(360deg);}
+        }
+
+      }
 
     #edit-check-section{
       z-index: 10;

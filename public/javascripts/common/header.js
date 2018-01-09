@@ -376,6 +376,7 @@ function ajaxRequNotiClocking(notiTime) {
 }
 //Query keyWords
 function ajaxRequestQuery(keywords) {
+  $('#search-prompt').html(null);
   var search = {
     "search_text": keywords
   }

@@ -3,12 +3,6 @@ var localhost_url = 'http://localhost:3000';
 var GCP_url = 'http://35.196.96.33:3000';
 var GCP_CMTest_URL = 'http://35.196.96.33:5000';
 var Now_url = GCP_CMTest_URL;
-// var settingLink = Now_url + "/personalSetting";
-// var homeLink = Now_url + "/profile";
-// var signOutLink = Now_url +"/profile/get_requActi_logout";
-// var viewOthersLink = Now_url + "/othersProfile/viewothers";
-// var url_queryKeyWords = Now_url + "/profile/get_requData_searchKeyWord";
-// var url_notiRead = Now_url + "/profile/get_requActi_pressNoti";
 
 var url_noti = Now_url + "/profile/get_requData_notification";
 var url_profile = Now_url + "/profile/get_requData_profileData";
@@ -1443,7 +1437,6 @@ function initEditCheckBox() {
 function afterLoading() {
   selectSeason();
   headerAfterLoading();
-  // setHref();
   okrDataCheck();
   setFriID();
   actDotUpdate();
@@ -1455,7 +1448,6 @@ function afterLoading() {
   hoverAddKrBtn();
   objChartRefresh();
   seaDropDownMenu();
-  // optDropDwonMenu();
   cmtDropDownMenu();
   actSlideIn();
   slideKrCmt();
@@ -1467,12 +1459,8 @@ function afterLoading() {
   objEdit();
   krEdit();
   initSlider();
-  // searchKeyWords();
-  // hoverSearch();
   clickLike();
   checkLike();
-  // updatedNoti();
-  // checkNotiIsRead();
 
   initiModal();
   modalControlFlow();
@@ -1532,7 +1520,7 @@ function popUpModal(turnOn) {
   $sectionBlur = $('header, section');
   if (turnOn == true) {
     $({ blurRadius: 0 }).animate({
-      blurRadius: 10
+      blurRadius: 5
     }, {
         duration: 500,
         easing: 'swing', // or "linear"
@@ -1550,7 +1538,7 @@ function popUpModal(turnOn) {
     });
   }
   else {
-    $({ blurRadius: 10 }).animate({ blurRadius: 0 }
+    $({ blurRadius: 5 }).animate({ blurRadius: 0 }
       , {
         duration: 500,
         easing: 'swing',
@@ -1885,6 +1873,7 @@ function clickAddKrBtn() {
       }
     }
     else if (updateStatus == 3) {   //在已存在的OKR模組中新增kr
+      console.log("add kr success");
       if (krText.length == 0) {
         $krInputHint.text("內容不能為空白!").css("display", "inline");
       }
@@ -1894,6 +1883,7 @@ function clickAddKrBtn() {
       else {
         $krInputHint.css("display", "none");
         var objID = $krText.attr("data-obj-id");
+        // console.log("objID: " + objID);
         // var objID_JSON = "{obj_ID:" + id + "}";
         var userID = $('#user').attr("data-user-id");
         var actTime = GetDateTime();
@@ -2137,6 +2127,7 @@ function ajaxRequProfile(season) {
 function ajaxRequdOkrs(season) {
   var objectives = { "season": season };
   var objectives_JSON = JSON.stringify({ objectives });
+  $("#update-okr-progress").show();
   $.ajax({
     url: url_okrs,
     type: 'GET',
@@ -2165,6 +2156,7 @@ function ajaxRequdOkrs(season) {
       var template = Handlebars.compile(okrInfo);
       var okrData = template(data);
       $(".okr").remove();
+      $("#update-okr-progress").hide();
       $('.section-okr').append(okrData);
       if (loadOkrs == false) {
         afterLoading();
@@ -2286,7 +2278,7 @@ function ajaxRequestUpdateKr(userID, objID, kr_JSON) {
       var krData = template(data);
       $(".kr[data-obj-id='" + objID + "']").remove();
       $(".kr-content[data-obj-id='" + objID + "']").prepend(krData);
-      $(".percent-number").html(data.obj_progress);
+      $(".percent-number[data-obj-id='" + objID + "']").html(data.obj_progress);
       var actInfo = document.getElementById("act-template").innerHTML;
       var template = Handlebars.compile(actInfo);
       var actData = template(data);
