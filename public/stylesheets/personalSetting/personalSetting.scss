@@ -310,8 +310,9 @@ section {
 
       .btns {
         // outline: 1px solid black;
-        width: 30vw;
+        width: 25vw;
         height: 30px;
+        padding: 0 0 0 2vw;
 
         .error-mes {
           outline: 1px solid black;
@@ -333,7 +334,7 @@ section {
 
         #cancel_btn {
           // outline: 1px solid black;
-          float: right;
+          float: left;
           margin: 0 0.5vw;
           padding: 3px 10px;
           border-radius: 10px;
@@ -346,7 +347,7 @@ section {
 
         #confirm_btn {
           // outline: 1px solid black;
-          float: right;
+          float: left;
           margin: 0 0.5vw;
           padding: 3px 10px;
           border-radius: 10px;
