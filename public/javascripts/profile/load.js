@@ -2127,6 +2127,7 @@ function ajaxRequProfile(season) {
 function ajaxRequdOkrs(season) {
   var objectives = { "season": season };
   var objectives_JSON = JSON.stringify({ objectives });
+  $(".okr").remove();
   $("#update-okr-progress").show();
   $.ajax({
     url: url_okrs,
@@ -2155,7 +2156,6 @@ function ajaxRequdOkrs(season) {
       var okrInfo = $('#okr-template').html();
       var template = Handlebars.compile(okrInfo);
       var okrData = template(data);
-      $(".okr").remove();
       $("#update-okr-progress").hide();
       $('.section-okr').append(okrData);
       if (loadOkrs == false) {

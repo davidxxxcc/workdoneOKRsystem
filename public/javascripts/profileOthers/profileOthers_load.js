@@ -1232,6 +1232,7 @@ function ajaxRequProfile(UUID, season){
 function ajaxRequdOkrs(UUID, season){
   // var objectives = {"season": season};
   // var objectives_JSON = JSON.stringify({objectives});
+  $(".okr").remove();
   $("#update-okr-progress").show();
   var data = {
   others_UUID: UUID,
@@ -1266,7 +1267,6 @@ function ajaxRequdOkrs(UUID, season){
       var okrInfo = $('#okr-template').html();
       var template = Handlebars.compile(okrInfo);
       var okrData = template(data);
-      $(".okr").remove();
       $("#update-okr-progress").hide();
       $('.section-okr').append(okrData);
       if(loadOkrs == false){
