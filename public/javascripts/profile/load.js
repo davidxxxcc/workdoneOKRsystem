@@ -1519,36 +1519,36 @@ function popUpModal(turnOn) {
   $sectionOkr = $('.section-modal');
   $sectionBlur = $('header, section');
   if (turnOn == true) {
-    $({ blurRadius: 0 }).animate({
-      blurRadius: 5
-    }, {
-        duration: 500,
-        easing: 'swing', // or "linear"
-        // use jQuery UI or Easing plugin for more options
-        step: function () {
-          // //console.log(this.blurRadius);
-          $sectionBlur.css({
-            "-webkit-filter": "blur(" + this.blurRadius + "px)",
-            "filter": "blur(" + this.blurRadius + "px)"
-          });
-        }
-      });
+    // $({ blurRadius: 0 }).animate({
+    //   blurRadius: 5
+    // }, {
+    //     duration: 500,
+    //     easing: 'swing', // or "linear"
+    //     // use jQuery UI or Easing plugin for more options
+    //     step: function () {
+    //       // //console.log(this.blurRadius);
+    //       $sectionBlur.css({
+    //         "-webkit-filter": "blur(" + this.blurRadius + "px)",
+    //         "filter": "blur(" + this.blurRadius + "px)"
+    //       });
+    //     }
+    //   });
     $sectionOkr.fadeIn(fadeDuration, function () {
       $('#obj-input').focus();
     });
   }
   else {
-    $({ blurRadius: 5 }).animate({ blurRadius: 0 }
-      , {
-        duration: 500,
-        easing: 'swing',
-        step: function () {
-          $sectionBlur.css({
-            "-webkit-filter": "blur(" + this.blurRadius + "px)",
-            "filter": "blur(" + this.blurRadius + "px)"
-          });
-        }
-      });
+    // $({ blurRadius: 5 }).animate({ blurRadius: 0 }
+    //   , {
+    //     duration: 500,
+    //     easing: 'swing',
+    //     step: function () {
+    //       $sectionBlur.css({
+    //         "-webkit-filter": "blur(" + this.blurRadius + "px)",
+    //         "filter": "blur(" + this.blurRadius + "px)"
+    //       });
+    //     }
+    //   });
     $sectionOkr.fadeOut(fadeDuration, function () {
       initiModal();
     });
