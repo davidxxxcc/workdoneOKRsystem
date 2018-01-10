@@ -229,7 +229,7 @@ function loadMoreOKRs() {
 					setLoadMoreBtn('append');
 				}
 
-				// activateProgressAnimation();
+				activateProgressAnimation();
 			}
 
 
