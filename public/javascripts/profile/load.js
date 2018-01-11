@@ -624,6 +624,25 @@ function hoverAddKrBtn() {
 
 //****************************Update data function*************************//
 
+//Check selected season OKR editable
+function checkOkrEditable(){
+  var seasonNow = GetSeason();
+  $(".section-okr").on("custom-OkrUpdate", function(){
+    console.log("check season");
+    if(seasonNow != GetSelSeason() && seasonNow > GetSelSeason() ){
+      $(".kr-edit").hide();
+      $(".kr-delete").hide();
+      $(".kr-add-icon").hide();
+      $(".handle").hide();
+      $(".slider").on("slide", function (event, ui) { return false; }).slider({
+        animate: false
+      });
+      console.log("update okr!");
+    }
+  });
+
+}
+
 //Check if the user click like button this obj
 function checkLike() {
   $(".section-okr").on("custom-checkLike", ".okr", function () {
@@ -1461,6 +1480,7 @@ function afterLoading() {
   initSlider();
   clickLike();
   checkLike();
+  checkOkrEditable();
 
   initiModal();
   modalControlFlow();
